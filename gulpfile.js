@@ -17,7 +17,12 @@ gulp.task('sass', function () {
 gulp.task('scripts', function() {
   return gulp.src([
       './node_modules/phaser/dist/phaser.js',
-      './assets/js/game1.js',
+      './assets/js/boot.js',
+      './assets/js/load.js',
+      './assets/js/menu.js',
+      './assets/js/play.js',
+      './assets/js/gameover.js',
+      './assets/js/game.js',
     ])
     .pipe(sourcemaps.init())
     .pipe(concat('script.js'))
