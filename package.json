@@ -1,0 +1,19 @@
+{
+  "name": "aulao",
+  "description": "",
+  "version": "0.0.1",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-webserver": "^0.9.1",
+    "phaser": "^2.4.3"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
