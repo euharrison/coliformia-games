@@ -53,6 +53,6 @@ var playState = {
 		// veg.kill();
 
 	    //HACK para reiniciar o jogo quando há uma colisão
-	    location.href = location.href;
+	    game.state.start('menu');
 	}
 };
