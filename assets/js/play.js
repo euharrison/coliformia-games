@@ -9,10 +9,6 @@ var playState = {
 	    group = game.add.group();
 	    group.enableBody = true;
 	    group.physicsBodyType = Phaser.Physics.ARCADE;
-
-
-	    cursors = game.input.keyboard.createCursorKeys();
-		
 	},
 
 	update: function() {
@@ -30,25 +26,6 @@ var playState = {
           sprite.body.velocity.y = -200;
         }
       }
-
-
-	    if (cursors.left.isDown)
-	    {
-	        sprite.body.velocity.x = -200;
-	    }
-	    else if (cursors.right.isDown)
-	    {
-	        sprite.body.velocity.x = 200;
-	    }
-
-	    if (cursors.up.isDown)
-	    {
-	        sprite.body.velocity.y = -200;
-	    }
-	    else if (cursors.down.isDown)
-	    {
-	        sprite.body.velocity.y = 200;
-	    }
 
 
 	    if (game.rnd.frac() < 0.075) {
