@@ -22,6 +22,16 @@ var playState = {
 	    sprite.body.velocity.x = 0;
 	    sprite.body.velocity.y = 0;
 
+
+      if (game.input.activePointer.isDown) {
+        sprite.body.velocity.y = 200;
+      } else {
+        if (sprite.body.position.y > 0) {
+          sprite.body.velocity.y = -200;
+        }
+      }
+
+
 	    if (cursors.left.isDown)
 	    {
 	        sprite.body.velocity.x = -200;
@@ -41,9 +51,9 @@ var playState = {
 	    }
 
 
-	    if (game.rnd.frac() < 0.1) {
+	    if (game.rnd.frac() < 0.075) {
 	        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
-	        c.body.velocity.x = -100;
+	        c.body.velocity.x = -600;
 	    } 
 
 	    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
