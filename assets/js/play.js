@@ -29,17 +29,15 @@ var playState = {
 
 
 	    if (game.rnd.frac() < 0.075) {
-	        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
-	        c.body.velocity.x = -600;
+	        var enemy = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
+          enemy.checkWorldBounds = true;
+          enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
+          enemy.body.velocity.x = -600;
 	    } 
-
-	    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
 	},
 
 	collisionHandler: function() {
-		// veg.kill();
-
-	    //HACK para reiniciar o jogo quando há uma colisão
+		
 	    game.state.start('menu');
 	}
 };
