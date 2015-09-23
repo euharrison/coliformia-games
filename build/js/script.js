@@ -96052,83 +96052,152 @@ PIXI.TextureSilentFail = true;
 * "What matters in this life is not what we do but what we do for others, the legacy we leave and the imprint we make." - Eric Meyer
 */
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var bootState = {
 
-function preload() {
+	preload: function () {
+		game.load.image('progressBar', 'assets/img/progressBar.png');
+	},
 
-    game.load.image('phaser', 'assets/img/player.png');
-    game.load.image('veggies', 'assets/img/tv.png');
+	create: function() { 
+		// Set a background color and the physic system
+		game.stage.backgroundColor = '#2d2d2d';
+		game.physics.startSystem(Phaser.Physics.ARCADE);
 
-}
+		//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-var sprite;
-var group;
-var cursors;
+		if(!game.device.desktop) {
 
-function create() {
+			game.scale.minWidth = 280;
+			game.scale.minHeight = 360;
+			game.scale.maxWidth = 1800;
+			game.scale.maxHeight = 1400;
 
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+			game.scale.pageAlignHorizontally = true;
+			game.scale.pageAlignVertically = true;
+        	game.scale.setScreenSize(true);
+		}
 
-    game.stage.backgroundColor = '#2d2d2d';
+		game.state.start('load');
+	}
+};
+var loadState = {
 
-    //  This example will check Sprite vs. Group collision
+	preload: function () {		
+		// Add a loading label 
+		var loadingLabel = game.add.text(game.world.centerX, 150, 'loading...', { font: '30px Arial', fill: '#ffffff' });
+		loadingLabel.anchor.setTo(0.5, 0.5);
 
-    sprite = game.add.sprite(32, 200, 'phaser');
-    sprite.name = 'phaser-dude';
+		// Add a progress bar
+		var progressBar = game.add.sprite(game.world.centerX, 200, 'progressBar');
+		progressBar.anchor.setTo(0.5, 0.5);
+		game.load.setPreloadSprite(progressBar);
 
-    game.physics.enable(sprite, Phaser.Physics.ARCADE);
-    
-    group = game.add.group();
-    group.enableBody = true;
-    group.physicsBodyType = Phaser.Physics.ARCADE;
+		// Load all assets
+		game.load.image('phaser', 'assets/img/player.png');
+    	game.load.image('veggies', 'assets/img/tv.png');
+		// ...
+	},
+
+	create: function() {
+		game.state.start('menu');
+	}
+};
+//splash screen do jogo
+
+var menuState = {
+
+	create: function() { 
+		// How to start the game
+		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'espaço para começar / setas para mover', { font: '25px Arial', fill: '#ffffff' });
+		startLabel.anchor.setTo(0.5, 0.5);
+		
+		// Start the game when the up arrow key is pressed /*/
+		var startKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		startKey.onDown.addOnce(this.start, this);
+	},
+
+	start: function() {
+		game.state.start('play');	
+	}
+};
+var playState = {
+
+	create: function() {
+		sprite = game.add.sprite(32, 200, 'phaser');
+	    sprite.name = 'phaser-dude';
+
+	    game.physics.enable(sprite, Phaser.Physics.ARCADE);
+	    
+	    group = game.add.group();
+	    group.enableBody = true;
+	    group.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-    cursors = game.input.keyboard.createCursorKeys();
+	    cursors = game.input.keyboard.createCursorKeys();
+		
+	},
 
-}
+	update: function() {
+		// game.physics.arcade.collide(sprite, group, this.collisionHandler, null, this);
+	    game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
 
-function update() {
+	    sprite.body.velocity.x = 0;
+	    sprite.body.velocity.y = 0;
 
-    // game.physics.arcade.collide(sprite, group, collisionHandler, null, this);
-    game.physics.arcade.overlap(sprite, group, collisionHandler, null, this);
+	    if (cursors.left.isDown)
+	    {
+	        sprite.body.velocity.x = -200;
+	    }
+	    else if (cursors.right.isDown)
+	    {
+	        sprite.body.velocity.x = 200;
+	    }
 
-    sprite.body.velocity.x = 0;
-    sprite.body.velocity.y = 0;
-
-    if (cursors.left.isDown)
-    {
-        sprite.body.velocity.x = -200;
-    }
-    else if (cursors.right.isDown)
-    {
-        sprite.body.velocity.x = 200;
-    }
-
-    if (cursors.up.isDown)
-    {
-        sprite.body.velocity.y = -200;
-    }
-    else if (cursors.down.isDown)
-    {
-        sprite.body.velocity.y = 200;
-    }
+	    if (cursors.up.isDown)
+	    {
+	        sprite.body.velocity.y = -200;
+	    }
+	    else if (cursors.down.isDown)
+	    {
+	        sprite.body.velocity.y = 200;
+	    }
 
 
-    if (game.rnd.frac() < 0.1) {
-        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
-        c.body.velocity.x = -100;
-    } 
+	    if (game.rnd.frac() < 0.1) {
+	        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
+	        c.body.velocity.x = -100;
+	    } 
 
-    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
+	    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
+	},
 
-}
+	collisionHandler: function() {
+		// veg.kill();
 
-function collisionHandler (player, veg) {
+	    //HACK para reiniciar o jogo quando há uma colisão
+	    game.state.start('menu');
+	}
+};
+var gameoverState = {
 
-    // veg.kill();
+	create: function(){
+		
+	},
 
-    //HACK para reiniciar o jogo quando há uma colisão
-    location.href = location.href;
+	start: function() { 
+		game.state.start('play');
+	}
+};
+// Init Phaser
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 
-}
+// Define states
+game.state.add('boot', bootState);
+game.state.add('load', loadState);
+game.state.add('menu', menuState);
+game.state.add('play', playState);
+game.state.add('gameover', gameoverState);
+
+// Start the "boot" state
+game.state.start('boot');
 //# sourceMappingURL=script.js.map
