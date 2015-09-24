@@ -34,8 +34,6 @@ var playState = {
 		game.input.onUp.add(function(){
 			this.intouchdown = false;
 		}, this);
-
-		window.player = this.player;
 	},
 
 	nadaPraBaixo: function() {
