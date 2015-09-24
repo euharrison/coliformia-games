@@ -36,10 +36,6 @@ var playState = {
 		}, this);
 	},
 
-	nadaPraBaixo: function() {
-
-	},
-
 	update: function() {
 		// game.physics.arcade.collide(sprite, group, this.collisionHandler, null, this);
 	    //game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
