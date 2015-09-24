@@ -51,8 +51,8 @@ var playState = {
 	    	this.player.body.position.y = this.initialPosition.y;
 	    }
 
-	    if (game.rnd.frac() < 0.1) {
-	        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
+	    if (game.rnd.frac() < 0.01) {
+	        var c = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'veggies');
 	        c.body.velocity.x = -100;
 	    } 
 
