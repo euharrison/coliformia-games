@@ -12,8 +12,11 @@ var playState = {
 			y:200
 		};
 
-		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'phaser');
+		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
 	    this.player.name = 'phaser-dude';
+	    this.player.scale.setTo(.25,.25);
+	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
+	    this.player.animations.play('nada');
 
 	    this.intouchdown = false;
 
