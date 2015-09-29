@@ -10,10 +10,12 @@ var loadState = {
 		progressBar.anchor.setTo(0.5, 0.5);
 		game.load.setPreloadSprite(progressBar);
 
+		var BASE_DIR = 'assets/sprites/';
+
 		// Load all assets
-		game.load.image('phaser', 'assets/img/player.png');
-    	game.load.image('veggies', 'assets/img/tv.png');
-		// ...
+		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
+		
+		game.load.image('tv', BASE_DIR + 'tv.png');
 	},
 
 	create: function() {
