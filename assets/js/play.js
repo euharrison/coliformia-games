@@ -56,7 +56,8 @@ var playState = {
 
 
 	    if (game.rnd.frac() < 0.075) {
-			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'veggies');
+			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			enemy.scale.setTo(.3,.3);
 			enemy.checkWorldBounds = true;
 			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
 			enemy.body.velocity.x = -600;
