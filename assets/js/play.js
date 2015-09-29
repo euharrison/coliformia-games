@@ -1,52 +1,67 @@
 var playState = {
 
 	create: function() {
-		sprite = game.add.sprite(32, 200, 'phaser');
-	    sprite.name = 'phaser-dude';
 
-	    game.physics.enable(sprite, Phaser.Physics.ARCADE);
-	    
+		this.forcas = {
+			forcaPraBaixo: 10,
+			empuxoDaAgua: .07
+		};
+
+		this.initialPosition = {
+			x:32,
+			y:200
+		};
+
+		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
+	    this.player.name = 'phaser-dude';
+	    this.player.scale.setTo(.25,.25);
+	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
+	    this.player.animations.play('nada');
+
+	    this.intouchdown = false;
+
+	    game.physics.enable(this.player, Phaser.Physics.ARCADE);
+
 	    group = game.add.group();
 	    group.enableBody = true;
 	    group.physicsBodyType = Phaser.Physics.ARCADE;
 
-
 	    cursors = game.input.keyboard.createCursorKeys();
-		
+
+	    /*
+		* coloca o jogo pra escutar se há mouse down ou touch
+	    */
+		game.input.onDown.add(function(){
+			this.intouchdown = true;
+		}, this);
+		game.input.onUp.add(function(){
+			this.intouchdown = false;
+		}, this);
 	},
 
 	update: function() {
 		// game.physics.arcade.collide(sprite, group, this.collisionHandler, null, this);
-	    game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
+	    //game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
 
-	    sprite.body.velocity.x = 0;
-	    sprite.body.velocity.y = 0;
-
-	    if (cursors.left.isDown)
-	    {
-	        sprite.body.velocity.x = -200;
-	    }
-	    else if (cursors.right.isDown)
-	    {
-	        sprite.body.velocity.x = 200;
+	    if(this.intouchdown){
+	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
 	    }
 
-	    if (cursors.up.isDown)
-	    {
-	        sprite.body.velocity.y = -200;
-	    }
-	    else if (cursors.down.isDown)
-	    {
-	        sprite.body.velocity.y = 200;
+	    if(this.player.body.position.y > this.initialPosition.y){
+	    	this.player.body.velocity.y -= (this.player.body.position.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
+	    }else if(this.player.body.position.y < this.initialPosition.y){
+	    	this.player.body.velocity.y = 0;
+	    	this.player.body.position.y = this.initialPosition.y;
 	    }
 
 
-	    if (game.rnd.frac() < 0.1) {
-	        var c = group.create(800, game.rnd.integerInRange(0, 570), 'veggies');
-	        c.body.velocity.x = -100;
+	    if (game.rnd.frac() < 0.075) {
+			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			enemy.scale.setTo(.3,.3);
+			enemy.checkWorldBounds = true;
+			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
+			enemy.body.velocity.x = -600;
 	    } 
-
-	    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
 	},
 
 	collisionHandler: function() {
