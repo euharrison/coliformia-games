@@ -54,13 +54,13 @@ var playState = {
 	    	this.player.body.position.y = this.initialPosition.y;
 	    }
 
-	    if (game.rnd.frac() < 0.01) {
-	        var c = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
-	        c.scale.setTo(.3,.3);
-	        c.body.velocity.x = -100;
-	    } 
 
-	    //TODO verificar quando o sprite sair da tela para apagar ele evitando memory leak
+	    if (game.rnd.frac() < 0.075) {
+			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'veggies');
+			enemy.checkWorldBounds = true;
+			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
+			enemy.body.velocity.x = -600;
+	    } 
 	},
 
 	collisionHandler: function() {
