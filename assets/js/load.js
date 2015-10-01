@@ -16,6 +16,8 @@ var loadState = {
 		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
 		
 		game.load.image('tv', BASE_DIR + 'tv.png');
+
+		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 	},
 
 	create: function() {
