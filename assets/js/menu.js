@@ -4,12 +4,10 @@ var menuState = {
 
 	create: function() { 
 		// How to start the game
-		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'espaço para começar / touch para afundar', { font: '25px Arial', fill: '#ffffff' });
+		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'touch para começar / touch para afundar', { font: '25px Arial', fill: '#ffffff' });
 		startLabel.anchor.setTo(0.5, 0.5);
 		
-		// Start the game when the up arrow key is pressed /*/
-		var startKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-		startKey.onDown.addOnce(this.start, this);
+		game.input.onUp.add(this.start, this);
 	},
 
 	start: function() {

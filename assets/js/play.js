@@ -8,7 +8,7 @@ var playState = {
 		};
 
 		this.initialPosition = {
-			x:32,
+			x:200,
 			y:200
 		};
 
@@ -17,6 +17,19 @@ var playState = {
 	    this.player.scale.setTo(.25,.25);
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
 	    this.player.animations.play('nada');
+
+
+	    //cor da água #00375b
+
+	    this.agua = game.add.graphics(0, 220);
+		this.agua.beginFill(0x00375b, .5);
+		this.agua.drawRect(0, 0, 800, 400);
+
+
+		this.bosta = game.add.sprite(0, 200, 'bosta');
+		this.bosta.scale.setTo(.7,.7);
+	    this.bosta.animations.add('boia', [0,1,2,3,4,5], 4, true);
+	    this.bosta.animations.play('boia');
 
 	    this.intouchdown = false;
 
