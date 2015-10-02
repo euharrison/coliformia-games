@@ -96060,7 +96060,7 @@ var bootState = {
 
 	create: function() { 
 		// Set a background color and the physic system
-		game.stage.backgroundColor = '#2d2d2d';
+		game.stage.backgroundColor = '#000';
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -96098,6 +96098,8 @@ var loadState = {
 		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
 		
 		game.load.image('tv', BASE_DIR + 'tv.png');
+
+		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 	},
 
 	create: function() {
@@ -96110,12 +96112,10 @@ var menuState = {
 
 	create: function() { 
 		// How to start the game
-		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'espaço para começar / touch para afundar', { font: '25px Arial', fill: '#ffffff' });
+		var startLabel = game.add.text(game.world.centerX, game.world.height-80, 'touch para começar / touch para afundar', { font: '25px Arial', fill: '#ffffff' });
 		startLabel.anchor.setTo(0.5, 0.5);
 		
-		// Start the game when the up arrow key is pressed /*/
-		var startKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-		startKey.onDown.addOnce(this.start, this);
+		game.input.onUp.add(this.start, this);
 	},
 
 	start: function() {
@@ -96132,7 +96132,7 @@ var playState = {
 		};
 
 		this.initialPosition = {
-			x:32,
+			x:200,
 			y:200
 		};
 
@@ -96141,6 +96141,19 @@ var playState = {
 	    this.player.scale.setTo(.25,.25);
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
 	    this.player.animations.play('nada');
+
+
+	    //cor da água #00375b
+
+	    this.agua = game.add.graphics(0, 220);
+		this.agua.beginFill(0x00375b, .5);
+		this.agua.drawRect(0, 0, 800, 400);
+
+
+		this.bosta = game.add.sprite(0, 200, 'bosta');
+		this.bosta.scale.setTo(.7,.7);
+	    this.bosta.animations.add('boia', [0,1,2,3,4,5], 4, true);
+	    this.bosta.animations.play('boia');
 
 	    this.intouchdown = false;
 
