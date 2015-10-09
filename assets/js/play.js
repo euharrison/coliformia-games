@@ -84,7 +84,13 @@ var playState = {
 
 
 	    if (game.rnd.frac() < 0.02) {
-			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			var enemy;
+			if (game.rnd.frac() < 0.8) {
+				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			} else {
+				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			}
+			 
 			enemy.scale.setTo(.3,.3);
 			enemy.checkWorldBounds = true;
 			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
