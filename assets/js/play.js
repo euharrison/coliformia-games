@@ -18,6 +18,12 @@ var playState = {
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
 	    this.player.animations.play('nada');
 
+	    this.rastro = game.add.sprite(this.initialPosition.x - 50, this.initialPosition.y + 25, 'rastro');
+	    this.rastro.scale.setTo(.35,.35);
+	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
+	    this.rastro.animations.play('rastra');
+
+	    window.rastro = this.rastro;
 
 	    //cor da água #00375b
 
@@ -62,13 +68,22 @@ var playState = {
 
 	    if(this.player.body.position.y > this.initialPosition.y){
 	    	this.player.body.velocity.y -= (this.player.body.position.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
+
+	    	if (this.rastro.alpha === 1) {
+	    		game.add.tween(this.rastro).to({alpha: 0}, 200).start();
+	    	}
+
 	    }else if(this.player.body.position.y < this.initialPosition.y){
 	    	this.player.body.velocity.y = 0;
 	    	this.player.body.position.y = this.initialPosition.y;
+
+	    	if (this.rastro.alpha != 1) {
+	    		game.add.tween(this.rastro).to({alpha: 1}, 200).start();
+	    	}
 	    }
 
 
-	    if (game.rnd.frac() < 0.075) {
+	    if (game.rnd.frac() < 0.02) {
 			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
 			enemy.scale.setTo(.3,.3);
 			enemy.checkWorldBounds = true;
