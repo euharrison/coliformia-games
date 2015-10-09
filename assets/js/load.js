@@ -14,8 +14,10 @@ var loadState = {
 
 		// Load all assets
 		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
-		
+		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
+
 		game.load.image('tv', BASE_DIR + 'tv.png');
+		game.load.image('sofa', BASE_DIR + 'sofa.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 	},
