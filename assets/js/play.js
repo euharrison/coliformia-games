@@ -93,9 +93,6 @@ var playState = {
 	},
 
 	collisionHandler: function() {
-		// veg.kill();
-
-	    //HACK para reiniciar o jogo quando há uma colisão
 	    game.state.start('gameover');
 	}
 };
