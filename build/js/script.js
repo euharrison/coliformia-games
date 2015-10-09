@@ -96096,8 +96096,10 @@ var loadState = {
 
 		// Load all assets
 		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
-		
+		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
+
 		game.load.image('tv', BASE_DIR + 'tv.png');
+		game.load.image('sofa', BASE_DIR + 'sofa.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 	},
@@ -96133,15 +96135,21 @@ var playState = {
 
 		this.initialPosition = {
 			x:200,
-			y:200
+			y:180
 		};
 
 		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
 	    this.player.name = 'phaser-dude';
-	    this.player.scale.setTo(.25,.25);
+	    this.player.scale.setTo(.35,.35);
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
 	    this.player.animations.play('nada');
 
+	    this.rastro = game.add.sprite(this.initialPosition.x - 50, this.initialPosition.y + 25, 'rastro');
+	    this.rastro.scale.setTo(.35,.35);
+	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
+	    this.rastro.animations.play('rastra');
+
+	    window.rastro = this.rastro;
 
 	    //cor da água #00375b
 
@@ -96177,8 +96185,8 @@ var playState = {
 	},
 
 	update: function() {
-		// game.physics.arcade.collide(sprite, group, this.collisionHandler, null, this);
-	    //game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
+		game.physics.arcade.collide(this.player, group, this.collisionHandler, null, this);
+	    //game.physics.arcade.overlap(this.player, group, this.collisionHandler, null, this);
 
 	    if(this.intouchdown){
 	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
@@ -96186,14 +96194,29 @@ var playState = {
 
 	    if(this.player.body.position.y > this.initialPosition.y){
 	    	this.player.body.velocity.y -= (this.player.body.position.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
+
+	    	if (this.rastro.alpha === 1) {
+	    		game.add.tween(this.rastro).to({alpha: 0}, 200).start();
+	    	}
+
 	    }else if(this.player.body.position.y < this.initialPosition.y){
 	    	this.player.body.velocity.y = 0;
 	    	this.player.body.position.y = this.initialPosition.y;
+
+	    	if (this.rastro.alpha != 1) {
+	    		game.add.tween(this.rastro).to({alpha: 1}, 200).start();
+	    	}
 	    }
 
 
-	    if (game.rnd.frac() < 0.075) {
-			var enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+	    if (game.rnd.frac() < 0.02) {
+			var enemy;
+			if (game.rnd.frac() < 0.8) {
+				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			} else {
+				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			}
+			 
 			enemy.scale.setTo(.3,.3);
 			enemy.checkWorldBounds = true;
 			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
@@ -96202,19 +96225,22 @@ var playState = {
 	},
 
 	collisionHandler: function() {
-		// veg.kill();
-
-	    //HACK para reiniciar o jogo quando há uma colisão
-	    game.state.start('menu');
+	    game.state.start('gameover');
 	}
 };
+//tela de game over
+
 var gameoverState = {
 
-	create: function(){
+	create: function() { 
+		// How to start the game
+		var startLabel = game.add.text(game.world.centerX, game.world.height/2, 'perdeu!! tá cagado!!\ntoca pra jogar de novo\nvai filhão!', { font: '25px Arial', fill: '#ffffff' });
+		startLabel.anchor.setTo(0.5, 0.5);
 		
+		game.input.onUp.add(this.start, this);
 	},
 
-	start: function() { 
+	start: function() {
 		game.state.start('play');
 	}
 };
