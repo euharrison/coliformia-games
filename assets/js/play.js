@@ -59,8 +59,8 @@ var playState = {
 	},
 
 	update: function() {
-		// game.physics.arcade.collide(sprite, group, this.collisionHandler, null, this);
-	    //game.physics.arcade.overlap(sprite, group, this.collisionHandler, null, this);
+		game.physics.arcade.collide(this.player, group, this.collisionHandler, null, this);
+	    //game.physics.arcade.overlap(this.player, group, this.collisionHandler, null, this);
 
 	    if(this.intouchdown){
 	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
@@ -96,6 +96,6 @@ var playState = {
 		// veg.kill();
 
 	    //HACK para reiniciar o jogo quando há uma colisão
-	    game.state.start('menu');
+	    game.state.start('gameover');
 	}
 };
