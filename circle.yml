@@ -1,0 +1,10 @@
+machine:
+  node:
+    version: "4"
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git checkout gh-pages
+      - git merge master
