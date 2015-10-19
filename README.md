@@ -3,5 +3,5 @@
 ### Dev
 ----------
 * `npm install`
-* `gulp watch`
+* `npm run watch`
 * [localhost:8000](http://localhost:8000)
