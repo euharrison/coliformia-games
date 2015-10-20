@@ -8,3 +8,4 @@ deployment:
     commands:
       - git checkout gh-pages
       - git merge master
+      - git push
