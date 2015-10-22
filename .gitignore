@@ -1,5 +1,9 @@
 .DS_Store
+.aws
+
 node_modules/
 build/
-npm-debug.log
+
 *.map
+
+npm-debug.log
