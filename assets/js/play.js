@@ -3,8 +3,8 @@ var playState = {
 	create: function() {
 
 		this.forcas = {
-			forcaPraBaixo: 10,
-			empuxoDaAgua: .07
+			forcaPraBaixo: 100,
+			empuxoDaAgua: .02
 		};
 
 		this.initialPosition = {
@@ -51,10 +51,7 @@ var playState = {
 		* coloca o jogo pra escutar se há mouse down ou touch
 	    */
 		game.input.onDown.add(function(){
-			this.intouchdown = true;
-		}, this);
-		game.input.onUp.add(function(){
-			this.intouchdown = false;
+			this.player.body.velocity.y += this.forcas.forcaPraBaixo;
 		}, this);
 	},
 
