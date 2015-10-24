@@ -11,6 +11,9 @@ var playState = {
 			x:200,
 			y:180
 		};
+		
+		this.velocity = -100;
+		this.velocityIncrease = -0.05;
 
 		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
 	    this.player.name = 'phaser-dude';
@@ -91,7 +94,8 @@ var playState = {
 			enemy.scale.setTo(.3,.3);
 			enemy.checkWorldBounds = true;
 			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
-			enemy.body.velocity.x = -600;
+			enemy.body.velocity.x = this.velocity;
+			this.velocity += this.velocityIncrease;
 	    } 
 	},
 
