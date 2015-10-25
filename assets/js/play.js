@@ -9,12 +9,15 @@ var playState = {
 		};
 
 		this.initialPosition = {
-			x:200,
+			x:250,
 			y:220
 		};
 		
 		this.velocity = -100;
 		this.velocityIncrease = -0.05;
+		
+		game.score = 0;
+		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
 		
 		// start the P2JS physics system
 		game.physics.startSystem(Phaser.Physics.P2JS);
@@ -23,7 +26,7 @@ var playState = {
 		this.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 
-		this.player = game.add.sprite(this.initialPosition.x + 50, this.initialPosition.y, 'nadador');
+		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
 	    this.player.name = 'phaser-dude';
 	    this.player.scale.setTo(.35,.35);
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
@@ -36,7 +39,7 @@ var playState = {
 		this.player.body.collides(this.enemiesCollisionGroup, this.collisionHandler, this);
 		this.player.body.fixedRotation = true;
 		
-	    this.rastro = game.add.sprite(this.initialPosition.x - 50, this.initialPosition.y - 15, 'rastro');
+	    this.rastro = game.add.sprite(this.initialPosition.x - 100, this.initialPosition.y - 15, 'rastro');
 	    this.rastro.scale.setTo(.35,.35);
 	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
 	    this.rastro.animations.play('rastra');
@@ -100,7 +103,6 @@ var playState = {
 	    if (game.rnd.frac() < 0.02) {
 			this.createEnemy();
 	    } 
-		this.velocity += this.velocityIncrease;
 		
 		group.forEach(function(enemy) {
 		  if(enemy.body.x<0){
@@ -114,6 +116,11 @@ var playState = {
 			  enemy.body.y = this.initialPosition.y;
 		  }
 		}, this);
+		
+		this.velocity += this.velocityIncrease;
+		
+		game.score += -this.velocity/1000;
+		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
 	},
 
 	collisionHandler: function(body1, body2) {

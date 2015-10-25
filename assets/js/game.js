@@ -1,5 +1,6 @@
 // Init Phaser
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+game.score = 0;
 
 // Define states
 game.state.add('boot', bootState);
