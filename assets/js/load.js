@@ -20,6 +20,9 @@ var loadState = {
 		game.load.image('sofa', BASE_DIR + 'sofa.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
+		
+		// load the physics data json
+		game.load.physics('physicsData', 'assets/physics/collision.json');
 	},
 
 	create: function() {
