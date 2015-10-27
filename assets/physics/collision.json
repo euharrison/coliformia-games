@@ -1,0 +1,28 @@
+{ 
+	"player": [	
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 5, 50,   50, 5,   65, 20,   20, 65]
+		}  
+	],
+	"sofa": [	
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 0, 65,   65, 0,   85, 20,   20, 85]
+		},
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 0, 105,   85, 20,   97, 30,   13, 115]
+		} 		
+	],
+	"tv": [	
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 3, 39,   12, 3,   60, 17,   51, 51]
+		}  
+	]
+}
