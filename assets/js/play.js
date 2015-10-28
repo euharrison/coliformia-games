@@ -12,7 +12,17 @@ var playState = {
 			x:250,
 			y:220
 		};
-		
+
+		this.playerlife = {
+			initial: 1000,
+			current: 1000
+		};
+
+		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
+		this.lifeBar.anchor.setTo(0, 0.5);
+		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
+		this.lifeBar.scale.setTo(3, 1);
+
 		this.velocity = -100;
 		this.velocityIncrease = -0.05;
 		
@@ -78,6 +88,13 @@ var playState = {
 	update: function() {
 		if(this.intouchdown){
 	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
+	    }
+
+	    if (this.playerlife.current >= 0){
+    		this.playerlife.current--;
+	    	this.lifeBar.scale.setTo(3 * this.playerlife.current / this.playerlife.initial, 1);
+	    } else {
+	    	game.state.start('gameover');
 	    }
 
 		this.player.body.velocity.x = 0;
