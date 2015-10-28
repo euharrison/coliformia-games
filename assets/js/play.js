@@ -34,6 +34,7 @@ var playState = {
 		game.physics.p2.setImpactEvents(true);
 		this.playerCollisionGroup = game.physics.p2.createCollisionGroup();
 		this.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
+		this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 
 		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
@@ -46,7 +47,8 @@ var playState = {
 		this.player.body.clearShapes();
 		this.player.body.loadPolygon('physicsData', 'player');
 		this.player.body.setCollisionGroup(this.playerCollisionGroup);
-		this.player.body.collides(this.enemiesCollisionGroup, this.collisionHandler, this);
+		this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
+		this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 		this.player.body.fixedRotation = true;
 		
 	    this.rastro = game.add.sprite(this.initialPosition.x - 100, this.initialPosition.y - 15, 'rastro');
@@ -118,7 +120,7 @@ var playState = {
 
 
 	    if (game.rnd.frac() < 0.02) {
-			this.createEnemy();
+			this.createObstacle();
 	    } 
 		
 		group.forEach(function(enemy) {
@@ -140,24 +142,43 @@ var playState = {
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
 	},
 
-	collisionHandler: function(body1, body2) {
+	enemyCollisionHandler: function(body1, body2) {
 	    game.state.start('gameover');
 	},
+
+	powerupCollisionHandler: function(body1, body2) {
+	    this.playerlife.current + 100;
+
+	    if (this.playerlife.current > this.playerlife.initial)
+	    {
+	    	this.playerlife.current = this.playerlife.initial;
+	    }
+	},
 	
-	createEnemy: function() {
-		var enemy;
-		if (game.rnd.frac() < 0.8) {
-			enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+	createObstacle: function() {
+		var obstacle;
+		if (game.rnd.frac() < 0.4) {
+			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
+		} else if(game.rnd.frac() < 0.8){
+			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
 		} else {
-			enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
 		}
-		
-		enemy.scale.setTo(.3,.3);
-		enemy.body.clearShapes();
-		enemy.body.loadPolygon('physicsData', enemy.key);
-		enemy.body.setCollisionGroup(this.enemiesCollisionGroup);
-		enemy.body.collideWorldBounds = false;
-		enemy.body.collides([this.enemiesCollisionGroup, this.playerCollisionGroup]);
-		enemy.body.velocity.x = this.velocity;
+
+		obstacle.scale.setTo(.3,.3);
+		obstacle.body.clearShapes();
+		obstacle.body.loadPolygon('physicsData', obstacle.key);
+
+		if (obstacle.key === 'powerup')
+		{
+			obstacle.body.setCollisionGroup(this.powerupCollisionGroup);
+			obstacle.body.collides([this.powerupCollisionGroup, this.playerCollisionGroup]);
+		} else{
+			obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
+			obstacle.body.collides([this.enemiesCollisionGroup, this.playerCollisionGroup]);
+		}
+
+		obstacle.body.collideWorldBounds = false;
+		obstacle.body.velocity.x = this.velocity;
 	}
 };
