@@ -96089,6 +96089,9 @@ var loadState = {
 		game.load.image('sofa', BASE_DIR + 'sofa.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
+		
+		// load the physics data json
+		game.load.physics('physicsData', 'assets/physics/collision.json');
 	},
 
 	create: function() {
@@ -96114,24 +96117,55 @@ var menuState = {
 var playState = {
 
 	create: function() {
-
+		this.debugPhysics = true;
+	
 		this.forcas = {
 			forcaPraBaixo: 100,
 			empuxoDaAgua: .02
 		};
 
 		this.initialPosition = {
-			x:200,
-			y:180
+			x:250,
+			y:220
 		};
+
+		this.playerlife = {
+			initial: 1000,
+			current: 1000
+		};
+
+		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
+		this.lifeBar.anchor.setTo(0, 0.5);
+		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
+		this.lifeBar.scale.setTo(3, 1);
+
+		this.velocity = -100;
+		this.velocityIncrease = -0.05;
+		
+		game.score = 0;
+		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
+		
+		// start the P2JS physics system
+		game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.p2.setImpactEvents(true);
+		this.playerCollisionGroup = game.physics.p2.createCollisionGroup();
+		this.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.physics.p2.updateBoundsCollisionGroup();
 
 		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
 	    this.player.name = 'phaser-dude';
 	    this.player.scale.setTo(.35,.35);
 	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
 	    this.player.animations.play('nada');
-
-	    this.rastro = game.add.sprite(this.initialPosition.x - 50, this.initialPosition.y + 25, 'rastro');
+		
+		game.physics.p2.enable(this.player, this.debugPhysics);
+		this.player.body.clearShapes();
+		this.player.body.loadPolygon('physicsData', 'player');
+		this.player.body.setCollisionGroup(this.playerCollisionGroup);
+		this.player.body.collides(this.enemiesCollisionGroup, this.collisionHandler, this);
+		this.player.body.fixedRotation = true;
+		
+	    this.rastro = game.add.sprite(this.initialPosition.x - 100, this.initialPosition.y - 15, 'rastro');
 	    this.rastro.scale.setTo(.35,.35);
 	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
 	    this.rastro.animations.play('rastra');
@@ -96152,12 +96186,11 @@ var playState = {
 
 	    this.intouchdown = false;
 
-	    game.physics.enable(this.player, Phaser.Physics.ARCADE);
-
 	    group = game.add.group();
 	    group.enableBody = true;
-	    group.physicsBodyType = Phaser.Physics.ARCADE;
-
+		group.enableBodyDebug = this.debugPhysics;
+	    group.physicsBodyType = Phaser.Physics.P2JS;
+		
 	    cursors = game.input.keyboard.createCursorKeys();
 
 	    /*
@@ -96169,23 +96202,30 @@ var playState = {
 	},
 
 	update: function() {
-		game.physics.arcade.collide(this.player, group, this.collisionHandler, null, this);
-	    //game.physics.arcade.overlap(this.player, group, this.collisionHandler, null, this);
-
-	    if(this.intouchdown){
+		if(this.intouchdown){
 	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
 	    }
 
-	    if(this.player.body.position.y > this.initialPosition.y){
-	    	this.player.body.velocity.y -= (this.player.body.position.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
+	    if (this.playerlife.current >= 0){
+    		this.playerlife.current--;
+	    	this.lifeBar.scale.setTo(3 * this.playerlife.current / this.playerlife.initial, 1);
+	    } else {
+	    	game.state.start('gameover');
+	    }
+
+		this.player.body.velocity.x = 0;
+		this.player.body.x = this.initialPosition.x;
+		
+	    if(this.player.body.y > this.initialPosition.y){
+	    	this.player.body.velocity.y -= (this.player.body.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
 
 	    	if (this.rastro.alpha === 1) {
 	    		game.add.tween(this.rastro).to({alpha: 0}, 200).start();
 	    	}
 
-	    }else if(this.player.body.position.y < this.initialPosition.y){
+	    }else if(this.player.body.y < this.initialPosition.y){
 	    	this.player.body.velocity.y = 0;
-	    	this.player.body.position.y = this.initialPosition.y;
+	    	this.player.body.y = this.initialPosition.y;
 
 	    	if (this.rastro.alpha != 1) {
 	    		game.add.tween(this.rastro).to({alpha: 1}, 200).start();
@@ -96194,22 +96234,47 @@ var playState = {
 
 
 	    if (game.rnd.frac() < 0.02) {
-			var enemy;
-			if (game.rnd.frac() < 0.8) {
-				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
-			} else {
-				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
-			}
-			 
-			enemy.scale.setTo(.3,.3);
-			enemy.checkWorldBounds = true;
-			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
-			enemy.body.velocity.x = -600;
+			this.createEnemy();
 	    } 
+		
+		group.forEach(function(enemy) {
+		  if(enemy.body.x<0){
+			  //out of the bounds
+			  enemy.body.clearShapes();
+			  enemy.kill();
+		  }else if(enemy.body.y > game.world.height){
+			  enemy.body.velocity.y *= -1;
+		  }else if(enemy.body.y < this.initialPosition.y){
+			  enemy.body.velocity.y = 0;
+			  enemy.body.y = this.initialPosition.y;
+		  }
+		}, this);
+		
+		this.velocity += this.velocityIncrease;
+		
+		game.score += -this.velocity/1000;
+		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
 	},
 
-	collisionHandler: function() {
+	collisionHandler: function(body1, body2) {
 	    game.state.start('gameover');
+	},
+	
+	createEnemy: function() {
+		var enemy;
+		if (game.rnd.frac() < 0.8) {
+			enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+		} else {
+			enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+		}
+		
+		enemy.scale.setTo(.3,.3);
+		enemy.body.clearShapes();
+		enemy.body.loadPolygon('physicsData', enemy.key);
+		enemy.body.setCollisionGroup(this.enemiesCollisionGroup);
+		enemy.body.collideWorldBounds = false;
+		enemy.body.collides([this.enemiesCollisionGroup, this.playerCollisionGroup]);
+		enemy.body.velocity.x = this.velocity;
 	}
 };
 //tela de game over
@@ -96221,6 +96286,9 @@ var gameoverState = {
 		var startLabel = game.add.text(game.world.centerX, game.world.height/2, 'perdeu!! tá cagado!!\ntoca pra jogar de novo\nvai filhão!', { font: '25px Arial', fill: '#ffffff' });
 		startLabel.anchor.setTo(0.5, 0.5);
 		
+		var scoreText = game.add.text(game.world.centerX, game.world.height/2-150, 'Distance:\n' + Math.ceil(game.score), { fontSize: '52px', fill: '#FFF' });
+		scoreText.anchor.setTo(0.5, 0.5);
+		
 		game.input.onUp.add(this.start, this);
 	},
 
@@ -96230,6 +96298,7 @@ var gameoverState = {
 };
 // Init Phaser
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+game.score = 0;
 
 // Define states
 game.state.add('boot', bootState);
