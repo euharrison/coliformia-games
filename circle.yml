@@ -10,4 +10,4 @@ deployment:
   staging:
     branch: auto-deploy
     commands:
-      - npm run build
+      - aws elasticbeanstalk update-environment --environment-name cg-app --version-label v1
