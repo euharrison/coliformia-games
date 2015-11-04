@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"fake test ok\"",
     "build": "node ./node_modules/gulp/bin/gulp.js",
-    "watch": "node ./node_modules/gulp/bin/gulp.js watch"
+    "gulp-watch": "node ./node_modules/gulp/bin/gulp.js watch",
+    "watch": "node node_modules/concurrently/src/main.js --kill-others \"npm run gulp-watch\" \"npm start\"",
+    "start": "npm run build && node server.js"
   },
   "dependencies": {
     "express": "^4.13.3",
@@ -14,9 +16,11 @@
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-webserver": "^0.9.1",
     "phaser": "^2.4.3"
   },
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^0.1.1"
+  }
 }
