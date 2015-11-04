@@ -12,6 +12,6 @@ deployment:
         revision_location:
           revision_type: S3
           s3_location:
-            bucket: elasticbeanstalk-us-west-2-345555457433
-            key_pattern: cg-app-{BRANCH}-{SHORT_COMMIT}
+            bucket: coliformia
+            key_pattern: cg-{BRANCH}-{SHORT_COMMIT}
         deployment_group: my-deployment-group
