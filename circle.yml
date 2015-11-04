@@ -2,12 +2,16 @@ machine:
   node:
     version: "4"
 
-dependencies:
-  pre:
-    - pip install awscli
-
 deployment:
   staging:
     branch: auto-deploy
-    commands:
-      - aws elasticbeanstalk update-environment --environment-name cg-app --version-label v1
+    codedeploy:
+      cg-app:
+        application_root: /
+        region: us-west-2
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: elasticbeanstalk-us-west-2-345555457433
+            key_pattern: cg-app-{BRANCH}-{SHORT_COMMIT}
+        deployment_group: my-deployment-group
