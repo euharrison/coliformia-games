@@ -14,4 +14,3 @@ deployment:
           s3_location:
             bucket: coliformia
             key_pattern: cg-{BRANCH}-{SHORT_COMMIT}
-        deployment_group: my-deployment-group
