@@ -4,12 +4,10 @@ machine:
 
 dependencies:
   pre:
-    - pip install awsebcli
+    - pip install awscli
 
 deployment:
   staging:
     branch: auto-deploy
     commands:
       - npm run build
-      - eb init
-      - eb deploy
