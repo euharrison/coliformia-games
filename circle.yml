@@ -10,4 +10,4 @@ deployment:
   production:
     branch: auto-deploy
     commands:
-      - eb deploy
+      - eb deploy --profile circleci
