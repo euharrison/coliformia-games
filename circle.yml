@@ -2,16 +2,13 @@ machine:
   node:
     version: "4"
 
+dependencies:
+  pre:
+    - sudo pip install awsebcli
+
 deployment:
-  staging:
+  production:
     branch: auto-deploy
-    codedeploy:
-      cg-app:
-        application_root: /
-        region: us-west-2
-        revision_location:
-          revision_type: S3
-          s3_location:
-            bucket: elasticbeanstalk-us-west-2-345555457433/cg-app
-            key_pattern: cg-app-{BRANCH}-{SHORT_COMMIT}
-        deployment_group: my-deployment-group
+    commands:
+      - bash ./deploy/setup-eb.sh
+      - eb deploy

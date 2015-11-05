@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: cg-app
+global:
+  application_name: cg-app
+  default_ec2_keyname: null
+  default_platform: Node.js
+  default_region: us-west-2
+  profile: cg-app
+  sc: git
