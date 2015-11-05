@@ -2,12 +2,12 @@ machine:
   node:
     version: "4"
 
+dependencies:
+  pre:
+    - sudo pip install awsebcli
+
 deployment:
-  staging:
-    branch: easy-setup
+  production:
+    branch: master
     commands:
-      - git checkout gh-pages
-      - git merge master
-      - git add .
-      - git commit -m "circleci merge"
-      - git push
+      - eb deploy --profile default
