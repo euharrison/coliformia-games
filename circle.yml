@@ -8,6 +8,6 @@ dependencies:
 
 deployment:
   production:
-    branch: auto-deploy
+    branch: master
     commands:
       - eb deploy --profile default
