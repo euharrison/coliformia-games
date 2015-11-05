@@ -10,5 +10,4 @@ deployment:
   production:
     branch: auto-deploy
     commands:
-      - bash ./deploy/setup-eb.sh
       - eb deploy

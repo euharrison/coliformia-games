@@ -1,5 +1,5 @@
 branch-defaults:
-  master:
+  auto-deploy:
     environment: cg-app
 global:
   application_name: cg-app
