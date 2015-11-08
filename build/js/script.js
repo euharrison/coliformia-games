@@ -96132,7 +96132,8 @@ var playState = {
 
 		this.playerlife = {
 			initial: 1000,
-			current: 1000
+			current: 1000,
+			powerup: 100
 		};
 
 		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
@@ -96262,11 +96263,14 @@ var playState = {
 	},
 
 	powerupCollisionHandler: function(body1, body2) {
-	    if (this.playerlife.current > this.playerlife.initial)
+
+		body2.sprite.destroy();
+
+		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup)
 	    {
 	    	this.playerlife.current = this.playerlife.initial;
 	    } else {
-	    	this.playerlife.current + 100;
+	    	this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
 	    }
 	},
 	
