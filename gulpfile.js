@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-var webserver = require('gulp-webserver');
  
 gulp.task('sass', function () {
   gulp.src('./assets/scss/**/*.scss')
@@ -30,18 +29,9 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('webserver', function() {
-  gulp.src('./')
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      open: './index.html',
-    }));
-});
-
 gulp.task('default', ['sass', 'scripts']);
  
-gulp.task('watch', ['default', 'webserver'], function () {
+gulp.task('watch', ['default'], function () {
   gulp.watch('./assets/scss/**/*.scss', ['sass']);
   gulp.watch('./assets/js/**/*.js', ['scripts']);
 });
