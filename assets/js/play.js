@@ -56,8 +56,6 @@ var playState = {
 	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
 	    this.rastro.animations.play('rastra');
 
-	    window.rastro = this.rastro;
-
 	    //cor da água #00375b
 
 	    this.agua = game.add.graphics(0, 220);
@@ -147,11 +145,11 @@ var playState = {
 	},
 
 	powerupCollisionHandler: function(body1, body2) {
-	    this.playerlife.current + 100;
-
 	    if (this.playerlife.current > this.playerlife.initial)
 	    {
 	    	this.playerlife.current = this.playerlife.initial;
+	    } else {
+	    	this.playerlife.current + 100;
 	    }
 	},
 	
@@ -171,11 +169,12 @@ var playState = {
 
 		if (obstacle.key === 'powerup')
 		{
-			obstacle.body.setCollisionGroup(this.powerupCollisionGroup);
-			obstacle.body.collides([this.powerupCollisionGroup, this.playerCollisionGroup]);
+
+			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
+			obstacle.body.collides([this.powerupsCollisionGroup, this.enemiesCollisionGroup, this.playerCollisionGroup]);
 		} else{
 			obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
-			obstacle.body.collides([this.enemiesCollisionGroup, this.playerCollisionGroup]);
+			obstacle.body.collides([this.powerupsCollisionGroup, this.enemiesCollisionGroup, this.playerCollisionGroup]);
 		}
 
 		obstacle.body.collideWorldBounds = false;
