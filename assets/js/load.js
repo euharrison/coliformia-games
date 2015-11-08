@@ -18,6 +18,7 @@ var loadState = {
 
 		game.load.image('tv', BASE_DIR + 'tv.png');
 		game.load.image('sofa', BASE_DIR + 'sofa.png');
+		game.load.image('powerup', BASE_DIR + 'powerup.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 		
