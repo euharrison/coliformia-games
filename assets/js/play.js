@@ -10,23 +10,27 @@ var playState = {
 		};
 
 		this.initialPosition = {
-			x:250,
-			y:220
+			x: 250,
+			y: 220
 		};
 
 		this.playerlife = {
-			initial: 1000,
-			current: 1000,
+			initial: 5000,
+			current: 5000,
 			powerup: 100
 		};
+
+		this.sky = game.add.graphics(0, 0);
+		this.sky.beginFill(0x5c91a7, 1);
+		this.sky.drawRect(0, 0, 800, 220);
 
 		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
 		this.lifeBar.anchor.setTo(0, 0.5);
 		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
 		this.lifeBar.scale.setTo(3, 1);
 
-		this.velocity = -100;
-		this.velocityIncrease = -0.05;
+		this.velocity = 200;
+		this.velocityIncrease = 0.001;
 		
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
@@ -58,12 +62,9 @@ var playState = {
 		this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
 		this.rastro.animations.play('rastra');
 
-		//cor da água #00375b
-
 		this.agua = game.add.graphics(0, 220);
 		this.agua.beginFill(0x00375b, .5);
 		this.agua.drawRect(0, 0, 800, 400);
-
 
 		this.bosta = game.add.sprite(0, 200, 'bosta');
 		this.bosta.scale.setTo(.7,.7);
@@ -73,10 +74,10 @@ var playState = {
 		this.isTouchDown = false;
 		this.isJumping = false;
 
-		group = game.add.group();
-		group.enableBody = true;
-		group.enableBodyDebug = this.debugPhysics;
-		group.physicsBodyType = Phaser.Physics.P2JS;
+		this.group = game.add.group();
+		this.group.enableBody = true;
+		this.group.enableBodyDebug = this.debugPhysics;
+		this.group.physicsBodyType = Phaser.Physics.P2JS;
 		
 		cursors = game.input.keyboard.createCursorKeys();
 
@@ -101,6 +102,7 @@ var playState = {
 	},
 
 	update: function() {
+
 		//movimento horizontal do player
 		this.player.body.velocity.x = 0;
 		this.player.body.x = this.initialPosition.x;
@@ -144,26 +146,26 @@ var playState = {
 		//sorteio de sair um obstáculo
 		if (game.rnd.frac() < 0.02) {
 			this.createObstacle();
-		} 
+		}
 		
-		group.forEach(function(enemy) {
-		  if(enemy.body.x<0){
-			  //out of the bounds
-			  enemy.body.clearShapes();
-			  enemy.kill();
-		  }else if(enemy.body.y > game.world.height){
-			  enemy.body.velocity.y *= -1;
-		  }else if(enemy.body.y < this.initialPosition.y){
-			  enemy.body.velocity.y = 0;
-			  enemy.body.y = this.initialPosition.y;
-		  }
+		this.group.forEach(function(enemy) {
+			if (enemy.body.x < 0) {
+				//out of the bounds
+				enemy.body.clearShapes();
+				enemy.kill();
+			} else if (enemy.body.y > game.world.height) {
+				enemy.body.velocity.y *= -1;
+			} else if (enemy.body.y < this.initialPosition.y) {
+				enemy.body.velocity.y = 0;
+				enemy.body.y = this.initialPosition.y;
+			}
 		}, this);
 		
 		//velocidade do jogo
 		this.velocity += this.velocityIncrease;
 		
 		//score
-		game.score += -this.velocity/1000;
+		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
 	},
 
@@ -172,11 +174,11 @@ var playState = {
 	},
 
 	powerupCollisionHandler: function(body1, body2) {
+		if (body2.sprite) {
+			body2.sprite.destroy();
+		}
 
-		body2.sprite.destroy();
-
-		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup)
-		{
+		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup) {
 			this.playerlife.current = this.playerlife.initial;
 		} else {
 			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
@@ -185,29 +187,37 @@ var playState = {
 	
 	createObstacle: function() {
 		var obstacle;
-		if (game.rnd.frac() < 0.4) {
-			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
-		} else if(game.rnd.frac() < 0.8){
-			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+		var random = game.rnd.frac();
+		if (random < 0.1) {
+			obstacle = game.add.sprite(950, 100, 'mosquito');
+			obstacle.animations.add('fly', [0,1,2], 12, true);
+			obstacle.animations.play('fly');
+			game.physics.p2.enable(obstacle, this.debugPhysics);
+		} else if (random < 0.4) {
+			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			obstacle.scale.setTo(.3,.3);
+		} else if (random < 0.9) {
+			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			obstacle.scale.setTo(.3,.3);
 		} else {
-			obstacle = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
+			obstacle.scale.setTo(.3,.3);
 		}
-
-		obstacle.scale.setTo(.3,.3);
+	
 		obstacle.body.clearShapes();
 		obstacle.body.loadPolygon('physicsData', obstacle.key);
 
-		if (obstacle.key === 'powerup')
-		{
-
+		if (obstacle.key === 'powerup') {
 			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-			obstacle.body.collides([this.powerupsCollisionGroup, this.enemiesCollisionGroup, this.playerCollisionGroup]);
-		} else{
+			obstacle.body.collides([this.playerCollisionGroup]);
+		} else {
 			obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
-			obstacle.body.collides([this.powerupsCollisionGroup, this.enemiesCollisionGroup, this.playerCollisionGroup]);
+			obstacle.body.collides([this.playerCollisionGroup]);
 		}
 
 		obstacle.body.collideWorldBounds = false;
-		obstacle.body.velocity.x = this.velocity;
+		obstacle.body.fixedRotation = true;
+		obstacle.body.velocity.x = -this.velocity;
+		obstacle.body.velocity.y = 0;
 	}
 };
