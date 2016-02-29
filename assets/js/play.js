@@ -10,8 +10,8 @@ var playState = {
 		};
 
 		this.initialPosition = {
-			x:250,
-			y:220
+			x: 250,
+			y: 220
 		};
 
 		this.playerlife = {
@@ -20,20 +20,20 @@ var playState = {
 			powerup: 100
 		};
 
+		this.sky = game.add.graphics(0, 0);
+		this.sky.beginFill(0x5c91a7, 1);
+		this.sky.drawRect(0, 0, 800, 220);
+
 		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
 		this.lifeBar.anchor.setTo(0, 0.5);
 		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
 		this.lifeBar.scale.setTo(3, 1);
 
-		this.velocity = -100;
-		this.velocityIncrease = -0.05;
+		this.velocity = 200;
+		this.velocityIncrease = 0.001;
 		
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
-
-		this.sky = game.add.graphics(0, 0);
-		this.sky.beginFill(0x5c91a7, 1);
-		this.sky.drawRect(0, 0, 800, 220);
 		
 		// start the P2JS physics system
 		game.physics.startSystem(Phaser.Physics.P2JS);
@@ -146,26 +146,26 @@ var playState = {
 		//sorteio de sair um obstáculo
 		if (game.rnd.frac() < 0.02) {
 			this.createObstacle();
-		} 
+		}
 		
 		this.group.forEach(function(enemy) {
-		  if(enemy.body.x<0){
-			  //out of the bounds
-			  enemy.body.clearShapes();
-			  enemy.kill();
-		  }else if(enemy.body.y > game.world.height){
-			  enemy.body.velocity.y *= -1;
-		  }else if(enemy.body.y < this.initialPosition.y){
-			  enemy.body.velocity.y = 0;
-			  enemy.body.y = this.initialPosition.y;
-		  }
+			if (enemy.body.x < 0) {
+				//out of the bounds
+				enemy.body.clearShapes();
+				enemy.kill();
+			} else if (enemy.body.y > game.world.height) {
+				enemy.body.velocity.y *= -1;
+			} else if (enemy.body.y < this.initialPosition.y) {
+				enemy.body.velocity.y = 0;
+				enemy.body.y = this.initialPosition.y;
+			}
 		}, this);
 		
 		//velocidade do jogo
 		this.velocity += this.velocityIncrease;
 		
 		//score
-		game.score += -this.velocity/1000;
+		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
 	},
 
@@ -174,10 +174,11 @@ var playState = {
 	},
 
 	powerupCollisionHandler: function(body1, body2) {
-		body2.sprite.destroy();
+		if (body2.sprite) {
+			body2.sprite.destroy();
+		}
 
-		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup)
-		{
+		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup) {
 			this.playerlife.current = this.playerlife.initial;
 		} else {
 			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
@@ -187,19 +188,19 @@ var playState = {
 	createObstacle: function() {
 		var obstacle;
 		var random = game.rnd.frac();
-		if (random < 0.25) {
+		if (random < 0.1) {
 			obstacle = game.add.sprite(950, 100, 'mosquito');
 			obstacle.animations.add('fly', [0,1,2], 12, true);
 			obstacle.animations.play('fly');
 			game.physics.p2.enable(obstacle, this.debugPhysics);
-		} else if (random < 0.5) {
-			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
+		} else if (random < 0.4) {
+			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
 			obstacle.scale.setTo(.3,.3);
-		} else if (random < 0.75) {
+		} else if (random < 0.9) {
 			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
 			obstacle.scale.setTo(.3,.3);
 		} else {
-			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
 			obstacle.scale.setTo(.3,.3);
 		}
 	
@@ -214,8 +215,9 @@ var playState = {
 			obstacle.body.collides([this.playerCollisionGroup]);
 		}
 
-		obstacle.body.fixedRotation = true;
 		obstacle.body.collideWorldBounds = false;
-		obstacle.body.velocity.x = this.velocity;
+		obstacle.body.fixedRotation = true;
+		obstacle.body.velocity.x = -this.velocity;
+		obstacle.body.velocity.y = 0;
 	}
 };
