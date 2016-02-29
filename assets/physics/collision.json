@@ -25,6 +25,13 @@
 			"shape": [ 3, 39,   12, 3,   60, 17,   51, 51]
 		}  
 	],
+	"mosquito": [
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 0, 0,   151, 0,   151, 100,   0, 100]
+		}  
+	],
 	"powerup": [	
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
