@@ -3,7 +3,7 @@
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
-			"shape": [ 5, 50,   50, 5,   65, 20,   20, 65]
+			"shape": [ 70, 15,   110, 15,   110, 60,   60, 90,   30, 90]
 		}  
 	],
 	"sofa": [	

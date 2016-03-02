@@ -43,11 +43,10 @@ var playState = {
 		this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 
-		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
-		this.player.name = 'phaser-dude';
-		this.player.scale.setTo(.35,.35);
-		this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
-		this.player.animations.play('nada');
+		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'player');
+		this.player.scale.setTo(.66,.66);
+		this.player.animations.add('swimming', [0,1,2,3,4,5], 12, true);
+		this.player.animations.play('swimming');
 		
 		game.physics.p2.enable(this.player, this.debugPhysics);
 		this.player.body.clearShapes();

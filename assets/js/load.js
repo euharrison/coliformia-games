@@ -13,7 +13,7 @@ var loadState = {
 		var BASE_DIR = 'assets/sprites/';
 
 		// Load all assets
-		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
+		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
 		game.load.spritesheet('mosquito', BASE_DIR + 'mosquito.png', 151, 100);
 
