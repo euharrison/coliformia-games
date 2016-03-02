@@ -5,8 +5,8 @@ var playState = {
 	
 		this.forcas = {
 			forcaPraBaixo: 20,
-			empuxoDaAgua: .07,
-			gravidade: 70
+			empuxoDaAgua: 0.01,
+			gravidade: 20
 		};
 
 		this.initialPosition = {
@@ -22,14 +22,14 @@ var playState = {
 
 		this.sky = game.add.graphics(0, 0);
 		this.sky.beginFill(0x5c91a7, 1);
-		this.sky.drawRect(0, 0, 800, 220);
+		this.sky.drawRect(0, 0, game.width, this.initialPosition.y);
 
 		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
 		this.lifeBar.anchor.setTo(0, 0.5);
 		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
 		this.lifeBar.scale.setTo(3, 1);
 
-		this.velocity = 200;
+		this.velocity = 500;
 		this.velocityIncrease = 0.001;
 		
 		game.score = 0;
@@ -45,8 +45,10 @@ var playState = {
 
 		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'player');
 		this.player.scale.setTo(.66,.66);
-		this.player.animations.add('swimming', [0,1,2,3,4,5], 12, true);
-		this.player.animations.play('swimming');
+		this.player.animations.add('swim', [0,1,2,3,4,5], 12, true);
+		this.player.animations.add('jump', [6], 12, false);
+		this.player.animations.add('fall', [7], 12, false);
+		this.player.animations.play('swim');
 		
 		game.physics.p2.enable(this.player, this.debugPhysics);
 		this.player.body.clearShapes();
@@ -63,7 +65,7 @@ var playState = {
 
 		this.agua = game.add.graphics(0, 220);
 		this.agua.beginFill(0x00375b, .5);
-		this.agua.drawRect(0, 0, 800, 400);
+		this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
 
 		this.bosta = game.add.sprite(0, 200, 'bosta');
 		this.bosta.scale.setTo(.7,.7);
@@ -114,6 +116,13 @@ var playState = {
 			//ao entrar na água após o pulo, desacelerar
 			if (this.player.body.y >= this.initialPosition.y) {
 				this.player.body.velocity.y /= 10;
+				this.player.animations.play('swim');
+			} else {
+				if (this.player.body.velocity.y < 0) {
+					this.player.animations.play('jump');
+				} else {
+					this.player.animations.play('fall');
+				}
 			}
 		}
 		//player dentro da água
@@ -143,7 +152,7 @@ var playState = {
 		}
 
 		//sorteio de sair um obstáculo
-		if (game.rnd.frac() < 0.02) {
+		if (game.rnd.frac() < 0.04) {
 			this.createObstacle();
 		}
 		
@@ -188,18 +197,18 @@ var playState = {
 		var obstacle;
 		var random = game.rnd.frac();
 		if (random < 0.1) {
-			obstacle = game.add.sprite(950, 100, 'mosquito');
+			obstacle = game.add.sprite(game.width+75, this.initialPosition.y-50, 'mosquito');
 			obstacle.animations.add('fly', [0,1,2], 12, true);
 			obstacle.animations.play('fly');
 			game.physics.p2.enable(obstacle, this.debugPhysics);
 		} else if (random < 0.4) {
-			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'sofa');
 			obstacle.scale.setTo(.3,.3);
 		} else if (random < 0.9) {
-			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
+			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'tv');
 			obstacle.scale.setTo(.3,.3);
 		} else {
-			obstacle = this.group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'powerup');
+			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
 			obstacle.scale.setTo(.3,.3);
 		}
 	
