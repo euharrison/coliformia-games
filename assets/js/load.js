@@ -15,7 +15,7 @@ var loadState = {
 		// Load all assets
 		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
-		game.load.spritesheet('mosquito', BASE_DIR + 'mosquito.png', 151, 100);
+		game.load.spritesheet('fly', BASE_DIR + 'fly.png', 151, 100);
 
 		game.load.image('tv', BASE_DIR + 'tv.png');
 		game.load.image('sofa', BASE_DIR + 'sofa.png');

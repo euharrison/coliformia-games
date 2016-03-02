@@ -24,9 +24,8 @@ var Player = function (game, x, y) {
 
   game.physics.p2.enable(this, game.debugPhysics);
   this.body.clearShapes();
-  this.body.loadPolygon('physicsData', 'player');
+  this.body.loadPolygon('physicsData', this.key);
   this.body.fixedRotation = true;
-
 
   game.input.onDown.add(this.onTouchDown, this);
   game.input.onUp.add(this.onTouchUp, this);

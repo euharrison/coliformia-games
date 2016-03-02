@@ -1,7 +1,7 @@
 var playState = {
 
 	create: function() {
-		game.debugPhysics = false;
+		game.debugPhysics = true;
 
 		this.initialPosition = {
 			x: 250,
@@ -60,7 +60,7 @@ var playState = {
 
 		this.group = game.add.group();
 		this.group.enableBody = true;
-		this.group.enableBodyDebug = this.debugPhysics;
+		this.group.enableBodyDebug = game.debugPhysics;
 		this.group.physicsBodyType = Phaser.Physics.P2JS;
 
 		cursors = game.input.keyboard.createCursorKeys();
@@ -122,10 +122,7 @@ var playState = {
 		var obstacle;
 		var random = game.rnd.frac();
 		if (random < 0.1) {
-			obstacle = game.add.sprite(game.width+75, this.initialPosition.y-50, 'mosquito');
-			obstacle.animations.add('fly', [0,1,2], 12, true);
-			obstacle.animations.play('fly');
-			game.physics.p2.enable(obstacle, this.debugPhysics);
+			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
 		} else if (random < 0.4) {
 			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'sofa');
 			obstacle.scale.setTo(.3,.3);
