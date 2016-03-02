@@ -1,13 +1,7 @@
 var playState = {
 
 	create: function() {
-		this.debugPhysics = true;
-	
-		this.forcas = {
-			forcaPraBaixo: 20,
-			empuxoDaAgua: 0.01,
-			gravidade: 20
-		};
+		game.debugPhysics = false;
 
 		this.initialPosition = {
 			x: 250,
@@ -43,21 +37,11 @@ var playState = {
 		this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
 		game.physics.p2.updateBoundsCollisionGroup();
 
-		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'player');
-		this.player.scale.setTo(.66,.66);
-		this.player.animations.add('swim', [0,1,2,3,4,5], 12, true);
-		this.player.animations.add('jump', [6], 12, false);
-		this.player.animations.add('fall', [7], 12, false);
-		this.player.animations.play('swim');
-		
-		game.physics.p2.enable(this.player, this.debugPhysics);
-		this.player.body.clearShapes();
-		this.player.body.loadPolygon('physicsData', 'player');
+		this.player = new Player(game, this.initialPosition.x, this.initialPosition.y);
 		this.player.body.setCollisionGroup(this.playerCollisionGroup);
 		this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
 		this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
-		this.player.body.fixedRotation = true;
-		
+
 		this.rastro = game.add.sprite(this.initialPosition.x - 100, this.initialPosition.y - 15, 'rastro');
 		this.rastro.scale.setTo(.35,.35);
 		this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
@@ -72,76 +56,17 @@ var playState = {
 		this.bosta.animations.add('boia', [0,1,2,3,4,5], 4, true);
 		this.bosta.animations.play('boia');
 
-		this.isTouchDown = false;
 		this.isJumping = false;
 
 		this.group = game.add.group();
 		this.group.enableBody = true;
 		this.group.enableBodyDebug = this.debugPhysics;
 		this.group.physicsBodyType = Phaser.Physics.P2JS;
-		
+
 		cursors = game.input.keyboard.createCursorKeys();
-
-		/*
-		* coloca o jogo pra escutar se há mouse down ou touch
-		*/
-		game.input.onDown.add(this.onTouchDown, this);
-		game.input.onUp.add(this.onTouchUp, this);
-	},
-
-	onTouchDown: function(e) {
-		this.isTouchDown = true;
-
-		//se for para começar a nadar baixo, diminuir a possível velocidade para cima para dar uma resposta mais rápida
-		if (!this.isJumping) {
-			this.player.body.velocity.y /= 5;
-		}
-	},
-
-	onTouchUp: function() {
-		this.isTouchDown = false;
 	},
 
 	update: function() {
-
-		//movimento horizontal do player
-		this.player.body.velocity.x = 0;
-		this.player.body.x = this.initialPosition.x;
-
-		//player fora da água
-		if (this.isJumping) {
-			//gravidade
-			this.player.body.velocity.y += this.forcas.gravidade;
-
-			//ao entrar na água após o pulo, desacelerar
-			if (this.player.body.y >= this.initialPosition.y) {
-				this.player.body.velocity.y /= 10;
-				this.player.animations.play('swim');
-			} else {
-				if (this.player.body.velocity.y < 0) {
-					this.player.animations.play('jump');
-				} else {
-					this.player.animations.play('fall');
-				}
-			}
-		}
-		//player dentro da água
-		else {
-			//empuxo
-			this.player.body.velocity.y -= (this.player.body.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
-
-			//nadar para baixo
-			if (this.isTouchDown) {
-				this.player.body.velocity.y += this.forcas.forcaPraBaixo;
-			}
-			//nadar para cima, somente se houver espaço
-			else if (this.player.body.y > this.initialPosition.y + 10) {	
-				this.player.body.velocity.y -= this.forcas.forcaPraBaixo;
-			}
-		}
-
-		//atualiza se está dentro da água ou não
-		this.isJumping = (this.player.body.y < this.initialPosition.y);
 
 		//life bar
 		if (this.playerlife.current >= 0){
@@ -155,7 +80,7 @@ var playState = {
 		if (game.rnd.frac() < 0.04) {
 			this.createObstacle();
 		}
-		
+
 		this.group.forEach(function(enemy) {
 			if (enemy.body.x < 0) {
 				//out of the bounds
@@ -192,7 +117,7 @@ var playState = {
 			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
 		}
 	},
-	
+
 	createObstacle: function() {
 		var obstacle;
 		var random = game.rnd.frac();
@@ -211,7 +136,7 @@ var playState = {
 			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
 			obstacle.scale.setTo(.3,.3);
 		}
-	
+
 		obstacle.body.clearShapes();
 		obstacle.body.loadPolygon('physicsData', obstacle.key);
 
