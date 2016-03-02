@@ -14,14 +14,17 @@ var loadState = {
 
 		// Load all assets
 		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
-		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
-		game.load.spritesheet('fly', BASE_DIR + 'fly.png', 151, 100);
+
+		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 151, 100);
+		game.load.spritesheet('dudu', BASE_DIR + 'enemies/dudu.png', 114, 100);
+		game.load.spritesheet('dudu-laser', BASE_DIR + 'enemies/dudu-laser.png', 365, 500);
 
 		game.load.image('tv', BASE_DIR + 'tv.png');
 		game.load.image('sofa', BASE_DIR + 'sofa.png');
 		game.load.image('powerup', BASE_DIR + 'powerup.png');
 
 		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
+		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
 		
 		// load the physics data json
 		game.load.physics('physicsData', 'assets/physics/collision.json');

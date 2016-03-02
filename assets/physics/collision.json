@@ -1,12 +1,12 @@
 { 
-	"player": [	
+	"player": [
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 70, 15,   110, 15,   110, 60,   60, 90,   50, 90]
-		}  
+		}
 	],
-	"sofa": [	
+	"sofa": [
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
@@ -16,27 +16,39 @@
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 0, 105,   85, 20,   97, 30,   13, 115]
-		} 		
+		}
 	],
-	"tv": [	
+	"tv": [
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 3, 39,   12, 3,   60, 17,   51, 51]
-		}  
+		}
 	],
 	"fly": [
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 10, 10,   80, 10,   80, 60,   10, 60]
-		}  
+		}
 	],
-	"powerup": [	
+	"dudu": [
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 30, 20,   80, 20,   80, 80,   30, 80]
+		},
+		{
+			"density": 2, "friction": 0, "bounce": 0, 
+			"filter": { "categoryBits": 1, "maskBits": 65535 },
+			"shape": [ 30, 60,   80, 60,   -330, 700,   -380, 700]
+		}
+	],
+	"powerup": [
 		{
 			"density": 2, "friction": 0, "bounce": 0, 
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 0, 0,   54,0,   54,54,    0,54]
-		}  
+		}
 	]
 }

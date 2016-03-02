@@ -1,7 +1,7 @@
 var playState = {
 
 	create: function() {
-		game.debugPhysics = true;
+		game.debugPhysics = false;
 
 		this.initialPosition = {
 			x: 250,
@@ -9,8 +9,8 @@ var playState = {
 		};
 
 		this.playerlife = {
-			initial: 5000,
-			current: 5000,
+			initial: 1000,
+			current: 1000,
 			powerup: 100
 		};
 
@@ -123,6 +123,8 @@ var playState = {
 		var random = game.rnd.frac();
 		if (random < 0.1) {
 			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
+		} else if (random < 0.2) {
+			obstacle = new Dudu(game, game.width, this.initialPosition.y);
 		} else if (random < 0.4) {
 			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'sofa');
 			obstacle.scale.setTo(.3,.3);
