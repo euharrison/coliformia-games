@@ -48,7 +48,7 @@ var playState = {
 		this.rastro.animations.play('rastra');
 
 		this.agua = game.add.graphics(0, 220);
-		this.agua.beginFill(0x00375b, .5);
+		this.agua.beginFill(0x8de1af, .5);
 		this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
 
 		this.bosta = game.add.sprite(0, 200, 'bosta');
