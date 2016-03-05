@@ -77,7 +77,7 @@ var playState = {
 		}
 
 		//sorteio de sair um obstáculo
-		if (game.rnd.frac() < 0.04) {
+		if (game.rnd.frac() < 0.01) {
 			this.createObstacle();
 		}
 
@@ -86,11 +86,6 @@ var playState = {
 				//out of the bounds
 				enemy.body.clearShapes();
 				enemy.kill();
-			} else if (enemy.body.y > game.world.height) {
-				enemy.body.velocity.y *= -1;
-			} else if (enemy.body.y < this.initialPosition.y) {
-				enemy.body.velocity.y = 0;
-				enemy.body.y = this.initialPosition.y;
 			}
 		}, this);
 		
@@ -121,31 +116,43 @@ var playState = {
 	createObstacle: function() {
 		var obstacle;
 		var random = game.rnd.frac();
-		if (random < 0.3) {
-			obstacle = new Cocolito(game, game.width, game.rnd.integerInRange(this.initialPosition.y, game.height));
-		} else if (random < 0.6) {
+		var defaultBody = false;
+		if (random < 0.2) {
+			new Sewer(game, this);
+		}
+		else if (random < 0.4) {
+			obstacle = new Cocolito(game, this);
+		}
+		else if (random < 0.6) {
 			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
-		} else if (random < 0.7) {
+			defaultBody = true;
+		}
+		else if (random < 0.8) {
 			obstacle = new Dudu(game, game.width, this.initialPosition.y);
-		} else {
+			defaultBody = true;
+		}
+		else {
 			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
 			obstacle.scale.setTo(.3,.3);
+			defaultBody = true;
 		}
 
-		obstacle.body.clearShapes();
-		obstacle.body.loadPolygon('physicsData', obstacle.key);
+		if (defaultBody) {
+			obstacle.body.clearShapes();
+			obstacle.body.loadPolygon('physicsData', obstacle.key);
 
-		if (obstacle.key === 'powerup') {
-			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-			obstacle.body.collides([this.playerCollisionGroup]);
-		} else {
-			obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
-			obstacle.body.collides([this.playerCollisionGroup]);
+			if (obstacle.key === 'powerup') {
+				obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
+				obstacle.body.collides([this.playerCollisionGroup]);
+			} else {
+				obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
+				obstacle.body.collides([this.playerCollisionGroup]);
+			}
+
+			obstacle.body.collideWorldBounds = false;
+			obstacle.body.fixedRotation = true;
+			obstacle.body.velocity.x = -this.velocity;
+			obstacle.body.velocity.y = 0;
 		}
-
-		obstacle.body.collideWorldBounds = false;
-		obstacle.body.fixedRotation = true;
-		obstacle.body.velocity.x = -this.velocity;
-		obstacle.body.velocity.y = 0;
 	}
 };
