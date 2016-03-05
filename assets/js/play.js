@@ -121,17 +121,12 @@ var playState = {
 	createObstacle: function() {
 		var obstacle;
 		var random = game.rnd.frac();
-		if (random < 0.1) {
-			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
+		if (random < 0.3) {
 			obstacle = new Cocolito(game, game.width, game.rnd.integerInRange(this.initialPosition.y, game.height));
-		} else if (random < 0.2) {
+		} else if (random < 0.6) {
+			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
+		} else if (random < 0.7) {
 			obstacle = new Dudu(game, game.width, this.initialPosition.y);
-		} else if (random < 0.4) {
-			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'sofa');
-			obstacle.scale.setTo(.3,.3);
-		} else if (random < 0.9) {
-			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'tv');
-			obstacle.scale.setTo(.3,.3);
 		} else {
 			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
 			obstacle.scale.setTo(.3,.3);
