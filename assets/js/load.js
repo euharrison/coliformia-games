@@ -18,6 +18,7 @@ var loadState = {
 		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 151, 100);
 		game.load.spritesheet('dudu', BASE_DIR + 'enemies/dudu.png', 114, 100);
 		game.load.spritesheet('dudu-laser', BASE_DIR + 'enemies/dudu-laser.png', 365, 500);
+		game.load.spritesheet('cocolito', BASE_DIR + 'enemies/cocolito.png', 225, 180);
 
 		game.load.image('tv', BASE_DIR + 'tv.png');
 		game.load.image('sofa', BASE_DIR + 'sofa.png');

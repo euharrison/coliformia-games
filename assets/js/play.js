@@ -123,6 +123,7 @@ var playState = {
 		var random = game.rnd.frac();
 		if (random < 0.1) {
 			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
+			obstacle = new Cocolito(game, game.width, game.rnd.integerInRange(this.initialPosition.y, game.height));
 		} else if (random < 0.2) {
 			obstacle = new Dudu(game, game.width, this.initialPosition.y);
 		} else if (random < 0.4) {
