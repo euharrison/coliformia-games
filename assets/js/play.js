@@ -113,7 +113,7 @@ var playState = {
 		var defaultBody = false;
 
 		switch (true) {
-			case true://random < 0.1:
+			case random < 0.1:
 				obstacle = new Sewer(game, this);
 				break;
 			case random < 0.2:
