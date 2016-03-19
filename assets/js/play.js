@@ -56,6 +56,8 @@ var playState = {
 		this.group.physicsBodyType = Phaser.Physics.P2JS;
 
 		cursors = game.input.keyboard.createCursorKeys();
+
+		this.createObstacle();
 	},
 
 	update: function() {
@@ -70,7 +72,7 @@ var playState = {
 
 		//sorteio de sair um obstáculo
 		if (game.rnd.frac() < 0.01) {
-			this.createObstacle();
+			//this.createObstacle();
 		}
 
 		this.group.forEach(function(enemy) {
@@ -111,16 +113,16 @@ var playState = {
 		var defaultBody = false;
 
 		switch (true) {
-			case random < 0.2:
+			case true://random < 0.1:
 				obstacle = new Sewer(game, this);
 				break;
-			case random < 0.4:
+			case random < 0.2:
 				obstacle = new Cocolito(game, this);
 				break;
-			case random < 0.6:
+			case random < 0.3:
 				obstacle = new Fly(game, this);
 				break;
-			case random < 0.8:
+			case random < 0.4:
 				obstacle = new Dudu(game, this);
 				break;
 			default:
