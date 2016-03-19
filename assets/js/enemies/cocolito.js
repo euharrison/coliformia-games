@@ -20,5 +20,5 @@ var Cocolito = function(game, play, x, y) {
   this.body.collides([play.playerCollisionGroup]);
 };
 
-Cocolito.prototype = Object.create(Phaser.Sprite.prototype);
+Cocolito.prototype = new Enemy();
 Cocolito.prototype.constructor = Cocolito;

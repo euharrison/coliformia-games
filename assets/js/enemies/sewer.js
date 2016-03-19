@@ -1,13 +1,15 @@
 var Sewer = function (game, play) {
   this.game = game;
   this.play = play;
-  
+
   this.sewer = new Phaser.Image(game, game.width, play.initialPosition.y, 'sewer');
   this.sewer.scale.set(0.5, 0.5);
   game.add.existing(this.sewer);
 
   this.tween({ x: game.width-170 }, this.goDown);
 };
+
+Sewer.prototype = new Enemy();
 
 Sewer.prototype.goDown = function() {
   this.releaseCocolito();
@@ -29,7 +31,7 @@ Sewer.prototype.remove = function(value, callback) {
 };
 
 Sewer.prototype.tween = function(value, callback) {
-  var tween = this.game.add.tween(this.sewer).to(value, 500, Phaser.Easing.Cubic.Out).start();
+  var tween = this.game.add.tween(this.sewer).to(value, 1000, Phaser.Easing.Elastic.In).start();
   tween.onComplete.add(callback, this);
   tween.start();
 };
