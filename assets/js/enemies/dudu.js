@@ -1,31 +1,35 @@
 var Dudu = function (game, play) {
-  Phaser.Sprite.call(this, game, game.width, play.initialPosition.y, 'dudu');
+  this.play = play;
+  Phaser.Sprite.call(this, game, game.width * 0.8, play.initialPosition.y, 'dudu');
 
-  this.animations.add('dudu', [0,1,2], 12, true);
-  this.animations.play('dudu');
+  this.animations.add('dudu', [2, 1, 0], 12);
+  this.animations.add('duduEntra', [0, 1, 2], 12);
   game.add.existing(this);
 
-  var laser = new Phaser.Image(game, -340, 10, 'dudu-laser');
-  this.addChild(laser);
+  this.anchor.setTo(0.5,0.5);
+  this.scale.setTo(0.3,0.3);
 
-  game.physics.p2.enable(this, game.debugPhysics);
-  this.body.clearShapes();
-  this.body.loadPolygon('physicsData', 'dudu');
-  this.body.fixedRotation = true;
-  this.body.collideWorldBounds = false;
-  this.body.velocity.x = -play.velocity;
-
-  this.body.setCollisionGroup(play.enemiesCollisionGroup);
-  this.body.collides([play.playerCollisionGroup]);
+  this.entra();
 };
 
 Dudu.prototype = new Enemy();
 Dudu.prototype.constructor = Dudu;
 
 Dudu.prototype.entra = function(){
+    var tween = this.game.add.tween(this.scale).to({x:1.3 , y:1.3}, 1000, Phaser.Easing.Elastic.In);
+    tween.onComplete.add(this.ataca, this);
+    tween.start();
 
+    this.animations.play('duduEntra');
 };
 
 Dudu.prototype.ataca = function(){
+    this.animations.play('dudu');
 
+    var laser = new Phaser.Image(game, 0, 0, 'dudu-laser');
+    laser.scale.setTo(.3, .8);
+    laser.anchor.setTo(1, 0);
+    this.addChild(laser);
+
+    this.addBody(game, this.play, 'dudu');
 };

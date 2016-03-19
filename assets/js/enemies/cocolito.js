@@ -9,15 +9,7 @@ var Cocolito = function(game, play, x, y) {
   this.animations.play('cocolito');
   game.add.existing(this);
 
-  game.physics.p2.enable(this, game.debugPhysics);
-  this.body.clearShapes();
-  this.body.loadPolygon('physicsData', this.key);
-  this.body.fixedRotation = true;
-  this.body.collideWorldBounds = false;
-  this.body.velocity.x = -play.velocity;
-
-  this.body.setCollisionGroup(play.enemiesCollisionGroup);
-  this.body.collides([play.playerCollisionGroup]);
+  this.addBody(game, play, this.key);
 };
 
 Cocolito.prototype = new Enemy();

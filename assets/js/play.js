@@ -110,33 +110,34 @@ var playState = {
 		var random = game.rnd.frac();
 		var defaultBody = false;
 
-		if (random < 0.2) {
-			obstacle = new Sewer(game, this);
-		}
-		else if (random < 0.4) {
-			obstacle = new Cocolito(game, this);
-		}
-		else if (random < 0.6) {
-			obstacle = new Fly(game, this);
-		}
-		else if (random < 0.8) {
-			obstacle = new Dudu(game, this);
-		}
-		else {
-			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
-			obstacle.attackSpeed = 1;
-			obstacle.scale.setTo(.3,.3);
+		switch (true) {
+			case random < 0.2:
+				obstacle = new Sewer(game, this);
+				break;
+			case random < 0.4:
+				obstacle = new Cocolito(game, this);
+				break;
+			case random < 0.6:
+				obstacle = new Fly(game, this);
+				break;
+			case random < 0.8:
+				obstacle = new Dudu(game, this);
+				break;
+			default:
+				obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
+				obstacle.attackSpeed = 1;
+				obstacle.scale.setTo(.3,.3);
 
-			obstacle.body.clearShapes();
-			obstacle.body.loadPolygon('physicsData', obstacle.key);
+				obstacle.body.clearShapes();
+				obstacle.body.loadPolygon('physicsData', obstacle.key);
 
-			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-			obstacle.body.collides([this.playerCollisionGroup]);
+				obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
+				obstacle.body.collides([this.playerCollisionGroup]);
 
-			obstacle.body.collideWorldBounds = false;
-			obstacle.body.fixedRotation = true;
-			obstacle.body.velocity.x = -this.velocity * obstacle.attackSpeed;
-			obstacle.body.velocity.y = 0;
+				obstacle.body.collideWorldBounds = false;
+				obstacle.body.fixedRotation = true;
+				obstacle.body.velocity.x = -this.velocity;
+				obstacle.body.velocity.y = 0;
 		}
 	}
 };
