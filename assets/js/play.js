@@ -25,10 +25,10 @@ var playState = {
 
 		this.velocity = 500;
 		this.velocityIncrease = 0.001;
-		
+
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
-		
+
 		// start the P2JS physics system
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.setImpactEvents(true);
@@ -42,10 +42,7 @@ var playState = {
 		this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
 		this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
-		this.rastro = game.add.sprite(this.initialPosition.x - 100, this.initialPosition.y - 15, 'rastro');
-		this.rastro.scale.setTo(.35,.35);
-		this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
-		this.rastro.animations.play('rastra');
+		this.rastro = new PlayerRastro(game, this.player);
 
 		this.agua = game.add.graphics(0, 220);
 		this.agua.beginFill(0x8de1af, .5);
@@ -88,10 +85,10 @@ var playState = {
 				enemy.kill();
 			}
 		}, this);
-		
+
 		//velocidade do jogo
 		this.velocity += this.velocityIncrease;
-		
+
 		//score
 		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
