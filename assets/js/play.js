@@ -56,8 +56,6 @@ var playState = {
 		this.group.physicsBodyType = Phaser.Physics.P2JS;
 
 		cursors = game.input.keyboard.createCursorKeys();
-
-		this.createObstacle();
 	},
 
 	update: function() {
@@ -72,7 +70,7 @@ var playState = {
 
 		//sorteio de sair um obstáculo
 		if (game.rnd.frac() < 0.01) {
-			//this.createObstacle();
+			this.createObstacle();
 		}
 
 		this.group.forEach(function(enemy) {
