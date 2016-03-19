@@ -1,7 +1,7 @@
 var loadState = {
 
-	preload: function () {		
-		// Add a loading label 
+	preload: function () {
+		// Add a loading label
 		var loadingLabel = game.add.text(game.world.centerX, 150, 'loading...', { font: '30px Arial', fill: '#ffffff' });
 		loadingLabel.anchor.setTo(0.5, 0.5);
 
@@ -23,9 +23,8 @@ var loadState = {
 
 		game.load.image('powerup', BASE_DIR + 'powerup.png');
 
-		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
-		
+
 		// load the physics data json
 		game.load.physics('physicsData', 'assets/physics/collision.json');
 	},
