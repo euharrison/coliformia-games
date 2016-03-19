@@ -48,11 +48,6 @@ var playState = {
 		this.agua.beginFill(0x8de1af, .5);
 		this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
 
-		this.bosta = game.add.sprite(0, 200, 'bosta');
-		this.bosta.scale.setTo(.7,.7);
-		this.bosta.animations.add('boia', [0,1,2,3,4,5], 4, true);
-		this.bosta.animations.play('boia');
-
 		this.isJumping = false;
 
 		this.group = game.add.group();
