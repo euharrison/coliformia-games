@@ -4,7 +4,7 @@ var playState = {
 		game.debugPhysics = false;
 
 		this.initialPosition = {
-			x: 250,
+			x: 100,
 			y: 220
 		};
 
@@ -56,6 +56,8 @@ var playState = {
 		this.group.physicsBodyType = Phaser.Physics.P2JS;
 
 		cursors = game.input.keyboard.createCursorKeys();
+
+		this.createObstacle();
 	},
 
 	update: function() {
@@ -70,7 +72,7 @@ var playState = {
 
 		//sorteio de sair um obstáculo
 		if (game.rnd.frac() < 0.01) {
-			this.createObstacle();
+			//this.createObstacle();
 		}
 
 		this.group.forEach(function(enemy) {
@@ -109,42 +111,35 @@ var playState = {
 		var obstacle;
 		var random = game.rnd.frac();
 		var defaultBody = false;
-		if (random < 0.2) {
-			new Sewer(game, this);
-		}
-		else if (random < 0.4) {
-			obstacle = new Cocolito(game, this);
-		}
-		else if (random < 0.6) {
-			obstacle = new Fly(game, game.width+75, this.initialPosition.y-50);
-			defaultBody = true;
-		}
-		else if (random < 0.8) {
-			obstacle = new Dudu(game, game.width, this.initialPosition.y);
-			defaultBody = true;
-		}
-		else {
-			obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
-			obstacle.scale.setTo(.3,.3);
-			defaultBody = true;
-		}
 
-		if (defaultBody) {
-			obstacle.body.clearShapes();
-			obstacle.body.loadPolygon('physicsData', obstacle.key);
+		switch (true) {
+			case true://random < 0.1:
+				obstacle = new Sewer(game, this);
+				break;
+			case random < 0.2:
+				obstacle = new Cocolito(game, this);
+				break;
+			case random < 0.3:
+				obstacle = new Fly(game, this);
+				break;
+			case random < 0.4:
+				obstacle = new Dudu(game, this);
+				break;
+			default:
+				obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
+				obstacle.attackSpeed = 1;
+				obstacle.scale.setTo(.3,.3);
 
-			if (obstacle.key === 'powerup') {
+				obstacle.body.clearShapes();
+				obstacle.body.loadPolygon('physicsData', obstacle.key);
+
 				obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
 				obstacle.body.collides([this.playerCollisionGroup]);
-			} else {
-				obstacle.body.setCollisionGroup(this.enemiesCollisionGroup);
-				obstacle.body.collides([this.playerCollisionGroup]);
-			}
 
-			obstacle.body.collideWorldBounds = false;
-			obstacle.body.fixedRotation = true;
-			obstacle.body.velocity.x = -this.velocity;
-			obstacle.body.velocity.y = 0;
+				obstacle.body.collideWorldBounds = false;
+				obstacle.body.fixedRotation = true;
+				obstacle.body.velocity.x = -this.velocity;
+				obstacle.body.velocity.y = 0;
 		}
 	}
 };
