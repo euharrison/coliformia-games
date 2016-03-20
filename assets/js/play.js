@@ -17,6 +17,9 @@ var playState = {
 		this.velocity = 500;
 		this.velocityIncrease = 0.001;
 
+		this.sequenciadorDeInimigos = new Sequenciador(game, this);
+		this.sequenciadorDeInimigos.setUpASequence();
+
 		this.sky = game.add.graphics(0, 0);
 		this.sky.beginFill(0x5c91a7, 1);
 		this.sky.drawRect(0, 0, game.width, this.initialPosition.y);
@@ -91,6 +94,7 @@ var playState = {
 		//score
 		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
+		this.sequenciadorDeInimigos.getCurrentObject(Math.ceil(game.score));
 	},
 
 	enemyCollisionHandler: function(body1, body2) {
@@ -110,38 +114,22 @@ var playState = {
 	},
 
 	createObstacle: function() {
-		var obstacle;
-		var random = game.rnd.frac();
-		var defaultBody = false;
 
-		switch (true) {
-			case random < 0.1:
-				obstacle = new Sewer(game, this);
-				break;
-			case random < 0.2:
-				obstacle = new Cocolito(game, this);
-				break;
-			case random < 0.3:
-				obstacle = new Fly(game, this);
-				break;
-			case random < 0.4:
-				obstacle = new Dudu(game, this);
-				break;
-			default:
-				obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
-				obstacle.attackSpeed = 1;
-				obstacle.scale.setTo(.3,.3);
+		if (game.rnd.frac() > 0.4) {
+			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
+			obstacle.attackSpeed = 1;
+			obstacle.scale.setTo(.3,.3);
 
-				obstacle.body.clearShapes();
-				obstacle.body.loadPolygon('physicsData', obstacle.key);
+			obstacle.body.clearShapes();
+			obstacle.body.loadPolygon('physicsData', obstacle.key);
 
-				obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-				obstacle.body.collides([this.playerCollisionGroup]);
+			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
+			obstacle.body.collides([this.playerCollisionGroup]);
 
-				obstacle.body.collideWorldBounds = false;
-				obstacle.body.fixedRotation = true;
-				obstacle.body.velocity.x = -this.velocity;
-				obstacle.body.velocity.y = 0;
+			obstacle.body.collideWorldBounds = false;
+			obstacle.body.fixedRotation = true;
+			obstacle.body.velocity.x = -this.velocity;
+			obstacle.body.velocity.y = 0;
 		}
 	}
 };
