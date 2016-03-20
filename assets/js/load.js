@@ -25,7 +25,8 @@ var loadState = {
 		game.load.spritesheet('cocolito', BASE_DIR + 'enemies/cocolito.png', 225, 180);
 		game.load.image('sewer', BASE_DIR + 'enemies/sewer.png', 355, 262);
 
-		game.load.image('powerup', BASE_DIR + 'powerup.png');
+		game.load.image('powerup_sus', BASE_DIR + 'powerUP_01.png');
+		game.load.image('powerup_injecao', BASE_DIR + 'powerUP_02.png');
 
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
 
