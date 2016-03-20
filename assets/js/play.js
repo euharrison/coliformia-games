@@ -5,7 +5,7 @@ var playState = {
 
 		this.initialPosition = {
 			x: 100,
-			y: 220
+			y: 233
 		};
 
 		this.playerlife = {
@@ -14,17 +14,19 @@ var playState = {
 			powerup: 100
 		};
 
+		this.velocity = 500;
+		this.velocityIncrease = 0.001;
+
 		this.sky = game.add.graphics(0, 0);
 		this.sky.beginFill(0x5c91a7, 1);
 		this.sky.drawRect(0, 0, game.width, this.initialPosition.y);
+
+		this.bg = new ParalaxBg(game, this);
 
 		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
 		this.lifeBar.anchor.setTo(0, 0.5);
 		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
 		this.lifeBar.scale.setTo(3, 1);
-
-		this.velocity = 500;
-		this.velocityIncrease = 0.001;
 
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
@@ -44,7 +46,7 @@ var playState = {
 
 		this.rastro = new PlayerRastro(game, this.player);
 
-		this.agua = game.add.graphics(0, 220);
+		this.agua = game.add.graphics(0, this.initialPosition.y);
 		this.agua.beginFill(0x8de1af, .5);
 		this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
 
@@ -60,6 +62,8 @@ var playState = {
 
 	update: function() {
 
+		this.bg.update();
+
 		//life bar
 		if (this.playerlife.current >= 0){
 			this.playerlife.current--;
@@ -69,7 +73,7 @@ var playState = {
 		}
 
 		//sorteio de sair um obstáculo
-		if (game.rnd.frac() < 0.01) {
+		if (game.rnd.frac() < 0.02) {
 			this.createObstacle();
 		}
 

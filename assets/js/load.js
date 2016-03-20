@@ -13,6 +13,10 @@ var loadState = {
 		var BASE_DIR = 'assets/sprites/';
 
 		// Load all assets
+		game.load.image('bg', BASE_DIR + 'bg/bg.png');
+		game.load.image('bg_montanhas', BASE_DIR + 'bg/bg_montanhas.png');
+		game.load.image('bg_predios', BASE_DIR + 'bg/bg_predios.png');
+
 		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
 
 		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 151, 100);
