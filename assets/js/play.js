@@ -116,9 +116,18 @@ var playState = {
 	createObstacle: function() {
 
 		if (game.rnd.frac() > 0.4) {
-			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), 'powerup');
+
+			var imgname;
+
+			if (Math.random() > 0.5){
+				imgname = 'powerup_sus';
+			} else {
+				imgname = 'powerup_injecao';
+			}
+
+			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), imgname);
 			obstacle.attackSpeed = 1;
-			obstacle.scale.setTo(.3,.3);
+			obstacle.scale.setTo(.6, .6);
 
 			obstacle.body.clearShapes();
 			obstacle.body.loadPolygon('physicsData', obstacle.key);
