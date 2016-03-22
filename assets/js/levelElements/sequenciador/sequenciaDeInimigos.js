@@ -5,6 +5,10 @@ var SequenciaDeInimigos = function(){
             {
                 tipo: 'Bonner',
                 posicao: 50
+            },
+            {
+                tipo: 'Cocolito',
+                posicao: 5000
             }
         ]
 
