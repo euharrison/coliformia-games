@@ -1,6 +1,6 @@
 var Player = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'player');
-  
+
   this.forcas = {
     forcaPraBaixo: 20,
     empuxoDaAgua: 0.01,
@@ -66,10 +66,12 @@ Player.prototype.update = function() {
         this.body.velocity.y += this.forcas.forcaPraBaixo;
       }
       //nadar para cima, somente se houver espaço
-      else if (this.body.y > this.initialPosition.y + 10) {  
+      else if (this.body.y > this.initialPosition.y + 10) {
         this.body.velocity.y -= this.forcas.forcaPraBaixo;
       }
     }
+
+    this.angle = this.body.velocity.y/20;
 
     //atualiza se está dentro da água ou não
     this.isJumping = (this.body.y < this.initialPosition.y);
