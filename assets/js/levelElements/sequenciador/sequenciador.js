@@ -42,5 +42,8 @@ Sequenciador.prototype.createEnemy = function(enemy){
         case 'Dudu':
             new Dudu(this.game, this.play);
             break;
+        case 'Bonner':
+            new Bonner(this.game, this.play);
+            break;
     }
 };
