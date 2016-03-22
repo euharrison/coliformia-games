@@ -4,15 +4,26 @@ var SequenciaDeInimigos = function(){
         [
             {
                 tipo: 'Bonner',
-                posicao: 50
+                posicao: 100
             },
             {
-                tipo: 'Cocolito',
-                posicao: 5000
+                tipo: 'Fly',
+                posicao: 100
+            },
+            {
+                tipo: 'Fly',
+                posicao: 200
+            },
+            {
+                tipo: 'Fly',
+                posicao: 300
+            },
+            {
+                tipo: 'Fly',
+                posicao: 400
             }
-        ]
-
-        /*[
+        ],
+        [
             {
                 tipo: 'Cocolito',
                 posicao: 100
@@ -37,7 +48,7 @@ var SequenciaDeInimigos = function(){
                 tipo: 'Dudu',
                 posicao: 500
             }
-        ]*/
+        ]
     ];
 }
 
