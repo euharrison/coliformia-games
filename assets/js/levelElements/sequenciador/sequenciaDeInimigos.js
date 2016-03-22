@@ -3,6 +3,13 @@ var SequenciaDeInimigos = function(){
     this.sequencias = [
         [
             {
+                tipo: 'Bonner',
+                posicao: 50
+            }
+        ]
+
+        /*[
+            {
                 tipo: 'Cocolito',
                 posicao: 100
             },
@@ -25,8 +32,8 @@ var SequenciaDeInimigos = function(){
             {
                 tipo: 'Dudu',
                 posicao: 500
-            },
-        ]
+            }
+        ]*/
     ];
 }
 
