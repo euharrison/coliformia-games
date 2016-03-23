@@ -1,11 +1,10 @@
 var playState = {
 
 	create: function() {
-		game.debugPhysics = false;
 
 		this.initialPosition = {
 			x: 100,
-			y: 233
+			y: 350
 		};
 
 		this.playerlife = {
@@ -127,7 +126,6 @@ var playState = {
 
 			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), imgname);
 			obstacle.attackSpeed = 1;
-			obstacle.scale.setTo(.6, .6);
 
 			obstacle.body.clearShapes();
 			obstacle.body.loadPolygon('physicsData', obstacle.key);

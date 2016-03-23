@@ -2,8 +2,7 @@ var Sewer = function (game, play) {
   this.game = game;
   this.play = play;
 
-  this.sewer = new Phaser.Image(game, game.width, play.initialPosition.y, 'sewer');
-  this.sewer.scale.set(0.5, 0.5);
+  this.sewer = new Phaser.Image(game, game.width, play.initialPosition.y-80, 'sewer');
   game.add.existing(this.sewer);
 
   this.steps = [
@@ -37,15 +36,15 @@ Sewer.prototype.nextStep = function(){
 };
 
 Sewer.prototype.enter = function() {
-  this.tween({ x: game.width-170 }, this.nextStep);
+  this.tween({ x: game.width-262 }, this.nextStep);
 };
 
 Sewer.prototype.goDown = function() {
-  this.tween({ y: this.game.height-170 }, this.nextStep);
+  this.tween({ y: this.game.height-250 }, this.nextStep);
 };
 
 Sewer.prototype.goUp = function() {
-  this.tween({ y: this.play.initialPosition.y }, this.nextStep);
+  this.tween({ y: this.play.initialPosition.y-80 }, this.nextStep);
 };
 
 Sewer.prototype.goBack = function() {
@@ -61,7 +60,7 @@ Sewer.prototype.releaseCocolito = function() {
 
     var tween = this.game.add.tween(this.sewer).to({ x: isso.sewer.x + 50 }, 500, Phaser.Easing.Elastic.In);
     tween.onComplete.add(function() {
-        new Cocolito(this.game, this.play, this.sewer.x, this.sewer.y+60);
+        new Cocolito(this.game, this.play, this.sewer.x, this.sewer.y+120);
         this.tween({ x: isso.sewer.x - 50 }, this.nextStep);
     }, this);
     tween.start();

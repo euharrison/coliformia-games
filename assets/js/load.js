@@ -20,14 +20,14 @@ var loadState = {
 		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
 
 		game.load.spritesheet('bonner', BASE_DIR + 'enemies/bonner.png', 646, 455);
-		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 151, 100);
-		game.load.spritesheet('dudu', BASE_DIR + 'enemies/dudu.png', 114, 100);
-		game.load.spritesheet('dudu-laser', BASE_DIR + 'enemies/dudu-laser.png', 365, 500);
+		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 539, 380);
+		game.load.spritesheet('dudu', BASE_DIR + 'enemies/dudu.png', 355, 311);
+		game.load.spritesheet('dudu-laser', BASE_DIR + 'enemies/dudu-laser.png', 408, 562);
 		game.load.spritesheet('cocolito', BASE_DIR + 'enemies/cocolito.png', 225, 180);
 		game.load.image('sewer', BASE_DIR + 'enemies/sewer.png', 355, 262);
 
-		game.load.image('powerup_sus', BASE_DIR + 'powerUP_01.png');
-		game.load.image('powerup_injecao', BASE_DIR + 'powerUP_02.png');
+		game.load.image('powerup_sus', BASE_DIR + 'powerup_sus.png');
+		game.load.image('powerup_injecao', BASE_DIR + 'powerup_injecao.png');
 
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
 
