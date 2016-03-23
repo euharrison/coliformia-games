@@ -13,7 +13,7 @@ var playState = {
 			powerup: 100
 		};
 
-		this.velocity = 500;
+		this.velocity = 700;
 		this.velocityIncrease = 0.001;
 
 		this.sequenciadorDeInimigos = new Sequenciador(game, this);
