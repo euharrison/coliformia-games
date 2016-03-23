@@ -28,6 +28,10 @@ var Player = function (game, x, y) {
 
   game.input.onDown.add(this.onTouchDown, this);
   game.input.onUp.add(this.onTouchUp, this);
+
+  var keySpacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+  keySpacebar.onDown.add(this.onTouchDown, this);
+  keySpacebar.onUp.add(this.onTouchUp, this);
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
