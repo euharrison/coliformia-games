@@ -25,6 +25,7 @@ var Player = function (game, x, y) {
   this.body.clearShapes();
   this.body.loadPolygon('physicsData', this.key);
   this.body.fixedRotation = true;
+  this.body.collideWorldBounds = false;
 
   game.input.onDown.add(this.onTouchDown, this);
   game.input.onUp.add(this.onTouchUp, this);
@@ -67,6 +68,11 @@ Player.prototype.update = function() {
       //nadar para baixo
       if (this.isTouchDown) {
         this.body.velocity.y += this.forcas.forcaPraBaixo;
+
+        //impoe um limite de velocidade para baixo
+        if (this.body.velocity.y > 500) {
+          this.body.velocity.y = 500;
+        }
       }
       //nadar para cima, somente se houver espaço
       else if (this.body.y > this.initialPosition.y + 10) {
@@ -79,12 +85,17 @@ Player.prototype.update = function() {
 
     //atualiza se está dentro da água ou não
     this.isJumping = (this.body.y < this.initialPosition.y);
+
+    //limita a tela somente no chão
+    if (this.body.y > 1000) {
+      this.body.y = 1000;
+    }
 };
 
 Player.prototype.onTouchDown = function() {
   this.isTouchDown = true;
 
-  //se for para começar a nadar baixo, diminuir a possível velocidade para cima para dar uma resposta mais rápida
+  //se for para começar a nadar para baixo, diminuir a possível velocidade para cima para dar uma resposta mais rápida
   if (!this.isJumping) {
     this.body.velocity.y /= 5;
   }

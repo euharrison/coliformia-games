@@ -1,5 +1,9 @@
-@import 'reset';
-
 body {
-	
+  margin: 0;
+  background-color: #754c24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }

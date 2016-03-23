@@ -5,9 +5,8 @@ var bootState = {
 	},
 
 	create: function() { 
-		// Set a background color and the physic system
+		// Set a background color
 		game.stage.backgroundColor = '#000';
-		game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		game.state.start('load');
