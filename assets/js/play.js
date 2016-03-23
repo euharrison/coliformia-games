@@ -79,6 +79,13 @@ var playState = {
 			this.createObstacle();
 		}
 
+		//update enemies
+		for (var i = 0; i < game.world.children.length; i++) {
+			if (game.world.children[i] instanceof Enemy) {
+				game.world.children[i].update();
+			}
+		}
+
 		this.group.forEach(function(enemy) {
 			if (enemy.body.x < 0) {
 				//out of the bounds

@@ -15,3 +15,11 @@ Enemy.prototype.addBody = function(game, play, key){
     this.body.setCollisionGroup(play.enemiesCollisionGroup);
     this.body.collides([play.playerCollisionGroup]);
 };
+
+Enemy.prototype.update = function() {
+  if (this.body) {
+    if (this.body.x < 0) {
+      this.destroy();
+    }
+  }
+}
