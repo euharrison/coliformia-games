@@ -1,7 +1,7 @@
 var loadState = {
 
-	preload: function () {		
-		// Add a loading label 
+	preload: function () {
+		// Add a loading label
 		var loadingLabel = game.add.text(game.world.centerX, 150, 'loading...', { font: '30px Arial', fill: '#ffffff' });
 		loadingLabel.anchor.setTo(0.5, 0.5);
 
@@ -13,13 +13,26 @@ var loadState = {
 		var BASE_DIR = 'assets/sprites/';
 
 		// Load all assets
-		game.load.spritesheet('nadador', BASE_DIR + 'nadador.png', 210, 206);
+		game.load.image('bg', BASE_DIR + 'bg/bg.png');
+		game.load.image('bg_montanhas', BASE_DIR + 'bg/bg_montanhas.png');
+		game.load.image('bg_predios', BASE_DIR + 'bg/bg_predios.png');
+
+		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
+
+		game.load.spritesheet('bonner', BASE_DIR + 'enemies/bonner.png', 646, 455);
+		game.load.spritesheet('fly', BASE_DIR + 'enemies/fly.png', 539, 380);
+		game.load.spritesheet('dudu', BASE_DIR + 'enemies/dudu.png', 355, 311);
+		game.load.spritesheet('dudu-laser', BASE_DIR + 'enemies/dudu-laser.png', 408, 562);
+		game.load.spritesheet('cocolito', BASE_DIR + 'enemies/cocolito.png', 225, 180);
+		game.load.image('sewer', BASE_DIR + 'enemies/sewer.png', 355, 262);
+
+		game.load.image('powerup_sus', BASE_DIR + 'powerup_sus.png');
+		game.load.image('powerup_injecao', BASE_DIR + 'powerup_injecao.png');
+
 		game.load.spritesheet('rastro', BASE_DIR + 'rastro.png', 440, 84);
 
-		game.load.image('tv', BASE_DIR + 'tv.png');
-		game.load.image('sofa', BASE_DIR + 'sofa.png');
-
-		game.load.spritesheet('bosta', BASE_DIR + 'bosta.png', 334, 578);
+		// load the physics data json
+		game.load.physics('physicsData', 'assets/physics/collision.json');
 	},
 
 	create: function() {

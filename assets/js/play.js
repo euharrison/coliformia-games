@@ -2,100 +2,148 @@ var playState = {
 
 	create: function() {
 
-		this.forcas = {
-			forcaPraBaixo: 100,
-			empuxoDaAgua: .02
-		};
-
 		this.initialPosition = {
-			x:200,
-			y:180
+			x: 100,
+			y: 350
 		};
 
-		this.player = game.add.sprite(this.initialPosition.x, this.initialPosition.y, 'nadador');
-	    this.player.name = 'phaser-dude';
-	    this.player.scale.setTo(.35,.35);
-	    this.player.animations.add('nada', [0,1,2,3,4,5,6], 12, true);
-	    this.player.animations.play('nada');
+		this.playerlife = {
+			initial: 1000,
+			current: 1000,
+			powerup: 100
+		};
 
-	    this.rastro = game.add.sprite(this.initialPosition.x - 50, this.initialPosition.y + 25, 'rastro');
-	    this.rastro.scale.setTo(.35,.35);
-	    this.rastro.animations.add('rastra', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 12, true);
-	    this.rastro.animations.play('rastra');
+		this.velocity = 700;
+		this.velocityIncrease = 0.001;
 
-	    window.rastro = this.rastro;
+		this.sequenciadorDeInimigos = new Sequenciador(game, this);
+		this.sequenciadorDeInimigos.setUpASequence();
 
-	    //cor da água #00375b
+		this.sky = game.add.graphics(0, 0);
+		this.sky.beginFill(0x5c91a7, 1);
+		this.sky.drawRect(0, 0, game.width, this.initialPosition.y);
 
-	    this.agua = game.add.graphics(0, 220);
-		this.agua.beginFill(0x00375b, .5);
-		this.agua.drawRect(0, 0, 800, 400);
+		this.bg = new ParalaxBg(game, this);
 
+		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
+		this.lifeBar.anchor.setTo(0, 0.5);
+		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
+		this.lifeBar.scale.setTo(3, 1);
 
-		this.bosta = game.add.sprite(0, 200, 'bosta');
-		this.bosta.scale.setTo(.7,.7);
-	    this.bosta.animations.add('boia', [0,1,2,3,4,5], 4, true);
-	    this.bosta.animations.play('boia');
+		game.score = 0;
+		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
 
-	    this.intouchdown = false;
+		// start the P2JS physics system
+		game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.p2.setImpactEvents(true);
+		this.playerCollisionGroup = game.physics.p2.createCollisionGroup();
+		this.enemiesCollisionGroup = game.physics.p2.createCollisionGroup();
+		this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
+		game.physics.p2.updateBoundsCollisionGroup();
 
-	    game.physics.enable(this.player, Phaser.Physics.ARCADE);
+		this.player = new Player(game, this.initialPosition.x, this.initialPosition.y);
+		this.player.body.setCollisionGroup(this.playerCollisionGroup);
+		this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
+		this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
-	    group = game.add.group();
-	    group.enableBody = true;
-	    group.physicsBodyType = Phaser.Physics.ARCADE;
+		this.rastro = new PlayerRastro(game, this.player);
 
-	    cursors = game.input.keyboard.createCursorKeys();
+		this.agua = game.add.graphics(0, this.initialPosition.y);
+		this.agua.beginFill(0x8de1af, .5);
+		this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
 
-	    /*
-		* coloca o jogo pra escutar se há mouse down ou touch
-	    */
-		game.input.onDown.add(function(){
-			this.player.body.velocity.y += this.forcas.forcaPraBaixo;
-		}, this);
+		this.isJumping = false;
+
+		this.group = game.add.group();
+		this.group.enableBody = true;
+		this.group.enableBodyDebug = game.debugPhysics;
+		this.group.physicsBodyType = Phaser.Physics.P2JS;
+
+		cursors = game.input.keyboard.createCursorKeys();
 	},
 
 	update: function() {
-		game.physics.arcade.collide(this.player, group, this.collisionHandler, null, this);
-	    //game.physics.arcade.overlap(this.player, group, this.collisionHandler, null, this);
 
-	    if(this.intouchdown){
-	    	this.player.body.velocity.y += this.forcas.forcaPraBaixo;
-	    }
+		this.bg.update();
 
-	    if(this.player.body.position.y > this.initialPosition.y){
-	    	this.player.body.velocity.y -= (this.player.body.position.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
+		//life bar
+		if (this.playerlife.current >= 0){
+			this.playerlife.current--;
+			this.lifeBar.scale.setTo(3 * this.playerlife.current / this.playerlife.initial, 1);
+		} else {
+			game.state.start('gameover');
+		}
 
-	    	if (this.rastro.alpha === 1) {
-	    		game.add.tween(this.rastro).to({alpha: 0}, 200).start();
-	    	}
+		//sorteio de sair um obstáculo
+		if (game.rnd.frac() < 0.02) {
+			this.createObstacle();
+		}
 
-	    }else if(this.player.body.position.y < this.initialPosition.y){
-	    	this.player.body.velocity.y = 0;
-	    	this.player.body.position.y = this.initialPosition.y;
-
-	    	if (this.rastro.alpha != 1) {
-	    		game.add.tween(this.rastro).to({alpha: 1}, 200).start();
-	    	}
-	    }
-
-
-	    if (game.rnd.frac() < 0.02) {
-			var enemy;
-			if (game.rnd.frac() < 0.8) {
-				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 570), 'tv');
-			} else {
-				enemy = group.create(800, game.rnd.integerInRange(this.initialPosition.y, 500), 'sofa');
+		//update enemies
+		for (var i = 0; i < game.world.children.length; i++) {
+			if (game.world.children[i] instanceof Enemy) {
+				game.world.children[i].update();
 			}
-			 
-			enemy.scale.setTo(.3,.3);
-			enemy.checkWorldBounds = true;
-			enemy.outOfBoundsKill = true; //TODO validar que isso funciona, parece ter algum bug
-			enemy.body.velocity.x = -600;
-	    } 
+		}
+
+		this.group.forEach(function(enemy) {
+			if (enemy.body.x < 0) {
+				//out of the bounds
+				enemy.body.clearShapes();
+				enemy.kill();
+			}
+		}, this);
+
+		//velocidade do jogo
+		this.velocity += this.velocityIncrease;
+
+		//score
+		game.score += this.velocity/1000;
+		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
+		this.sequenciadorDeInimigos.getCurrentObject(Math.ceil(game.score));
 	},
 
-	collisionHandler: function() {
-	    game.state.start('gameover');
+	enemyCollisionHandler: function(body1, body2) {
+		game.state.start('gameover');
+	},
+
+	powerupCollisionHandler: function(body1, body2) {
+		if (body2.sprite) {
+			body2.sprite.destroy();
+		}
+
+		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup) {
+			this.playerlife.current = this.playerlife.initial;
+		} else {
+			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
+		}
+	},
+
+	createObstacle: function() {
+
+		if (game.rnd.frac() > 0.4) {
+
+			var imgname;
+
+			if (Math.random() > 0.5){
+				imgname = 'powerup_sus';
+			} else {
+				imgname = 'powerup_injecao';
+			}
+
+			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), imgname);
+			obstacle.attackSpeed = 1;
+
+			obstacle.body.clearShapes();
+			obstacle.body.loadPolygon('physicsData', obstacle.key);
+
+			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
+			obstacle.body.collides([this.playerCollisionGroup]);
+
+			obstacle.body.collideWorldBounds = false;
+			obstacle.body.fixedRotation = true;
+			obstacle.body.velocity.x = -this.velocity;
+			obstacle.body.velocity.y = 0;
+		}
 	}
 };
