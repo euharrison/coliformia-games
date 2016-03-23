@@ -1,9 +1,8 @@
 var Cocolito = function(game, play, x, y) {
-  x = (x === undefined) ? game.width : x;
+  x = (x === undefined) ? game.width+225 : x;
   y = (y === undefined) ? game.rnd.integerInRange(play.initialPosition.y, game.height) : y;
 
   Phaser.Sprite.call(this, game, x, y, 'cocolito');
-  this.scale.set(0.5, 0.5);
 
   this.animations.add('cocolito', [0,1,2], 12, true);
   this.animations.play('cocolito');

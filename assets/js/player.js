@@ -13,9 +13,8 @@ var Player = function (game, x, y) {
   };
 
   this.isJumping = false;
-  this.isTouchDown = false;;
+  this.isTouchDown = false;
 
-  this.scale.setTo(.66,.66);
   this.animations.add('swim', [0,1,2,3,4,5], 12, true);
   this.animations.add('jump', [6], 12, false);
   this.animations.add('fall', [7], 12, false);
@@ -72,10 +71,10 @@ Player.prototype.update = function() {
     }
 
     this.angle = this.body.velocity.y/20;
+    this.body.rotation = this.angle * Math.PI / 180;
 
     //atualiza se está dentro da água ou não
     this.isJumping = (this.body.y < this.initialPosition.y);
-
 };
 
 Player.prototype.onTouchDown = function() {

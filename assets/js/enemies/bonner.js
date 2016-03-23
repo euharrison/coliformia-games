@@ -2,12 +2,11 @@ var Bonner = function(game, play){
     this.game = game;
     this.play = play;
 
-
     Phaser.Sprite.call(this, game, game.width - 170, play.initialPosition.y+50, 'bonner');
     this.animations.add('atira', [0,1,2,3,2,1,0], 24);
 
     this.anchor.setTo(0.5, 0.5);
-    this.scale.setTo(0.05, 0.05);
+    this.scale.setTo(0, 0);
     game.add.existing(this);
 
     this.steps = [
@@ -38,7 +37,7 @@ Bonner.prototype.nextStep = function(){
 };
 
 Bonner.prototype.enter = function(){
-    var tween = this.game.add.tween(this.scale).to({x:0.5 , y:0.5}, 500, Phaser.Easing.Elastic.In);
+    var tween = this.game.add.tween(this.scale).to({x:1 , y:1}, 500, Phaser.Easing.Elastic.In);
     tween.onComplete.add(this.nextStep, this);
     tween.start();
 };
@@ -72,7 +71,7 @@ Bonner.prototype.sobeMais = function(){
 };
 
 Bonner.prototype.remove = function(){
-    var tween = this.game.add.tween(this.scale).to({x:0.01 , y:0.01}, 500, Phaser.Easing.Elastic.In);
+    var tween = this.game.add.tween(this.scale).to({x:0 , y:0}, 500, Phaser.Easing.Elastic.In);
     tween.onComplete.add(this.nextStep, this);
     tween.start();
 };
