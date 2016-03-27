@@ -91,6 +91,8 @@ var playState = {
 				//out of the bounds
 				enemy.body.clearShapes();
 				enemy.kill();
+				enemy.destroy();
+				console.log('detroy one enemy ', enemy.key);
 			}
 		}, this);
 
