@@ -26,7 +26,7 @@ var Bonner = function(game, play){
     this.enter();
 };
 
-Bonner.prototype = new Enemy();
+Bonner.prototype = new LevelItem();
 Bonner.prototype.constructor = Bonner;
 
 Bonner.prototype.nextStep = function(){

@@ -8,8 +8,8 @@ var Cocolito = function(game, play, x, y) {
   this.animations.play('cocolito');
   game.add.existing(this);
 
-  this.addBody(game, play, this.key);
+  this.addBody(game, play, play.enemiesCollisionGroup, this.key);
 };
 
-Cocolito.prototype = new Enemy();
+Cocolito.prototype = new LevelItem();
 Cocolito.prototype.constructor = Cocolito;

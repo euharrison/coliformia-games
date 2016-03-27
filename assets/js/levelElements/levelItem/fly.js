@@ -5,8 +5,8 @@ var Fly = function (game, play) {
   this.animations.play('fly');
   game.add.existing(this);
 
-  this.addBody(game, play, this.key);
+  this.addBody(game, play, play.enemiesCollisionGroup, this.key);
 };
 
-Fly.prototype = new Enemy();
+Fly.prototype = new LevelItem();
 Fly.prototype.constructor = Fly;

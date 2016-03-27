@@ -74,25 +74,12 @@ var playState = {
 			game.state.start('gameover');
 		}
 
-		//sorteio de sair um obstáculo
-		if (game.rnd.frac() < 0.02) {
-			this.createObstacle();
-		}
-
 		//update enemies
 		for (var i = 0; i < game.world.children.length; i++) {
-			if (game.world.children[i] instanceof Enemy) {
+			if (game.world.children[i] instanceof LevelItem) {
 				game.world.children[i].update();
 			}
 		}
-
-		this.group.forEach(function(enemy) {
-			if (enemy.body.x < 0) {
-				//out of the bounds
-				enemy.body.clearShapes();
-				enemy.kill();
-			}
-		}, this);
 
 		//velocidade do jogo
 		this.velocity += this.velocityIncrease;
@@ -116,34 +103,6 @@ var playState = {
 			this.playerlife.current = this.playerlife.initial;
 		} else {
 			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
-		}
-	},
-
-	createObstacle: function() {
-
-		if (game.rnd.frac() > 0.4) {
-
-			var imgname;
-
-			if (Math.random() > 0.5){
-				imgname = 'powerup_sus';
-			} else {
-				imgname = 'powerup_injecao';
-			}
-
-			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), imgname);
-			obstacle.attackSpeed = 1;
-
-			obstacle.body.clearShapes();
-			obstacle.body.loadPolygon('physicsData', obstacle.key);
-
-			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-			obstacle.body.collides([this.playerCollisionGroup]);
-
-			obstacle.body.collideWorldBounds = false;
-			obstacle.body.fixedRotation = true;
-			obstacle.body.velocity.x = -this.velocity;
-			obstacle.body.velocity.y = 0;
 		}
 	}
 };

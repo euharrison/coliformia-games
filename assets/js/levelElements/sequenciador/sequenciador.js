@@ -26,6 +26,8 @@ Sequenciador.prototype.getCurrentObject = function(currentPosition){
         this.basePosition = currentPosition;
         this.setUpASequence();
     }
+
+    this.addPowerUp();
 };
 
 Sequenciador.prototype.createEnemy = function(enemy){
@@ -45,5 +47,11 @@ Sequenciador.prototype.createEnemy = function(enemy){
         case 'Bonner':
             new Bonner(this.game, this.play);
             break;
+    }
+};
+
+Sequenciador.prototype.addPowerUp = function(){
+    if (game.rnd.frac() < 0.01) {
+        new PowerUp(this.game, this.play);
     }
 };
