@@ -29,5 +29,5 @@ Dudu.prototype.ataca = function(){
     var laser = new Phaser.Image(game, -392, -32, 'dudu-laser');
     this.addChild(laser);
 
-    this.addBody(game, this.play, play.enemiesCollisionGroup, 'dudu');
+    this.addBody(game, this.play, this.play.enemiesCollisionGroup, 'dudu');
 };

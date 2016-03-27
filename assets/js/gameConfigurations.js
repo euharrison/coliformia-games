@@ -15,7 +15,14 @@ var ColiformiaConfigurations = (function () {
     			initial: 1000,
     			current: 1000,
     			powerup: 100
-    		}
+    		},
+            player : {
+                forcas : {
+                  forcaPraBaixo: 20,
+                  empuxoDaAgua: 0.01,
+                  gravidade: 20
+                }
+            }
         };
         return coliformiaConfig;
     }
