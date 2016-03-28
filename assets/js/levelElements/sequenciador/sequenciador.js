@@ -5,6 +5,7 @@ var Sequenciador = function(game, play){
     this.currentSequence = null;
     this.currentElement = 0;
     this.sequenciaStartTime = 0;
+    this.elapsedTime =  0;
 
     this.sequencias = [
         {
@@ -257,13 +258,12 @@ Sequenciador.prototype.changeSequence = function(currentScore){
     }
     console.log("starting: " + this.currentSequence.id);
     var timeBetweenSequences = 3000;
-    this.sequenciaStartTime = new Date().getTime() + timeBetweenSequences;
+    this.sequenciaStartTime = this.elapsedTime + timeBetweenSequences;
     this.currentElement = 0;
 };
 
 Sequenciador.prototype.updateSequence = function(){
-    var now = new Date().getTime();
-    var timeDiff = now - this.sequenciaStartTime;
+    var timeDiff = this.elapsedTime - this.sequenciaStartTime;
     while (this.currentElement<this.currentSequence.elements.length && this.currentSequence.elements[this.currentElement].time < timeDiff ) {
         var element = this.currentSequence.elements[this.currentElement];
         if(element.tipo=="enemy"){
@@ -276,6 +276,7 @@ Sequenciador.prototype.updateSequence = function(){
 };
 
 Sequenciador.prototype.update = function(currentScore){
+    this.elapsedTime += this.game.time.elapsed;
 
     if(this.currentElement == this.currentSequence.elements.length){
         this.changeSequence(currentScore);
