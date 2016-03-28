@@ -8,13 +8,13 @@ var Sequenciador = function(game, play){
 
     this.sequencias = [
         {
-            id:"vidaBoa",
+            id:"intro",
             scoreMin:0,
-            scoreMax:Infinity,
+            scoreMax:300,
             elements: [
                 {
                     tipo: 'powerup',
-                    id: 'powerup_injecao',
+                    id: 'powerup_sus',
                     time: 0,
                     posY: 100
                 },
@@ -26,7 +26,7 @@ var Sequenciador = function(game, play){
                 },
                 {
                     tipo: 'powerup',
-                    id: 'powerup_injecao',
+                    id: 'powerup_sus',
                     time: 2000,
                     posY: 300
                 },
@@ -38,7 +38,7 @@ var Sequenciador = function(game, play){
                 },
                 {
                     tipo: 'powerup',
-                    id: 'powerup_injecao',
+                    id: 'powerup_sus',
                     time: 4000,
                     posY: 200
                 },
@@ -51,8 +51,48 @@ var Sequenciador = function(game, play){
             ]
         },
         {
-            id:"exemplo1",
-            scoreMin:0,
+            id:"mosquitoDoMal",
+            scoreMin:200,
+            scoreMax:2000,
+            elements: [
+                {
+                    tipo: 'enemy',
+                    id: 'Fly',
+                    time: 0
+                },
+                {
+                    tipo: 'enemy',
+                    id: 'Fly',
+                    time: 1500
+                },
+                {
+                    tipo: 'enemy',
+                    id: 'Fly',
+                    time: 3000
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 1000,
+                    posY: 200
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 2000,
+                    posY: 200
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 3000,
+                    posY: 200
+                },
+            ]
+        },
+        {
+            id:"bonnerBoladao",
+            scoreMin:600,
             scoreMax:Infinity,
             elements: [
                 {
@@ -61,29 +101,68 @@ var Sequenciador = function(game, play){
                     time: 1000
                 },
                 {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 2500
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 2000,
+                    posY: 300
                 },
                 {
                     tipo: 'enemy',
                     id: 'Fly',
-                    time: 3500
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 4500
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 5500
+                    time: 3000
                 },
                 {
                     tipo: 'powerup',
                     id: 'powerup_injecao',
+                    time: 3500,
+                    posY: 500
+                },
+                {
+                    tipo: 'enemy',
+                    id: 'Fly',
+                    time: 5000
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 5500,
+                    posY: 300
+                },
+            ]
+        },
+        {
+            id:"vidaBoa",
+            scoreMin:1000,
+            scoreMax:Infinity,
+            elements: [
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
                     time: 0,
+                    posY: 300
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 500,
+                    posY: 100
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 500,
+                    posY: 300
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 500,
+                    posY: 600
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 1000,
                     posY: 100
                 },
                 {
@@ -95,26 +174,46 @@ var Sequenciador = function(game, play){
                 {
                     tipo: 'powerup',
                     id: 'powerup_injecao',
-                    time: 2000,
-                    posY: 500
+                    time: 1000,
+                    posY: 600
                 },
                 {
                     tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 3000,
+                    id: 'powerup_injecao',
+                    time: 1500,
+                    posY: 100
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 1500,
                     posY: 300
-                }
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 1500,
+                    posY: 600
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 2000,
+                    posY: 300
+                },
+
             ]
         },
         {
-            id:"exemplo2",
-            scoreMin:0,
+            id:"pegadinhaDoMosquito",
+            scoreMin:1000,
             scoreMax:Infinity,
             elements: [
                 {
-                    tipo: 'enemy',
-                    id: 'Bonner',
-                    time: 1000
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 2000,
+                    posY: -100
                 },
                 {
                     tipo: 'enemy',
@@ -122,22 +221,24 @@ var Sequenciador = function(game, play){
                     time: 3000
                 },
                 {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 4000
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 5000
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 5000,
+                    posY: -100
                 },
                 {
                     tipo: 'enemy',
                     id: 'Fly',
                     time: 6000
-                }
+                },
+                {
+                    tipo: 'powerup',
+                    id: 'powerup_injecao',
+                    time: 8000,
+                    posY: -100
+                },
             ]
-        }
+        },
     ];
 };
 
@@ -154,6 +255,7 @@ Sequenciador.prototype.changeSequence = function(currentScore){
         this.currentSequence = this.sequencias[randomIndex];
         isValidSequence = currentScore >= this.currentSequence.scoreMin && currentScore <= this.currentSequence.scoreMax;
     }
+    console.log("starting: " + this.currentSequence.id);
     var timeBetweenSequences = 3000;
     this.sequenciaStartTime = new Date().getTime() + timeBetweenSequences;
     this.currentElement = 0;
