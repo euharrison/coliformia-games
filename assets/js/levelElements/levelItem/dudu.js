@@ -12,7 +12,7 @@ var Dudu = function (game, play) {
   this.entra();
 };
 
-Dudu.prototype = new Enemy();
+Dudu.prototype = new LevelItem();
 Dudu.prototype.constructor = Dudu;
 
 Dudu.prototype.entra = function(){
@@ -29,5 +29,5 @@ Dudu.prototype.ataca = function(){
     var laser = new Phaser.Image(game, -392, -32, 'dudu-laser');
     this.addChild(laser);
 
-    this.addBody(game, this.play, 'dudu');
+    this.addBody(game, this.play, this.play.enemiesCollisionGroup, 'dudu');
 };

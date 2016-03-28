@@ -203,19 +203,5 @@ Sequenciador.prototype.createEnemy = function(enemy){
 };
 
 Sequenciador.prototype.createPowerUp = function(powerup) {
-    //powerup.id = powerup_sus, powerup_injecao
-
-    var sprite = this.play.group.create(this.game.width, this.play.initialPosition.y + powerup.posY, powerup.id);
-    sprite.attackSpeed = 1;
-
-    sprite.body.clearShapes();
-    sprite.body.loadPolygon('physicsData', sprite.key);
-
-    sprite.body.setCollisionGroup(this.play.powerupsCollisionGroup);
-    sprite.body.collides([this.play.playerCollisionGroup]);
-
-    sprite.body.collideWorldBounds = false;
-    sprite.body.fixedRotation = true;
-    sprite.body.velocity.x = -this.play.velocity;
-    sprite.body.velocity.y = 0;
+    new PowerUp(this.game, this.play, powerup.id, this.game.width, this.play.initialPosition.y + powerup.posY);
 };

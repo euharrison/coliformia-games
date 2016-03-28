@@ -76,7 +76,7 @@ var playState = {
 
 		//update enemies
 		for (var i = 0; i < game.world.children.length; i++) {
-			if (game.world.children[i] instanceof Enemy) {
+			if (game.world.children[i] instanceof LevelItem) {
 				game.world.children[i].update();
 			}
 		}

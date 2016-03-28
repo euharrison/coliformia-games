@@ -20,7 +20,7 @@ var Sewer = function (game, play) {
   this.enter();
 };
 
-Sewer.prototype = new Enemy();
+Sewer.prototype = new LevelItem();
 
 Sewer.prototype.tween = function(value, callback) {
   var tween = this.game.add.tween(this.sewer).to(value, 1000, Phaser.Easing.Elastic.In);
