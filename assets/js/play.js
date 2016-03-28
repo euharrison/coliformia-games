@@ -16,8 +16,8 @@ var playState = {
 		this.velocity = 700;
 		this.velocityIncrease = 0.001;
 
-		this.sequenciadorDeInimigos = new Sequenciador(game, this);
-		this.sequenciadorDeInimigos.setUpASequence();
+		this.sequenciador = new Sequenciador(game, this);
+		this.sequenciador.setup();
 
 		this.sky = game.add.graphics(0, 0);
 		this.sky.beginFill(0x5c91a7, 1);
@@ -74,11 +74,6 @@ var playState = {
 			game.state.start('gameover');
 		}
 
-		//sorteio de sair um obstáculo
-		if (game.rnd.frac() < 0.02) {
-			this.createObstacle();
-		}
-
 		//update enemies
 		for (var i = 0; i < game.world.children.length; i++) {
 			if (game.world.children[i] instanceof Enemy) {
@@ -100,7 +95,7 @@ var playState = {
 		//score
 		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
-		this.sequenciadorDeInimigos.getCurrentObject(Math.ceil(game.score));
+		this.sequenciador.update(Math.ceil(game.score));
 	},
 
 	enemyCollisionHandler: function(body1, body2) {
@@ -119,31 +114,5 @@ var playState = {
 		}
 	},
 
-	createObstacle: function() {
-
-		if (game.rnd.frac() > 0.4) {
-
-			var imgname;
-
-			if (Math.random() > 0.5){
-				imgname = 'powerup_sus';
-			} else {
-				imgname = 'powerup_injecao';
-			}
-
-			var obstacle = this.group.create(game.width, game.rnd.integerInRange(this.initialPosition.y, game.height), imgname);
-			obstacle.attackSpeed = 1;
-
-			obstacle.body.clearShapes();
-			obstacle.body.loadPolygon('physicsData', obstacle.key);
-
-			obstacle.body.setCollisionGroup(this.powerupsCollisionGroup);
-			obstacle.body.collides([this.playerCollisionGroup]);
-
-			obstacle.body.collideWorldBounds = false;
-			obstacle.body.fixedRotation = true;
-			obstacle.body.velocity.x = -this.velocity;
-			obstacle.body.velocity.y = 0;
-		}
-	}
+	
 };
