@@ -16,8 +16,8 @@ var playState = {
 		this.velocity = 700;
 		this.velocityIncrease = 0.001;
 
-		this.sequenciadorDeInimigos = new Sequenciador(game, this);
-		this.sequenciadorDeInimigos.setUpASequence();
+		this.sequenciador = new Sequenciador(game, this);
+		this.sequenciador.setup();
 
 		this.sky = game.add.graphics(0, 0);
 		this.sky.beginFill(0x5c91a7, 1);
@@ -81,13 +81,21 @@ var playState = {
 			}
 		}
 
+		this.group.forEach(function(enemy) {
+			if (enemy.body.x < 0) {
+				//out of the bounds
+				enemy.body.clearShapes();
+				enemy.kill();
+			}
+		}, this);
+
 		//velocidade do jogo
 		this.velocity += this.velocityIncrease;
 
 		//score
 		game.score += this.velocity/1000;
 		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
-		this.sequenciadorDeInimigos.getCurrentObject(Math.ceil(game.score));
+		this.sequenciador.update(Math.ceil(game.score));
 	},
 
 	enemyCollisionHandler: function(body1, body2) {
@@ -104,5 +112,7 @@ var playState = {
 		} else {
 			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
 		}
-	}
+	},
+
+	
 };
