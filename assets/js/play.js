@@ -25,10 +25,11 @@ var playState = {
 
 		this.bg = new ParalaxBg(game, this);
 
-		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
-		this.lifeBar.anchor.setTo(0, 0.5);
-		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
-		this.lifeBar.scale.setTo(3, 1);
+		var lifeBarX = 710;
+		var lifeBarY = 25;
+		this.lifeBarBg = game.add.sprite(lifeBarX+35, lifeBarY+15, 'lifeBarBg');
+		this.lifeBar = game.add.sprite(lifeBarX+35, lifeBarY+12, 'lifeBar');
+		this.lifeBarSkull = game.add.sprite(lifeBarX, lifeBarY, 'lifeBarSkull');
 
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
@@ -69,7 +70,7 @@ var playState = {
 		//life bar
 		if (this.playerlife.current >= 0){
 			this.playerlife.current--;
-			this.lifeBar.scale.setTo(3 * this.playerlife.current / this.playerlife.initial, 1);
+			this.lifeBar.scale.setTo(this.playerlife.current / this.playerlife.initial, 1);
 		} else {
 			game.state.start('gameover');
 		}
