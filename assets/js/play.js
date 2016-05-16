@@ -25,10 +25,13 @@ var playState = {
 
 		this.bg = new ParalaxBg(game, this);
 
-		this.lifeBar = game.add.sprite(game.world.centerX, 35, 'progressBar');
-		this.lifeBar.anchor.setTo(0, 0.5);
-		this.lifeBar.position.setTo(game.world.centerX - this.lifeBar.width, 35);
-		this.lifeBar.scale.setTo(3, 1);
+		var lifeX = 730;
+		var lifeY = 55;
+		this.lifeBg = game.add.sprite(lifeX, lifeY-15, 'lifeBg');
+		this.lifeBar = game.add.sprite(lifeX, lifeY-18, 'lifeBar');
+		this.lifeSkull = game.add.sprite(lifeX, lifeY, 'lifeSkull');
+		this.lifeSkull.anchor.setTo(0.5);
+		this.lifeSkullAnimation = game.add.tween(this.lifeSkull).to({angle: -20}, 250, "Linear", false, 0, -1, true);
 
 		game.score = 0;
 		this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
@@ -66,10 +69,28 @@ var playState = {
 
 		this.bg.update();
 
-		//life bar
-		if (this.playerlife.current >= 0){
+		//life
+		if (this.playerlife.current >= 0) {
 			this.playerlife.current--;
-			this.lifeBar.scale.setTo(3 * this.playerlife.current / this.playerlife.initial, 1);
+			var lifePercent = this.playerlife.current / this.playerlife.initial;
+			//bar
+			this.lifeBar.scale.setTo(lifePercent, 1);
+			if (lifePercent > 0.66) {
+				this.lifeBar.tint = 0xd9e021;
+			} else {
+				this.lifeBar.tint = Phaser.Color.interpolateColor(0xf15a24, 0xd9e021, 67, 100*lifePercent);
+			}
+			//skull
+			this.lifeSkull.scale.setTo(1 + 0.5*(1-lifePercent));
+			if (lifePercent < 0.9) {
+				this.lifeSkullAnimation.start();
+				this.lifeSkullAnimation.resume();
+				this.lifeSkullAnimation.timeScale = 4*(1-lifePercent);
+
+			} else {
+				this.lifeSkullAnimation.pause();
+				this.lifeSkull.angle = 0;
+			}
 		} else {
 			game.state.start('gameover');
 		}

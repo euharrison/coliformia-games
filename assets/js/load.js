@@ -17,6 +17,10 @@ var loadState = {
 		game.load.image('bg_montanhas', BASE_DIR + 'bg/bg_montanhas.png');
 		game.load.image('bg_predios', BASE_DIR + 'bg/bg_predios.png');
 
+		game.load.image('lifeBg', BASE_DIR + 'life/lifeBg.svg');
+		game.load.image('lifeBar', BASE_DIR + 'life/lifeBar.svg');
+		game.load.image('lifeSkull', BASE_DIR + 'life/lifeSkull.svg');
+
 		game.load.spritesheet('player', BASE_DIR + 'player.png', 225, 180);
 
 		game.load.spritesheet('bonner', BASE_DIR + 'enemies/bonner.png', 646, 455);
