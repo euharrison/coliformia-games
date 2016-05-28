@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"fake test ok\"",
+    "test": "echo \"no test\"",
     "build": "node ./node_modules/gulp/bin/gulp.js",
     "gulp-watch": "node ./node_modules/gulp/bin/gulp.js watch",
     "watch": "node ./node_modules/concurrently/src/main.js --kill-others 'npm run gulp-watch' 'npm start'",
