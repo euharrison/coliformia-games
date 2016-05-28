@@ -1,4 +1,4 @@
-# Coliforme Games
+# Coliformia Games
 ![alt tag](https://raw.githubusercontent.com/euharrison/coliformia-games/master/assets/sprites/enemies/cocolito.png)
 
 ### Dev
@@ -7,6 +7,9 @@
 * `npm run watch`
 * [localhost:8000](http://localhost:8000)
 
-### Jogar versao no master
+### Versão online
 ----------
 http://coco.coliformiagames.com/
+
+Para alterar as variáveis do jogo:
+http://localhost:8000/?velocity=150&velocityIncrease=0.02

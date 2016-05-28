@@ -59,6 +59,9 @@ Player.prototype.update = function() {
 
       //nadar para baixo
       if (this.isTouchDown) {
+        if (this.body.velocity.y < 0) {
+          this.body.velocity.y = 0;
+        }
         this.body.velocity.y += this.forcas.forcaPraBaixo;
 
         //impoe um limite de velocidade para baixo
@@ -68,7 +71,15 @@ Player.prototype.update = function() {
       }
       //nadar para cima, somente se houver espaço
       else if (this.body.y > this.initialPosition.y + 10) {
+        if (this.body.velocity.y > 0) {
+          this.body.velocity.y = 0;
+        }
         this.body.velocity.y -= this.forcas.forcaPraBaixo;
+
+        //impoe um limite de velocidade para cima
+        if (this.body.velocity.y < -1200) {
+          this.body.velocity.y = -1200;
+        }
       }
     }
 

@@ -2,13 +2,11 @@ var ColiformiaConfigurations = (function () {
     var instance;
 
     function create() {
-        // Aqui a gente tem que colocar o leitor de URL depois
-        // pra pegar as variaveis da URL e aplicar no jogo
-        var coliformiaConfig = {
+        var config = {
             velocity : 150,
-            velocityIncrease : 0.01,
+            velocityIncrease : 0.02,
             initialPosition : {
-    			x: 100,
+    			x: 200,
     			y: 350
     		},
             playerlife : {
@@ -23,7 +21,22 @@ var ColiformiaConfigurations = (function () {
                 }
             }
         };
-        return coliformiaConfig;
+
+        // http://localhost:8000/?velocity=150&velocityIncrease=0.02
+        var overrideConfig = getUrlVars();
+        for (var param in overrideConfig) {
+            config[param] = Number(overrideConfig[param]);
+        }
+
+        return config;
+    }
+
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            vars[key] = value;
+        });
+        return vars;
     }
 
     return {
