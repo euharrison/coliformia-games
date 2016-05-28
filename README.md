@@ -9,7 +9,7 @@
 
 ### Versão online
 ----------
-http://coco.coliformiagames.com/
+* http://coco.coliformiagames.com/
 
 Para alterar as variáveis do jogo:
-http://localhost:8000/?velocity=150&velocityIncrease=0.02
+* http://localhost:8000/?velocity=150&velocityIncrease=0.02
