@@ -79,7 +79,7 @@ Bonner.prototype.remove = function(){
 Bonner.prototype.atira = function(){
     var tween = this.game.add.tween(this).to({angle:'+15'}, 50, Phaser.Easing.Cubic.Out);
     tween.onComplete.add(function(){
-        new Cocolito(this.game, this.play, this.x, this.y);
+        new Cocolito(this.game, this.play, this.x, this.y-this.play.initialPosition.y);
         this.game.add.tween(this).to({angle:'-15'}, 200, Phaser.Easing.Elastic.Out).start();
     }, this);
 

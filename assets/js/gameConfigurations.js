@@ -5,16 +5,15 @@ var ColiformiaConfigurations = (function () {
         // Aqui a gente tem que colocar o leitor de URL depois
         // pra pegar as variaveis da URL e aplicar no jogo
         var coliformiaConfig = {
-            velocity : 700,
-            velocityIncrease : 0.001,
+            velocity : 150,
+            velocityIncrease : 0.01,
             initialPosition : {
     			x: 100,
     			y: 350
     		},
             playerlife : {
-    			initial: 1000,
-    			current: 1000,
-    			powerup: 100
+    			initial: 2000,
+    			current: 2000
     		},
             player : {
                 forcas : {

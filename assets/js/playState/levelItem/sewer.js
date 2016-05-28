@@ -60,7 +60,7 @@ Sewer.prototype.releaseCocolito = function() {
 
     var tween = this.game.add.tween(this.sewer).to({ x: isso.sewer.x + 50 }, 500, Phaser.Easing.Elastic.In);
     tween.onComplete.add(function() {
-        new Cocolito(this.game, this.play, this.sewer.x, this.sewer.y+120);
+        new Cocolito(this.game, this.play, this.sewer.x, this.sewer.y+120-this.play.initialPosition.y);
         this.tween({ x: isso.sewer.x - 50 }, this.nextStep);
     }, this);
     tween.start();
