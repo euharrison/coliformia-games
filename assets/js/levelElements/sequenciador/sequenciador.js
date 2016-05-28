@@ -1,310 +1,225 @@
-var Sequenciador = function(game, play){
-    this.game = game;
-    this.play = play;
+var Sequenciador = function(game, play) {
 
-    this.currentSequence = null;
-    this.currentElement = 0;
-    this.sequenciaStartTime = 0;
-    this.elapsedTime =  0;
+  //public
 
-    this.sequencias = [
-        {
-            id:"intro",
-            scoreMin:0,
-            scoreMax:300,
-            elements: [
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 0,
-                    posY: 100
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 1000,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 2000,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 3000,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 4000,
-                    posY: 200
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_sus',
-                    time: 5000,
-                    posY: 250
-                }
-            ]
-        },
-        {
-            id:"mosquitoDoMal",
-            scoreMin:200,
-            scoreMax:2000,
-            elements: [
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 0
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 1500
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 3000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1000,
-                    posY: 200
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 2000,
-                    posY: 200
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 3000,
-                    posY: 200
-                },
-            ]
-        },
-        {
-            id:"bonnerBoladao",
-            scoreMin:600,
-            scoreMax:Infinity,
-            elements: [
-                {
-                    tipo: 'enemy',
-                    id: 'Bonner',
-                    time: 1000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 2000,
-                    posY: 300
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 3000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 3500,
-                    posY: 500
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 5000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 5500,
-                    posY: 300
-                },
-            ]
-        },
-        {
-            id:"vidaBoa",
-            scoreMin:1000,
-            scoreMax:Infinity,
-            elements: [
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 0,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 500,
-                    posY: 100
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 500,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 500,
-                    posY: 600
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1000,
-                    posY: 100
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1000,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1000,
-                    posY: 600
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1500,
-                    posY: 100
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1500,
-                    posY: 300
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 1500,
-                    posY: 600
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 2000,
-                    posY: 300
-                },
+  this.setup = setup;
+  this.update = update;
 
-            ]
-        },
-        {
-            id:"pegadinhaDoMosquito",
-            scoreMin:1000,
-            scoreMax:Infinity,
-            elements: [
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 2000,
-                    posY: -100
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 3000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 5000,
-                    posY: -100
-                },
-                {
-                    tipo: 'enemy',
-                    id: 'Fly',
-                    time: 6000
-                },
-                {
-                    tipo: 'powerup',
-                    id: 'powerup_injecao',
-                    time: 8000,
-                    posY: -100
-                },
-            ]
-        },
-    ];
-};
+  //private
 
-Sequenciador.prototype.setup = function(currentScore){
-    this.changeSequence(0);
-};
+  var game = game;
+  var play = play;
 
-Sequenciador.prototype.changeSequence = function(currentScore){
-    var isValidSequence = false;
-    var maxTries = 10;
-    var triesCount = 0;
-    while(!isValidSequence && triesCount++ < maxTries){
-        var randomIndex = Math.floor(Math.random() * this.sequencias.length);
-        this.currentSequence = this.sequencias[randomIndex];
-        isValidSequence = currentScore >= this.currentSequence.scoreMin && currentScore <= this.currentSequence.scoreMax;
+  var currentSequence = null;
+  var currentElement = 0;
+  var sequenciaStartTime = 0;
+  var elapsedTime = 0;
+
+  function element(type, id, time, y) {
+    return {
+      type: type,
+      id: id,
+      time: time === undefined ? 0 : time,
+      y: y
     }
-    console.log("starting: " + this.currentSequence.id);
-    var timeBetweenSequences = 3000;
-    this.sequenciaStartTime = this.elapsedTime + timeBetweenSequences;
-    this.currentElement = 0;
-};
+  }
 
-Sequenciador.prototype.updateSequence = function(){
-    var timeDiff = this.elapsedTime - this.sequenciaStartTime;
-    while (this.currentElement<this.currentSequence.elements.length && this.currentSequence.elements[this.currentElement].time < timeDiff ) {
-        var element = this.currentSequence.elements[this.currentElement];
-        if(element.tipo=="enemy"){
-            this.createEnemy(element);
-        }else if(element.tipo=="powerup"){
-            this.createPowerUp(element);
-        }
-        this.currentElement ++;
-    }
-};
+  function enemy(id, time, y) {
+    return element('enemy', id, time, y);
+  }
 
-Sequenciador.prototype.update = function(currentScore){
-    this.elapsedTime += this.game.time.elapsed;
+  function powerUp(id, time, y) {
+    return element('powerUp', id, time, y);
+  }
 
-    if(this.currentElement == this.currentSequence.elements.length){
-        this.changeSequence(currentScore);
+  function cocolito(time, y) {
+    return enemy('cocolito', time, y);
+  };
+
+  function zika(time, y) {
+    return enemy('zika', time, y);
+  };
+
+  function sewer(time, y) {
+    return enemy('sewer', time, y);
+  };
+
+  function bonner(time, y) {
+    return enemy('bonner', time, y);
+  };
+
+  function dudu(time, y) {
+    return enemy('dudu', time, y);
+  };
+
+  function sus(time, y) {
+    return powerUp('sus', time, y);
+  };
+
+  function injection(time, y) {
+    return powerUp('injection', time, y);
+  };
+
+  var sequencesPool = [
+    {
+      id: 'first',
+      scoreMin: -1,
+      scoreMax: 1,
+      time: 5000,
+      elements: [ cocolito(2000, 50) ]
+    },
+    {
+      id: 'coco-single',
+      scoreMin: 1,
+      scoreMax: 500,
+      time: 3000,
+      elements: [ cocolito() ]
+    },
+    {
+      id: 'sus',
+      scoreMin: 1,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ sus() ]
+    },
+    {
+      id: 'coco-double',
+      scoreMin: 50,
+      scoreMax: Infinity,
+      time: 3000,
+      elements: [ cocolito(0), cocolito(100) ]
+    },
+    {
+      id: 'zika',
+      scoreMin: 100,
+      scoreMax: Infinity,
+      time: 3000,
+      elements: [ zika() ]
+    },
+    {
+      id: 'coco-tunnel',
+      scoreMin: 200,
+      scoreMax: Infinity,
+      time: 3000,
+      elements: [
+        cocolito(0, 0), cocolito(200, 0), cocolito(400, 0),
+        cocolito(0, 500), cocolito(200, 500), cocolito(400, 500),
+      ]
+    },
+    {
+      id: 'sus-double',
+      scoreMin: 250,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ sus(), sus(200) ]
+    },
+    {
+      id: 'sewer',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 7000,
+      elements: [ sewer() ]
+    },
+    {
+      id: 'injection',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ injection() ]
+    },
+    {
+      id: 'bonner',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 5000,
+      elements: [ bonner() ]
+    },
+    {
+      id: 'refill-life',
+      scoreMin: 700,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ sus(), injection(300), sus(600) ]
+    },
+    {
+      id: 'dudu',
+      scoreMin: 1000,
+      scoreMax: Infinity,
+      time: 6000,
+      elements: [ dudu() ]
+    },
+  ];
+
+  var sequences = [];
+
+  function setup () {
+    changeSequence(0);
+  }
+
+  function update(currentScore){
+    elapsedTime += game.time.elapsed;
+
+    if (elapsedTime > sequenciaStartTime + currentSequence.time) {
+      changeSequence(currentScore);
     }
 
-    this.updateSequence();
-};
+    updateSequence();
+  };
 
-Sequenciador.prototype.createEnemy = function(enemy){
+  function changeSequence(currentScore) {
+    var availableIndexes = [];
+    sequencesPool.map(function(sequence, index) {
+      if (currentScore > sequence.scoreMin && currentScore < sequence.scoreMax) {
+        availableIndexes.push(index);
+      }
+    })
+
+    var randomIndex = availableIndexes[ Math.floor(Math.random() * availableIndexes.length) ];
+    currentSequence = sequencesPool[randomIndex];
+
+    sequenciaStartTime = elapsedTime;
+    currentElement = 0;
+
+    console.log('starting: ' + currentSequence.id, availableIndexes);
+  };
+
+  function updateSequence() {
+    var timeDiff = elapsedTime - sequenciaStartTime;
+    while (currentElement < currentSequence.elements.length && currentSequence.elements[currentElement].time < timeDiff ) {
+      var element = currentSequence.elements[currentElement];
+      switch (element.type) {
+        case 'enemy':
+          createEnemy(element);
+          break;
+        case 'powerUp':
+          createPowerUp(element);
+          break;
+      }
+      currentElement++;
+    }
+  };
+
+  function createEnemy(enemy) {
     switch (enemy.id) {
-        case 'Sewer':
-            new Sewer(this.game, this.play);
-            break;
-        case 'Cocolito':
-            new Cocolito(this.game, this.play);
-            break;
-        case 'Fly':
-            new Fly(this.game, this.play);
-            break;
-        case 'Dudu':
-            new Dudu(this.game, this.play);
-            break;
-        case 'Bonner':
-            new Bonner(this.game, this.play);
-            break;
+      case 'cocolito':
+        new Cocolito(game, play, undefined, enemy.y);
+        break;
+      case 'zika':
+        new Fly(game, play);
+        break;
+      case 'sewer':
+        new Sewer(game, play);
+        break;
+      case 'bonner':
+        new Bonner(game, play);
+        break;
+      case 'dudu':
+        new Dudu(game, play);
+        break;
     }
-};
+  };
 
-Sequenciador.prototype.createPowerUp = function(powerup) {
-    new PowerUp(this.game, this.play, powerup.id, this.game.width, this.play.initialPosition.y + powerup.posY);
+  function createPowerUp(powerup) {
+    new PowerUp(game, play, powerup.id);
+  };
 };

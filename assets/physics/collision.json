@@ -32,14 +32,14 @@
 			"shape": [ 90, 70,   130, 70,   130, 130,   90, 130]
 		}
 	],
-	"powerup_sus": [
+	"sus": [
 		{
 			"density": 2, "friction": 0, "bounce": 0,
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
 			"shape": [ 45, 20,   185, 20,   185, 155,    45, 155]
 		}
 	],
-	"powerup_injecao": [
+	"injection": [
 		{
 			"density": 2, "friction": 0, "bounce": 0,
 			"filter": { "categoryBits": 1, "maskBits": 65535 },
