@@ -1,5 +1,5 @@
 var LevelItem = function(){
-    this.attackSpeed = 1;
+    this.attackSpeed = 5;
 }
 
 LevelItem.prototype = Object.create(Phaser.Sprite.prototype);
@@ -14,6 +14,8 @@ LevelItem.prototype.addBody = function(game, play, colisionGroup, key){
 
     this.body.setCollisionGroup(colisionGroup);
     this.body.collides([play.playerCollisionGroup]);
+
+    return this.body;
 };
 
 LevelItem.prototype.update = function() {

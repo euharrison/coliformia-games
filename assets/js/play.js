@@ -8,13 +8,12 @@ var playState = {
 		};
 
 		this.playerlife = {
-			initial: 1000,
-			current: 1000,
-			powerup: 100
+			initial: 2000,
+			current: 2000,
 		};
 
-		this.velocity = 700;
-		this.velocityIncrease = 0.001;
+		this.velocity = 150;
+		this.velocityIncrease = 0.01;
 
 		this.sequenciador = new Sequenciador(game, this);
 		this.sequenciador.setup();
@@ -115,8 +114,10 @@ var playState = {
 
 		//score
 		game.score += this.velocity/1000;
-		this.scoreText.text = 'Distance: ' + Math.ceil(game.score);
-		this.sequenciador.update(Math.ceil(game.score));
+		this.scoreText.text = 'Distance: '+Math.ceil(game.score)+'m';
+
+		//sequence
+		this.sequenciador.update(Math.ceil(game.score), this.playerlife.current / this.playerlife.initial);
 	},
 
 	enemyCollisionHandler: function(body1, body2) {
@@ -128,10 +129,10 @@ var playState = {
 			body2.sprite.destroy();
 		}
 
-		if (this.playerlife.current > this.playerlife.initial - this.playerlife.powerup) {
+		if (this.playerlife.current > this.playerlife.initial - body2.power) {
 			this.playerlife.current = this.playerlife.initial;
 		} else {
-			this.playerlife.current = this.playerlife.current + this.playerlife.powerup;
+			this.playerlife.current = this.playerlife.current + body2.power;
 		}
 	},
 

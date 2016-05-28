@@ -1,6 +1,9 @@
 var Cocolito = function(game, play, x, y) {
-  x = (x === undefined) ? game.width+225 : x;
-  y = (y === undefined) ? game.rnd.integerInRange(play.initialPosition.y, game.height) : y;
+  x = (x === undefined) ? game.width : x;
+  x += 225/2;
+
+  y = (y === undefined) ? game.rnd.integerInRange(0, game.height-play.initialPosition.y-100) : y;
+  y += play.initialPosition.y;
 
   Phaser.Sprite.call(this, game, x, y, 'cocolito');
 
