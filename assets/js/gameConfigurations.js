@@ -8,7 +8,7 @@ var ColiformiaConfigurations = (function () {
             velocity : 150,
             velocityIncrease : 0.01,
             initialPosition : {
-    			x: 100,
+    			x: 200,
     			y: 350
     		},
             playerlife : {
