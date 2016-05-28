@@ -2,18 +2,10 @@ var playState = {
 
 	create: function() {
 
-		this.initialPosition = {
-			x: 100,
-			y: 350
-		};
-
-		this.playerlife = {
-			initial: 2000,
-			current: 2000,
-		};
-
-		this.velocity = 150;
-		this.velocityIncrease = 0.01;
+		this.initialPosition = game.coliformiaConfig.initialPosition;
+		this.playerlife = game.coliformiaConfig.playerlife;
+		this.velocity = game.coliformiaConfig.velocity;
+		this.velocityIncrease = game.coliformiaConfig.velocityIncrease;
 
 		this.sequenciador = new Sequenciador(game, this);
 		this.sequenciador.setup();
@@ -135,6 +127,4 @@ var playState = {
 			this.playerlife.current = this.playerlife.current + body2.power;
 		}
 	},
-
-	
 };

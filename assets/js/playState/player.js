@@ -1,16 +1,8 @@
 var Player = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, 'player');
 
-  this.forcas = {
-    forcaPraBaixo: 20,
-    empuxoDaAgua: 0.01,
-    gravidade: 20
-  };
-
-  this.initialPosition = {
-    x: x,
-    y: y
-  };
+  this.forcas = game.coliformiaConfig.player.forcas;
+  this.initialPosition = game.coliformiaConfig.initialPosition;
 
   this.isJumping = false;
   this.isTouchDown = false;
