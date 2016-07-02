@@ -4,7 +4,7 @@ var loadState = {
     // Add loading screen
     game.add.image(0, 0, 'loading-screen');
 
-    var progressBar = game.add.sprite(685, 730, 'progress-bar');
+    var progressBar = game.add.sprite(685, 730, 'loading-bar');
     game.load.setPreloadSprite(progressBar);
 
     // Load other screens
@@ -15,8 +15,13 @@ var loadState = {
     var SPRITES_DIR = 'assets/sprites/';
 
     game.load.image('bg', SPRITES_DIR + 'bg/bg.png');
-    game.load.image('bg_montanhas', SPRITES_DIR + 'bg/bg_montanhas.png');
-    game.load.image('bg_predios', SPRITES_DIR + 'bg/bg_predios.png');
+    game.load.image('bg-sky', SPRITES_DIR + 'bg/bg-sky.png');
+    game.load.image('bg-clouds', SPRITES_DIR + 'bg/bg-clouds.png');
+    game.load.image('bg-mountains-back', SPRITES_DIR + 'bg/bg-mountains-back.png');
+    game.load.image('bg-mountains-front', SPRITES_DIR + 'bg/bg-mountains-front.png');
+    game.load.image('bg-buildings', SPRITES_DIR + 'bg/bg-buildings.png');
+    game.load.image('bg-waves', SPRITES_DIR + 'bg/bg-waves.png');
+    game.load.image('bg-grass', SPRITES_DIR + 'bg/bg-grass.png');
 
     game.load.image('lifeBg', SPRITES_DIR + 'life/lifeBg.svg');
     game.load.image('lifeBar', SPRITES_DIR + 'life/lifeBar.svg');

@@ -1,11 +1,18 @@
 var ParalaxBg = function(game, play){
-  this.paralax1 = new BgScroller(game, play, 'bg', .6, 0);
-  this.paralax2 = new BgScroller(game, play, 'bg_montanhas', .8, -6);
-  this.paralax3 = new BgScroller(game, play, 'bg_predios', .9, 29);
+  this.list = [
+    new BgScroller(game, play, 'bg', 0),
+    new BgScroller(game, play, 'bg-sky', .2),
+    new BgScroller(game, play, 'bg-clouds', .5, 67),
+    new BgScroller(game, play, 'bg-mountains-back', .7),
+    new BgScroller(game, play, 'bg-mountains-front', .8),
+    new BgScroller(game, play, 'bg-buildings', .9),
+    new BgScroller(game, play, 'bg-waves', 1, 355),
+    new BgScroller(game, play, 'bg-grass', 1.1, 857),
+  ]
 };
 
 ParalaxBg.prototype.update = function(){
-  this.paralax1.update();
-  this.paralax2.update();
-  this.paralax3.update();
+  for (var i = this.list.length - 1; i >= 0; i--) {
+    this.list[i].update();
+  }
 };
