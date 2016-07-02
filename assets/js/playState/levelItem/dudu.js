@@ -16,18 +16,18 @@ Dudu.prototype = new LevelItem();
 Dudu.prototype.constructor = Dudu;
 
 Dudu.prototype.entra = function(){
-    var tween = this.game.add.tween(this.scale).to({x:1 , y:1}, 1000, Phaser.Easing.Elastic.In);
-    tween.onComplete.add(this.ataca, this);
-    tween.start();
+  var tween = this.game.add.tween(this.scale).to({x:1 , y:1}, 1000, Phaser.Easing.Elastic.In);
+  tween.onComplete.add(this.ataca, this);
+  tween.start();
 
-    this.animations.play('duduEntra');
+  this.animations.play('duduEntra');
 };
 
 Dudu.prototype.ataca = function(){
-    this.animations.play('dudu');
+  this.animations.play('dudu');
 
-    var laser = new Phaser.Image(game, -392, -32, 'dudu-laser');
-    this.addChild(laser);
+  var laser = new Phaser.Image(game, -392, -32, 'dudu-laser');
+  this.addChild(laser);
 
-    this.addBody(game, this.play, this.play.enemiesCollisionGroup, 'dudu');
+  this.addBody(game, this.play, this.play.enemiesCollisionGroup, 'dudu');
 };
