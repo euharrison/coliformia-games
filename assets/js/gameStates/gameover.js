@@ -10,7 +10,7 @@ var gameoverState = {
     }
 
 		//score
-		var score = Math.ceil(game.score*1000);
+		var score = Math.ceil(game.score);
 		game.add.text(170, 210, score+'m', fontConfig);
 
     //disease
