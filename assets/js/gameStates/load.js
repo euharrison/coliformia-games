@@ -1,13 +1,11 @@
 var loadState = {
 
 	preload: function () {
-		// Add a loading label
-		var loadingLabel = game.add.text(game.world.centerX, 150, 'loading...', { font: '30px Arial', fill: '#ffffff' });
-		loadingLabel.anchor.setTo(0.5, 0.5);
+		// Add a loading image
+		game.add.image(0, 0, 'loading-screen');
 
 		// Add a progress bar
-		var progressBar = game.add.sprite(game.world.centerX, 200, 'progressBar');
-		progressBar.anchor.setTo(0.5, 0.5);
+		var progressBar = game.add.sprite(685, 730, 'progress-bar');
 		game.load.setPreloadSprite(progressBar);
 
 		var BASE_DIR = 'assets/sprites/';
