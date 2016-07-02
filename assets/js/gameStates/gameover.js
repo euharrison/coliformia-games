@@ -1,16 +1,31 @@
-//tela de game over
-
 var gameoverState = {
 
 	create: function() { 
-		// How to start the game
-		var startLabel = game.add.text(game.world.centerX, game.world.height/2, 'perdeu!! tá cagado!!\ntoca pra jogar de novo\nvai filhão!', { font: '25px Arial', fill: '#ffffff' });
-		startLabel.anchor.setTo(0.5, 0.5);
-		
-		var scoreText = game.add.text(game.world.centerX, game.world.height/2-150, 'Distance:\n' + Math.ceil(game.score), { fontSize: '52px', fill: '#FFF' });
-		scoreText.anchor.setTo(0.5, 0.5);
-		
-		game.input.onUp.add(this.start, this);
+    game.add.image(0, 0, 'gameover-screen');
+
+    var fontConfig = {
+			font: 'Noyh',
+			fill: '#fff',
+			fontSize: 100
+    }
+
+		//score
+		var score = Math.ceil(game.score*1000);
+		game.add.text(170, 210, score+'m', fontConfig);
+
+    //disease
+    var list = ['Porfiria\ncutânea', 'Piodermite\nGangrenosa'];
+    var index = Math.floor(game.score/500);
+    if (index > list.length - 1) {
+    	index = list.length - 1;
+    }
+    var disease = list[index].toUpperCase();
+
+		var text = game.add.text(170, 400, disease, fontConfig);
+    text.lineSpacing = -20;
+
+    //tap to play again
+		game.input.onTap.add(this.start, this);
 	},
 
 	start: function() {

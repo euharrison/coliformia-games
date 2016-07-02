@@ -1,7 +1,13 @@
+@import 'fonts';
+
 body {
   margin: 0;
-  background-color: #754c24;
+  font-family: 'Noyh';
+  background-color: #52382b;
+  color: white;
+  text-transform: uppercase;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
