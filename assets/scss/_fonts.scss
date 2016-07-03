@@ -1,9 +1,9 @@
-$fonts2: '../../assets/fonts/';
+$fonts: '../../assets/fonts/';
 
 @font-face {
   font-family: 'Noyh';
-  src: url( $fonts2 + 'typesketchbook-noyhblack-webfont.woff2' ) format('woff2'),
-       url( $fonts2 + 'typesketchbook-noyhblack-webfont.woff' ) format('woff');
+  src: url($fonts + 'typesketchbook-noyhblack-webfont.woff2') format('woff2'),
+       url($fonts + 'typesketchbook-noyhblack-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

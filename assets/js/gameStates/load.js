@@ -24,6 +24,9 @@ var loadState = {
     game.load.image('bg-waves', SPRITES_DIR + 'bg/bg-waves.png');
     game.load.image('bg-grass', SPRITES_DIR + 'bg/bg-grass.png');
 
+    game.load.spritesheet('bg-water-back', SPRITES_DIR + 'bg/bg-water-back.png', 1920, 152);
+    game.load.spritesheet('bg-water-front', SPRITES_DIR + 'bg/bg-water-front.png', 1920, 152);
+
     game.load.image('lifeBg', SPRITES_DIR + 'life/lifeBg.svg');
     game.load.image('lifeBar', SPRITES_DIR + 'life/lifeBar.svg');
     game.load.image('lifeSkull', SPRITES_DIR + 'life/lifeSkull.svg');

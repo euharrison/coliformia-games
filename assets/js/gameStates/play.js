@@ -16,6 +16,7 @@ var playState = {
       ['bg-mountains-front', 1.5, 154],
       ['bg-buildings', 2, 253],
     ]);
+    game.add.sprite(0, 304, 'bg-water-back').animations.add('', null, 16, true).play();
 
     // start the P2JS physics system
     game.physics.startSystem(Phaser.Physics.P2JS);
@@ -36,11 +37,12 @@ var playState = {
     this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
     // add over backgrounds, like water and grass
-    this.bgOver = new ParalaxBg(game, this, game.add.group(), [
+    this.bgFront = new ParalaxBg(game, this, game.add.group(), [
       ['bg-waves', 5, 354],
       ['bg-grass', 6, 857],
-      ['bg-water', 0, 354],
+      ['bg-water', 0, 456],
     ]);
+    game.add.sprite(0, 304, 'bg-water-front').animations.add('', null, 16, true).play();
 
     // add swimming splash effect
     this.rastro = new PlayerRastro(game, this.player);
@@ -66,7 +68,7 @@ var playState = {
   update: function() {
 
     this.bgBack.update();
-    this.bgOver.update();
+    this.bgFront.update();
 
     //life
     if (this.playerlife.current >= 0) {
