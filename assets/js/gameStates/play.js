@@ -7,11 +7,15 @@ var playState = {
     this.velocity = game.coliformiaConfig.velocity;
     this.velocityIncrease = game.coliformiaConfig.velocityIncrease;
 
-    this.sequenciador = new Sequenciador(game, this);
-    this.sequenciador.setup();
-
-    // add all backgrounds
-    this.bg = new ParalaxBg(game, this);
+    // add back backgrounds, like sky and buildings
+    this.bgBack = new ParalaxBg(game, this, game.add.group(), [
+      ['bg', 0, 0],
+      ['bg-sky', .2, 0],
+      ['bg-clouds', .6, 67],
+      ['bg-mountains-back', 1, 177],
+      ['bg-mountains-front', 1.5, 154],
+      ['bg-buildings', 2, 253],
+    ]);
 
     // start the P2JS physics system
     game.physics.startSystem(Phaser.Physics.P2JS);
@@ -21,19 +25,22 @@ var playState = {
     this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
     game.physics.p2.updateBoundsCollisionGroup();
 
+    // add enemies/power-ups sequecences
+    this.sequenciador = new Sequenciador(game, this, game.add.group());
+    this.sequenciador.setup();
+
     // add player
     this.player = new Player(game, this.initialPosition.x, this.initialPosition.y);
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
     this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
     this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
-    // move player to back to the water
-    this.player.moveDown();
-    this.player.moveDown();
-    this.player.moveDown();
-    this.player.moveDown();
-    this.player.moveDown();
-    this.player.moveDown();
+    // add over backgrounds, like water and grass
+    this.bgOver = new ParalaxBg(game, this, game.add.group(), [
+      ['bg-waves', 5, 354],
+      ['bg-grass', 6, 857],
+      ['bg-water', 0, 354],
+    ]);
 
     // add swimming splash effect
     this.rastro = new PlayerRastro(game, this.player);
@@ -53,17 +60,13 @@ var playState = {
 
     this.isJumping = false;
 
-    this.group = game.add.group();
-    this.group.enableBody = true;
-    this.group.enableBodyDebug = game.debugPhysics;
-    this.group.physicsBodyType = Phaser.Physics.P2JS;
-
     cursors = game.input.keyboard.createCursorKeys();
   },
 
   update: function() {
 
-    this.bg.update();
+    this.bgBack.update();
+    this.bgOver.update();
 
     //life
     if (this.playerlife.current >= 0) {
@@ -91,20 +94,22 @@ var playState = {
       game.state.start('gameover');
     }
 
-    //update enemies
-    for (var i = 0; i < game.world.children.length; i++) {
-      if (game.world.children[i] instanceof LevelItem) {
-        game.world.children[i].update();
-      }
-    }
+    // TODO find an effiecient way to kill enemies
 
-    this.group.forEach(function(enemy) {
-      if (enemy.body.x < 0) {
-        //out of the bounds
-        enemy.body.clearShapes();
-        enemy.kill();
-      }
-    }, this);
+    //update enemies
+    // for (var i = 0; i < game.world.children.length; i++) {
+    //   if (game.world.children[i] instanceof LevelItem) {
+    //     game.world.children[i].update();
+    //   }
+    // }
+
+    // this.group.forEach(function(enemy) {
+    //   if (enemy.body.x < 0) {
+    //     //out of the bounds
+    //     enemy.body.clearShapes();
+    //     enemy.kill();
+    //   }
+    // }, this);
 
     //velocidade do jogo
     this.velocity += this.velocityIncrease;

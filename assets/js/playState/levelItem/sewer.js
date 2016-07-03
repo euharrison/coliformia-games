@@ -1,9 +1,10 @@
-var Sewer = function (game, play) {
+var Sewer = function (game, play, group) {
   this.game = game;
   this.play = play;
+  this.group = group;
 
   this.sewer = new Phaser.Image(game, game.width, play.initialPosition.y-80, 'sewer');
-  game.add.existing(this.sewer);
+  group.add(this.sewer);
 
   this.steps = [
     'enter',
@@ -60,7 +61,7 @@ Sewer.prototype.releaseCocolito = function() {
 
   var tween = this.game.add.tween(this.sewer).to({ x: isso.sewer.x + 50 }, 500, Phaser.Easing.Elastic.In);
   tween.onComplete.add(function() {
-    new Cocolito(this.game, this.play, this.sewer.x, this.sewer.y+120-this.play.initialPosition.y);
+    new Cocolito(this.game, this.play, this.group, this.sewer.x, this.sewer.y+120-this.play.initialPosition.y);
     this.tween({ x: isso.sewer.x - 50 }, this.nextStep);
   }, this);
   tween.start();

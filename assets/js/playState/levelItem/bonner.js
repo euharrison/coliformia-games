@@ -1,13 +1,14 @@
-var Bonner = function(game, play){
+var Bonner = function(game, play, group) {
   this.game = game;
   this.play = play;
+  this.group = group;
 
   Phaser.Sprite.call(this, game, game.width - 170, play.initialPosition.y+50, 'bonner');
   this.animations.add('atira', [0,1,2,3,2,1,0], 24);
 
   this.anchor.setTo(0.5, 0.5);
   this.scale.setTo(0, 0);
-  game.add.existing(this);
+  group.add(this);
 
   this.steps = [
     'enter',
@@ -79,7 +80,7 @@ Bonner.prototype.remove = function(){
 Bonner.prototype.atira = function(){
   var tween = this.game.add.tween(this).to({angle:'+15'}, 50, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(function(){
-    new Cocolito(this.game, this.play, this.x, this.y-this.play.initialPosition.y);
+    new Cocolito(this.game, this.play, this.group, this.x, this.y-this.play.initialPosition.y);
     this.game.add.tween(this).to({angle:'-15'}, 200, Phaser.Easing.Elastic.Out).start();
   }, this);
 

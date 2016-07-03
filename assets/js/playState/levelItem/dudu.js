@@ -1,10 +1,10 @@
-var Dudu = function (game, play) {
+var Dudu = function (game, play, group) {
   this.play = play;
   Phaser.Sprite.call(this, game, game.width * 0.95, play.initialPosition.y + 10, 'dudu');
 
   this.animations.add('dudu', [2, 1, 0], 12);
   this.animations.add('duduEntra', [0, 1, 2], 12);
-  game.add.existing(this);
+  group.add(this);
 
   this.anchor.setTo(0.5,0.5);
   this.scale.setTo(0.2, 0.2);

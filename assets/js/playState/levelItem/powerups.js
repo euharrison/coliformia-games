@@ -1,4 +1,4 @@
-var PowerUp = function(game, play, name, y, x) {
+var PowerUp = function(game, play, group, name, y, x) {
   x = (x === undefined) ? game.width : x;
   x += 225/2;
 
@@ -9,7 +9,7 @@ var PowerUp = function(game, play, name, y, x) {
 
   this.animations.add(name, [0,1,2], 12, true);
   this.animations.play(name);
-  game.add.existing(this);
+  group.add(this);
 
   var body = this.addBody(game, play, play.powerupsCollisionGroup, this.key);
 
