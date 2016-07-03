@@ -10,22 +10,8 @@ var playState = {
     this.sequenciador = new Sequenciador(game, this);
     this.sequenciador.setup();
 
-    this.sky = game.add.graphics(0, 0);
-    this.sky.beginFill(0x5c91a7, 1);
-    this.sky.drawRect(0, 0, game.width, this.initialPosition.y);
-
+    // add all backgrounds
     this.bg = new ParalaxBg(game, this);
-
-    var lifeX = 730;
-    var lifeY = 55;
-    this.lifeBg = game.add.sprite(lifeX, lifeY-15, 'lifeBg');
-    this.lifeBar = game.add.sprite(lifeX, lifeY-18, 'lifeBar');
-    this.lifeSkull = game.add.sprite(lifeX, lifeY, 'lifeSkull');
-    this.lifeSkull.anchor.setTo(0.5);
-    this.lifeSkullAnimation = game.add.tween(this.lifeSkull).to({angle: -20}, 250, "Linear", false, 0, -1, true);
-
-    game.score = 0;
-    this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
 
     // start the P2JS physics system
     game.physics.startSystem(Phaser.Physics.P2JS);
@@ -35,16 +21,35 @@ var playState = {
     this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
     game.physics.p2.updateBoundsCollisionGroup();
 
+    // add player
     this.player = new Player(game, this.initialPosition.x, this.initialPosition.y);
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
     this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
     this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
+    // move player to back to the water
+    this.player.moveDown();
+    this.player.moveDown();
+    this.player.moveDown();
+    this.player.moveDown();
+    this.player.moveDown();
+    this.player.moveDown();
+
+    // add swimming splash effect
     this.rastro = new PlayerRastro(game, this.player);
 
-    this.agua = game.add.graphics(0, this.initialPosition.y);
-    this.agua.beginFill(0x8de1af, .5);
-    this.agua.drawRect(0, 0, game.width, game.height - this.initialPosition.y);
+    // add life interface
+    var lifeX = 730;
+    var lifeY = 55;
+    this.lifeBg = game.add.sprite(lifeX, lifeY-15, 'lifeBg');
+    this.lifeBar = game.add.sprite(lifeX, lifeY-18, 'lifeBar');
+    this.lifeSkull = game.add.sprite(lifeX, lifeY, 'lifeSkull');
+    this.lifeSkull.anchor.setTo(0.5);
+    this.lifeSkullAnimation = game.add.tween(this.lifeSkull).to({angle: -20}, 250, "Linear", false, 0, -1, true);
+
+    // add score interface
+    game.score = 0;
+    this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
 
     this.isJumping = false;
 

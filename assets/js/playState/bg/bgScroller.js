@@ -19,7 +19,7 @@ BgScroller.prototype = Object.create(Phaser.Sprite.prototype);
 BgScroller.prototype.update = function(){
 
   if (this.elems[0].x <= -this.elems[0].width) {
-    this.elems[0].x = this.elems[1].x - this.play.velocity  * this.speedModifier;
+    this.elems[0].x = this.elems[1].x - this.play.velocity * this.speedModifier;
     this.elems[1].x = this.elems[0].x + this.elems[0].width;
   } else {
     this.elems[0].x -= this.play.velocity  * this.speedModifier;

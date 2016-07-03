@@ -64,7 +64,7 @@ var Sequenciador = function(game, play) {
     {
       id: 'first',
       scoreMin: -1,
-      scoreMax: 1,
+      scoreMax: 2,
       time: 4000,
       elements: [ cocolito(1000, 50) ]
     },

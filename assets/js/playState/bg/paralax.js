@@ -2,12 +2,13 @@ var ParalaxBg = function(game, play){
   this.list = [
     new BgScroller(game, play, 'bg', 0),
     new BgScroller(game, play, 'bg-sky', .2),
-    new BgScroller(game, play, 'bg-clouds', .5, 67),
-    new BgScroller(game, play, 'bg-mountains-back', .7),
-    new BgScroller(game, play, 'bg-mountains-front', .8),
-    new BgScroller(game, play, 'bg-buildings', .9),
-    new BgScroller(game, play, 'bg-waves', 1, 355),
-    new BgScroller(game, play, 'bg-grass', 1.1, 857),
+    new BgScroller(game, play, 'bg-clouds', .4, 67),
+    new BgScroller(game, play, 'bg-mountains-back', .6, 177),
+    new BgScroller(game, play, 'bg-mountains-front', .8, 154),
+    new BgScroller(game, play, 'bg-buildings', 1, 253),
+    new BgScroller(game, play, 'bg-water', 0, 354),
+    new BgScroller(game, play, 'bg-waves', 5, 354),
+    new BgScroller(game, play, 'bg-grass', 6, 857),
   ]
 };
 

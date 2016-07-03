@@ -20,6 +20,7 @@ var loadState = {
     game.load.image('bg-mountains-back', SPRITES_DIR + 'bg/bg-mountains-back.png');
     game.load.image('bg-mountains-front', SPRITES_DIR + 'bg/bg-mountains-front.png');
     game.load.image('bg-buildings', SPRITES_DIR + 'bg/bg-buildings.png');
+    game.load.image('bg-water', SPRITES_DIR + 'bg/bg-water.png');
     game.load.image('bg-waves', SPRITES_DIR + 'bg/bg-waves.png');
     game.load.image('bg-grass', SPRITES_DIR + 'bg/bg-grass.png');
 
