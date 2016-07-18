@@ -3,18 +3,18 @@ var ColiformiaConfigurations = (function () {
 
   function create() {
     var config = {
-      velocity : 150,
-      velocityIncrease : 0.02,
-      initialPosition : {
-      x: 200,
-      y: 350
-    },
-      playerlife : {
-      initial: 2000,
-      current: 2000
-    },
-      player : {
-        forcas : {
+      velocity: 200,
+      velocityIncrease: 0.02,
+      initialPosition: {
+        x: 200,
+        y: 350
+      },
+      playerlife: {
+        initial: 2000,
+        current: 2000
+      },
+      player: {
+        forcas: {
           forcaPraBaixo: 40,
           empuxoDaAgua: 0.01,
           gravidade: 10

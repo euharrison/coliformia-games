@@ -118,7 +118,7 @@ var playState = {
 
     //score
     game.score += this.velocity/1000;
-    this.scoreText.text = 'Distance: '+Math.ceil(game.score)+'m';
+    this.scoreText.text = 'Distance: '+game.score.toFixed(1).replace('.', ',')+'m';
 
     //sequence
     this.sequenciador.update(Math.ceil(game.score), this.playerlife.current / this.playerlife.initial);
