@@ -15,9 +15,9 @@ var ColiformiaConfigurations = (function () {
     },
       player : {
         forcas : {
-          forcaPraBaixo: 20,
+          forcaPraBaixo: 40,
           empuxoDaAgua: 0.01,
-          gravidade: 20
+          gravidade: 10
         }
       }
     };
