@@ -38,7 +38,7 @@ Player.prototype.update = function() {
     //player fora da água
     if (this.isJumping) {
       //gravidade
-      this.body.velocity.y += 20;//this.forcas.gravidade;
+      this.body.velocity.y += this.forcas.gravidade;
 
       //ao entrar na água após o pulo, desacelerar
       if (this.body.y >= this.initialPosition.y) {
@@ -59,31 +59,25 @@ Player.prototype.update = function() {
 
       //nadar para baixo
       if (this.isTouchDown) {
-        if (this.body.velocity.y < 0) {
-          this.body.velocity.y = 0;
-        }
         this.body.velocity.y += this.forcas.forcaPraBaixo;
 
         //impoe um limite de velocidade para baixo
-        if (this.body.velocity.y > 500) {
-          this.body.velocity.y = 500;
+        if (this.body.velocity.y > 600) {
+          this.body.velocity.y = 600;
         }
       }
       //nadar para cima, somente se houver espaço
       else if (this.body.y > this.initialPosition.y + 10) {
-        if (this.body.velocity.y > 0) {
-          this.body.velocity.y = 0;
-        }
         this.body.velocity.y -= this.forcas.forcaPraBaixo;
 
         //impoe um limite de velocidade para cima
-        if (this.body.velocity.y < -1200) {
-          this.body.velocity.y = -1200;
+        if (this.body.velocity.y < -600) {
+          this.body.velocity.y = -600;
         }
       }
     }
 
-    this.angle = this.body.velocity.y/20;
+    this.angle = this.body.velocity.y/15 + (this.isJumping ? 10 : 45);
     this.body.rotation = this.angle * Math.PI / 180;
 
     //atualiza se está dentro da água ou não
@@ -97,11 +91,6 @@ Player.prototype.update = function() {
 
 Player.prototype.onTouchDown = function() {
   this.isTouchDown = true;
-
-  //se for para começar a nadar para baixo, diminuir a possível velocidade para cima para dar uma resposta mais rápida
-  if (!this.isJumping) {
-    this.body.velocity.y /= 5;
-  }
 }
 
 Player.prototype.onTouchUp = function() {
