@@ -63,71 +63,64 @@ var Sequenciador = function(game, play, group) {
   };
 
   var sequencesPool = [
+    // first enemy, like an intro
     {
       id: 'first',
       scoreMin: -1,
       scoreMax: 2,
       time: 4000,
-      elements: [ cocolito(1000, 50) ]
+      elements: [ cocolito(1000, 30) ]
     },
+
+    // easy enemies
     {
       id: 'coco-single',
       scoreMin: 1,
-      scoreMax: 500,
-      time: 3000,
+      scoreMax: Infinity,
+      time: 500,
       elements: [ cocolito() ]
     },
     {
-      id: 'sus',
+      id: 'coco-double',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 1000,
-      elements: [ sus() ]
-    },
-    {
-      id: 'coco-double',
-      scoreMin: 50,
-      scoreMax: Infinity,
-      time: 3000,
+      time: 600,
       elements: [ cocolito(0), cocolito(100) ]
     },
     {
       id: 'zika',
-      scoreMin: 100,
+      scoreMin: 1,
       scoreMax: Infinity,
-      time: 3000,
+      time: 500,
       elements: [ zika() ]
+    },
+
+    // hard enemies
+    {
+      id: 'coco-triple',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ cocolito(0), cocolito(100), cocolito(200) ]
     },
     {
       id: 'coco-tunnel',
-      scoreMin: 200,
+      scoreMin: 300,
       scoreMax: Infinity,
-      time: 3000,
+      time: 1000,
       elements: [
         cocolito(0, 0), cocolito(200, 0), cocolito(400, 0),
         cocolito(0, 500), cocolito(200, 500), cocolito(400, 500),
       ]
     },
-    {
-      id: 'sus-double',
-      scoreMin: 250,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ sus(), sus(200) ]
-    },
+
+    // bosses
     {
       id: 'sewer',
       scoreMin: 300,
       scoreMax: Infinity,
       time: 7000,
       elements: [ sewer() ]
-    },
-    {
-      id: 'injection',
-      scoreMin: 300,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ injection() ]
     },
     {
       id: 'bonner',
@@ -137,18 +130,34 @@ var Sequenciador = function(game, play, group) {
       elements: [ bonner() ]
     },
     {
-      id: 'refill-life',
-      scoreMin: 700,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ sus(), injection(300), sus(600) ]
-    },
-    {
       id: 'dudu',
       scoreMin: 1000,
       scoreMax: Infinity,
       time: 6000,
       elements: [ dudu() ]
+    },
+
+    // life
+    {
+      id: 'sus',
+      scoreMin: 1,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ sus() ]
+    },
+    {
+      id: 'injection',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ injection() ]
+    },
+    {
+      id: 'refill-life',
+      scoreMin: 700,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ sus(), injection(300), sus(600) ]
     },
   ];
 

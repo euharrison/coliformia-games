@@ -1,16 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coliformia Games</title>
-    <link rel='shortcut icon' href='assets/img/favicon.png'>
-    <link rel="stylesheet" type="text/css" href="build/css/style.css">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coliformia Games</title>
+  <link rel='shortcut icon' href='assets/img/favicon.png'>
+  <link rel="stylesheet" type="text/css" href="build/css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
 
-  <h1>Coliformia Games</h1>
+  <header>
+    <h1>
+      <img src="assets/img/loga-coliformia.svg" alt="Coliformia Games">
+    </h1>
+  </header>
+
+  <div id="game"></div>
+
+  <div id="main-quote">
+    “Os atletas que vão competir nos Jogos Olímpicos de 2016 terão que nadar e velejar em águas tão contaminadas por fezes humanas que se arriscam a contrair alguma doença e não poder concluir as provas, de acordo com uma investigação da Associated Press.” 
+    <a class="ref" href="http://oglobo.globo.com/rio/aguas-contaminadas-sao-risco-para-atletas-que-vao-competir-na-rio-2016-17013995" target="_blank">(ref)</a>
+  </div>
+
+  <div id="other-quotes">
+    <p>
+      “Em consequência, os atletas olímpicos quase certamente entrarão em contato com vírus causadores de doenças, que, segundo alguns testes, estão presentes em níveis até 1,7 milhão de vezes acima do que seria considerado alarmante em praias no sul da California”
+      <a class="ref" href="http://g1.globo.com/rio-de-janeiro/noticia/2015/07/atletas-podem-contrair-doencas-nas-aguas-olimpicas-do-rio-diz-agencia.html" target="_blank">(ref)</a>
+    </p>
+    <p>
+      “Segundo o biólogo marinho John Griffith, o que tem na Baía de Guanabara é basicamente esgoto puro! "É agua dos banheiros, dos chuveiros e do que as pessoas jogam na pia, tudo misturado, que vai para a água das praias. Isso seria interditado imediatamente se fosse encontrado aqui [nos EUA]”
+      <a class="ref" href="http://veja.abril.com.br/esporte/rio-2016-atletas-podem-contrair-doencas-nas-aguas-olimpicas-diz-estudo/" target="_blank">(ref)</a>
+    </p>
+    <p>
+      “As concentrações dos vírus foram aproximadamente as mesmas que são encontradas no esgoto puro, mesmo em uma das áreas menos poluídas testadas, a praia de Copacabana, onde serão realizadas as provas de natação do triatlo e maratona aquática e onde muitos dos 350.000 turistas estrangeiros esperados podem dar seus mergulhos”
+      <a class="ref" href="http://g1.globo.com/rio-de-janeiro/noticia/2015/07/atletas-podem-contrair-doencas-nas-aguas-olimpicas-do-rio-diz-agencia.html" target="_blank">(ref)</a>
+    </p>
+    <p>
+      “Um especialista americano em avaliação de risco para vírus transmitidos pela água examinou os dados da AP e estimou que os atletas internacionais em todos os locais de competições aquáticas teriam uma chance de 99% de infecção ao ingerir apenas 3 colheres de chá da água, embora a probabilidade de uma pessoa ficar doente dependa da imunidade e outros fatores.”
+      <a class="ref" href="http://g1.globo.com/rio-de-janeiro/noticia/2015/07/atletas-podem-contrair-doencas-nas-aguas-olimpicas-do-rio-diz-agencia.html" target="_blank">(ref)</a>
+    </p>
+  </div>
+
+  <div id="medalha">
+    <div>
+      <img src="assets/img/medalha.svg">
+    </div>
+  </div>
+
+  <ul id="testimonials">
+    <li>
+      <div>
+        <img class="cocolito" src="assets/img/cocolito.svg">
+        <img class="avatar" src="assets/img/avatar1.jpg">
+      </div>
+      <div>
+        <p class="testimonial">
+          “Acho que já tenho anticorpos suficientes para as cincos próximas olimpíadas no Rio.”
+        </p>
+        <p class="person">
+          Atleta brasileiro durante a competição<br>
+          de natação no Rio de Janeiro
+        </p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <img class="caveira" src="assets/img/caveira.svg">
+        <img class="avatar" src="assets/img/avatar2.jpg">
+      </div>
+      <div>
+        <p class="testimonial">
+          “Graças aos jogos do Rio de Janeiro, hoje ganhei um bracinho a mais, bem próximo ao meu umbigo.”
+        </p>
+        <p class="person">
+          Atleta brasileiro durante a competição<br>
+          de natação no Rio de Janeiro
+        </p>
+      </div>
+    </li>
+  </ul>
+
+  <footer>
+  </footer>
 
   <script type="text/javascript" src="node_modules/phaser/build/phaser.min.js"></script>
 
@@ -41,5 +114,5 @@
   <script type="text/javascript" src="assets/js/gameConfigurations.js"></script>
   <script type="text/javascript" src="assets/js/game.js"></script>
 
-  </body>
+</body>
 </html>
