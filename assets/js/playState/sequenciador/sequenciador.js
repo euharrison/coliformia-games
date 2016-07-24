@@ -219,7 +219,9 @@ var Sequenciador = function(game, play, group) {
         poll.createCocolito(x, y);
         break;
       case 'zika':
-        new Zika(game, play, group);
+        var x = game.width+539;
+        var y = play.initialPosition.y-120;
+        poll.createZika(x, y);
         break;
       case 'sewer':
         new Sewer(game, play, group);

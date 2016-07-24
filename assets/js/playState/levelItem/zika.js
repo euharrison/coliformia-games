@@ -1,5 +1,5 @@
-var Zika = function (game, play, group) {
-  Phaser.Sprite.call(this, game, game.width+539, play.initialPosition.y-120, 'zika');
+var Zika = function (game, play, group, x, y) {
+  Phaser.Sprite.call(this, game, x, y, 'zika');
 
   this.animations.add('zika', [0,1,2], 12, true);
   this.animations.play('zika');

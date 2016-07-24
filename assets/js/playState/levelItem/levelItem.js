@@ -1,4 +1,4 @@
-var LevelItem = function(){
+var LevelItem = function() {
   this.attackSpeed = 5;
 }
 
