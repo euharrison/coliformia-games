@@ -96,23 +96,6 @@ var playState = {
       game.state.start('gameover');
     }
 
-    // TODO find an effiecient way to kill enemies
-
-    //update enemies
-    // for (var i = 0; i < game.world.children.length; i++) {
-    //   if (game.world.children[i] instanceof LevelItem) {
-    //     game.world.children[i].update();
-    //   }
-    // }
-
-    // this.group.forEach(function(enemy) {
-    //   if (enemy.body.x < 0) {
-    //     //out of the bounds
-    //     enemy.body.clearShapes();
-    //     enemy.kill();
-    //   }
-    // }, this);
-
     //velocidade do jogo
     this.velocity += this.velocityIncrease;
 

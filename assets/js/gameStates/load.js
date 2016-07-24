@@ -34,7 +34,7 @@ var loadState = {
     game.load.spritesheet('player', SPRITES_DIR + 'player.png', 225, 180);
 
     game.load.spritesheet('bonner', SPRITES_DIR + 'enemies/bonner.png', 646, 455);
-    game.load.spritesheet('fly', SPRITES_DIR + 'enemies/fly.png', 539, 380);
+    game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 539, 380);
     game.load.spritesheet('dudu', SPRITES_DIR + 'enemies/dudu.png', 355, 311);
     game.load.spritesheet('dudu-laser', SPRITES_DIR + 'enemies/dudu-laser.png', 408, 562);
     game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 225, 180);
