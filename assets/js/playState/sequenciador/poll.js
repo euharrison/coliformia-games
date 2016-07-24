@@ -16,7 +16,6 @@ var Poll = function(game, play, group) {
       levelItem.reviveItem(x, y, -play.velocity);
     } else {
       levelItem = new Cocolito(game, play, group, x, y);
-      // group.add(levelItem); //TODO testar se existe group.create ou game.create
     }
   }
 };

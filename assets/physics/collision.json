@@ -6,7 +6,7 @@
       "shape": [ 120, 25,   140, 25,   140, 90,   90, 130,   75, 130]
     }
   ],
-  "fly": [
+  "zika": [
     {
       "density": 2, "friction": 0, "bounce": 0,
       "filter": { "categoryBits": 1, "maskBits": 65535 },
