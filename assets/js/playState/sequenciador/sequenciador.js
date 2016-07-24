@@ -4,6 +4,7 @@ var Sequenciador = function(game, play, group) {
 
   this.setup = setup;
   this.update = update;
+
   //private
 
   var game = game;
@@ -200,13 +201,35 @@ var Sequenciador = function(game, play, group) {
       var element = currentSequence.elements[currentElement];
       switch (element.type) {
         case 'enemy':
-          poll.getEnemy(element);
+          createEnemy(element);
           break;
         case 'powerUp':
           createPowerUp(element);
           break;
       }
       currentElement++;
+    }
+  };
+
+  function createEnemy(enemy) {
+    switch (enemy.id) {
+      case 'cocolito':
+        var x = game.width + 225/2;
+        var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
+        poll.createCocolito(x, y);
+        break;
+      case 'zika':
+        new Fly(game, play, group);
+        break;
+      case 'sewer':
+        new Sewer(game, play, group);
+        break;
+      case 'bonner':
+        new Bonner(game, play, group);
+        break;
+      case 'dudu':
+        new Dudu(game, play, group);
+        break;
     }
   };
 

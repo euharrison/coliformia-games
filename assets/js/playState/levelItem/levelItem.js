@@ -21,7 +21,13 @@ LevelItem.prototype.addBody = function(game, play, colisionGroup, key){
 LevelItem.prototype.update = function() {
   if (this.body) {
     if (this.body.x < 0) {
-      this.destroy();
+      this.kill();
     }
   }
+}
+
+LevelItem.prototype.reviveItem = function(x, y, velocity) {
+  this.revive();
+  this.reset(x, y);
+  this.body.velocity.x = velocity * this.attackSpeed;
 }
