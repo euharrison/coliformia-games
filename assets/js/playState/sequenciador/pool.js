@@ -1,4 +1,4 @@
-var Poll = function(game, play, group) {
+var Pool = function(game, play, group) {
 
   //public
 

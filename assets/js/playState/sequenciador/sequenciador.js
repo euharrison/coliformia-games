@@ -11,7 +11,7 @@ var Sequenciador = function(game, play, group) {
   var play = play;
   var group = group;
 
-  var poll = new Poll(game, play, group);
+  var pool = new Pool(game, play, group);
 
   var currentSequence = null;
   var currentElement = 0;
@@ -216,12 +216,12 @@ var Sequenciador = function(game, play, group) {
       case 'cocolito':
         var x = game.width + 225/2;
         var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
-        poll.createCocolito(x, y);
+        pool.createCocolito(x, y);
         break;
       case 'zika':
         var x = game.width+539;
         var y = play.initialPosition.y-120;
-        poll.createZika(x, y);
+        pool.createZika(x, y);
         break;
       case 'sewer':
         new Sewer(game, play, group);
