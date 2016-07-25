@@ -21,6 +21,7 @@ var ColiformiaConfigurations = (function () {
         }
       },
       debugPhysics: false,
+      useFullScreen: false,
     };
 
     // http://localhost:8000/?velocity=150&velocityIncrease=0.02&debugPhysics=true
