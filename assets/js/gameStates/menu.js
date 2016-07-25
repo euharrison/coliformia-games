@@ -7,7 +7,10 @@ var menuState = {
   },
 
   start: function() {
-    game.scale.startFullScreen();
+    if (game.coliformiaConfig.useFullScreen) {
+      game.scale.startFullScreen();
+    }
+
     game.state.start('play');
   }
 };
