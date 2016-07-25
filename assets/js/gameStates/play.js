@@ -3,9 +3,11 @@ var playState = {
   create: function() {
 
     this.initialPosition = game.coliformiaConfig.initialPosition;
-    this.playerlife = game.coliformiaConfig.playerlife;
+    this.playerlife = game.coliformiaConfig.player.life;
     this.velocity = game.coliformiaConfig.velocity;
     this.velocityIncrease = game.coliformiaConfig.velocityIncrease;
+
+    this.playerlife.current = this.playerlife.initial;
 
     // add back backgrounds, like sky and buildings
     this.bgBack = new ParalaxBg(game, this, game.add.group(), [

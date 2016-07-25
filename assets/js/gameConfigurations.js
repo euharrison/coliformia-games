@@ -9,11 +9,11 @@ var ColiformiaConfigurations = (function () {
         x: 130,
         y: 230
       },
-      playerlife: {
-        initial: 2000,
-        current: 2000
-      },
       player: {
+        life: {
+          current: 2000,
+          initial: 2000
+        },
         forcas: {
           forcaPraBaixo: 40,
           empuxoDaAgua: 0.01,
