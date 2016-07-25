@@ -2,7 +2,6 @@
 @import 'fonts';
 
 body {
-  font-family: 'Noyh';
   font-family: 'Lato', sans-serif;
   background: url($img + 'ondas.svg') center 34px;
   margin: 0;
@@ -145,6 +144,11 @@ footer {
   background: url($img + 'footer.svg') center bottom no-repeat;
   background-size: contain;
   height: responsive(160, 780);
+
+  .load-font {
+    font-family: 'Noyh';
+    color: rgba(white, 0);
+  }
 }
 
 @media (min-width: 960px) {

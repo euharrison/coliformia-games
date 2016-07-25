@@ -2,7 +2,7 @@ var gameoverState = {
 
   create: function() {
 
-    game.stage.backgroundColor = '#fff';
+    game.stage.backgroundColor = '#ffffff';
 
     //calculate disease    
     var diseaseList = [
@@ -25,19 +25,20 @@ var gameoverState = {
     var disease = diseaseList[index];
 
     //text score
-    game.add.text(740, 202, Math.ceil(game.score)+'m na Baía de Guanabara', {
+    var scoreValue = Math.ceil(game.score);
+    game.add.text(760, 202, scoreValue+'m na Baía de Guanabara', {
       font: 'Noyh',
       fill: '#e83434',
       fontSize: 30
-    });
+    }).addColor('#000000', String(scoreValue).length+1);
 
     //text disease
-    var text = game.add.text(740, 233, disease.name.toUpperCase().replace(' ', '\n'), {
+    var text = game.add.text(760, 233, disease.name.toUpperCase().replace(' ', '\n'), {
       font: 'Noyh',
       fill: '#e83434',
-      fontSize: 86
+      fontSize: 80
     });
-    text.lineSpacing = -20;
+    text.lineSpacing = -30;
 
     //illustation
     game.add.image(0, 0, 'disease'+(index+1));
@@ -49,7 +50,7 @@ var gameoverState = {
     game.add.button(548, 263, 'button-play-again', this.playAgain);
 
     //share
-    game.add.button(740, 520, 'button-share', this.share);
+    game.add.button(760, 520, 'button-share', this.share);
   },
 
   playAgain: function() {
