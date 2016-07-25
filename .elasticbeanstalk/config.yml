@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: cg-app
+    environment: coliformia
 global:
   application_name: cg-app
   default_ec2_keyname: null
