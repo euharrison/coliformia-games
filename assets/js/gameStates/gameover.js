@@ -24,6 +24,12 @@ var gameoverState = {
     var text = game.add.text(170, 400, disease, fontConfig);
     text.lineSpacing = -20;
 
+
+
+    game.add.image(740, 522, 'share');
+
+
+
     //tap to play again
     game.input.onTap.add(this.start, this);
   },

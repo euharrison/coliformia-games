@@ -7,9 +7,10 @@ var loadState = {
     var progressBar = game.add.sprite(457, 487, 'loading-bar');
     game.load.setPreloadSprite(progressBar);
 
-    // Load other screens
-    game.load.image('start-screen', 'assets/sprites/screens/start-screen.png');
-    game.load.image('gameover-screen', 'assets/sprites/screens/gameover-screen.png');
+    // Load ui
+    game.load.image('start-screen', 'assets/sprites/ui/start-screen.png');
+    game.load.image('gameover-screen', 'assets/sprites/ui/gameover-screen.png');
+    game.load.image('share', 'assets/sprites/ui/share.png');
 
     // Load game sprites
     var SPRITES_DIR = 'assets/sprites/';
