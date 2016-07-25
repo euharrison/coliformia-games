@@ -82,7 +82,7 @@ var playState = {
 
     //life
     if (this.playerlife.current >= 0) {
-      this.playerlife.current-=5;
+      this.playerlife.current--;
       var lifePercent = this.playerlife.current / this.playerlife.initial;
       //bar
       this.lifeBar.scale.setTo(lifePercent, 1);
