@@ -6,8 +6,8 @@ var ColiformiaConfigurations = (function () {
       velocity: 200,
       velocityIncrease: 0.02,
       initialPosition: {
-        x: 200,
-        y: 350
+        x: 130,
+        y: 230
       },
       playerlife: {
         initial: 2000,
@@ -19,10 +19,11 @@ var ColiformiaConfigurations = (function () {
           empuxoDaAgua: 0.01,
           gravidade: 10
         }
-      }
+      },
+      debugPhysics: false,
     };
 
-    // http://localhost:8000/?velocity=150&velocityIncrease=0.02
+    // http://localhost:8000/?velocity=150&velocityIncrease=0.02&debugPhysics=true
     var overrideConfig = getUrlVars();
     for (var param in overrideConfig) {
       config[param] = Number(overrideConfig[param]);

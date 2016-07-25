@@ -214,13 +214,13 @@ var Sequenciador = function(game, play, group) {
   function createEnemy(enemy) {
     switch (enemy.id) {
       case 'cocolito':
-        var x = game.width + 225/2;
+        var x = game.width + 150/2;
         var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
         pool.createCocolito(x, y);
         break;
       case 'zika':
-        var x = game.width+539;
-        var y = play.initialPosition.y-120;
+        var x = game.width + 359;
+        var y = play.initialPosition.y - 120;
         pool.createZika(x, y);
         break;
       case 'sewer':

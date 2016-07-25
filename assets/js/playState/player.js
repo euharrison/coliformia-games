@@ -13,7 +13,7 @@ var Player = function (game, x, y) {
   this.animations.play('swim');
   game.add.existing(this);
 
-  game.physics.p2.enable(this, game.debugPhysics);
+  game.physics.p2.enable(this, game.coliformiaConfig.debugPhysics);
   this.body.clearShapes();
   this.body.loadPolygon('physicsData', this.key);
   this.body.fixedRotation = true;
@@ -84,8 +84,8 @@ Player.prototype.update = function() {
     this.isJumping = (this.body.y < this.initialPosition.y);
 
     //limita a tela somente no chão
-    if (this.body.y > 1000) {
-      this.body.y = 1000;
+    if (this.body.y > 660) {
+      this.body.y = 660;
     }
 };
 

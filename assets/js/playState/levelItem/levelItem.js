@@ -5,7 +5,7 @@ var LevelItem = function() {
 LevelItem.prototype = Object.create(Phaser.Sprite.prototype);
 
 LevelItem.prototype.addBody = function(game, play, colisionGroup, key){
-  game.physics.p2.enable(this, game.debugPhysics);
+  game.physics.p2.enable(this, game.coliformiaConfig.debugPhysics);
   this.body.clearShapes();
   this.body.loadPolygon('physicsData', key);
   this.body.fixedRotation = true;
