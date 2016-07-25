@@ -16,12 +16,12 @@
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
+    "mustache-express": "^1.2.2",
     "phaser": "^2.4.3"
   },
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "concurrently": "^0.1.1",
-    "mustache-express": "^1.2.2"
+    "concurrently": "^0.1.1"
   }
 }
