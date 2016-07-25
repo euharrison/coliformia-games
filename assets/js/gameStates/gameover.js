@@ -41,7 +41,7 @@ var gameoverState = {
     }).addColor('#000000', String(scoreValue).length+1);
 
     //text disease
-    var textDisease = game.add.text(textScore.x, textScore.y+textScore.height, disease.name.toUpperCase().replace(' ', '\n'), {
+    var textDisease = game.add.text(textScore.x, textScore.y+textScore.height, disease.name.replace(' ', '\n'), {
       font: 'Noyh',
       fill: '#e83434',
       fontSize: 80
