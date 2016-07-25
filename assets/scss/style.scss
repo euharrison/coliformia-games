@@ -3,7 +3,8 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background: url($img + 'ondas.svg') center 34px;
+  background: $brown url($img + 'ondas.svg') center 34px;
+  color: white;
   margin: 0;
 }
 
