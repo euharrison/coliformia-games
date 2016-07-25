@@ -4,7 +4,7 @@ var loadState = {
     // Add loading screen
     game.add.image(0, 0, 'loading-screen');
 
-    var progressBar = game.add.sprite(685, 730, 'loading-bar');
+    var progressBar = game.add.sprite(457, 487, 'loading-bar');
     game.load.setPreloadSprite(progressBar);
 
     // Load other screens
@@ -24,26 +24,26 @@ var loadState = {
     game.load.image('bg-waves', SPRITES_DIR + 'bg/bg-waves.png');
     game.load.image('bg-grass', SPRITES_DIR + 'bg/bg-grass.png');
 
-    game.load.spritesheet('bg-water-back', SPRITES_DIR + 'bg/bg-water-back.png', 1920, 152);
-    game.load.spritesheet('bg-water-front', SPRITES_DIR + 'bg/bg-water-front.png', 1920, 152);
+    game.load.spritesheet('bg-water-back', SPRITES_DIR + 'bg/bg-water-back.png', 1280, 101);
+    game.load.spritesheet('bg-water-front', SPRITES_DIR + 'bg/bg-water-front.png', 1280, 101);
 
     game.load.image('lifeBg', SPRITES_DIR + 'life/lifeBg.svg');
     game.load.image('lifeBar', SPRITES_DIR + 'life/lifeBar.svg');
     game.load.image('lifeSkull', SPRITES_DIR + 'life/lifeSkull.svg');
 
-    game.load.spritesheet('player', SPRITES_DIR + 'player.png', 225, 180);
+    game.load.spritesheet('player', SPRITES_DIR + 'player.png', 150, 120);
 
-    game.load.spritesheet('bonner', SPRITES_DIR + 'enemies/bonner.png', 646, 455);
-    game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 539, 380);
-    game.load.spritesheet('dudu', SPRITES_DIR + 'enemies/dudu.png', 355, 311);
-    game.load.spritesheet('dudu-laser', SPRITES_DIR + 'enemies/dudu-laser.png', 408, 562);
-    game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 225, 180);
-    game.load.image('sewer', SPRITES_DIR + 'enemies/sewer.png', 355, 262);
+    game.load.spritesheet('bonner', SPRITES_DIR + 'enemies/bonner.png', 431, 304);
+    game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 359, 253);
+    game.load.spritesheet('dudu', SPRITES_DIR + 'enemies/dudu.png', 237, 207);
+    game.load.spritesheet('dudu-laser', SPRITES_DIR + 'enemies/dudu-laser.png', 272, 375);
+    game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 150, 120);
+    game.load.image('sewer', SPRITES_DIR + 'enemies/sewer.png', 237, 175);
 
     game.load.image('sus', SPRITES_DIR + 'powerup_sus.png');
     game.load.image('injection', SPRITES_DIR + 'powerup_injecao.png');
 
-    game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 440, 84);
+    game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 293, 56);
 
     // Load physics data json
     game.load.physics('physicsData', 'assets/physics/collision.json');

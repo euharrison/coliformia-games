@@ -11,12 +11,12 @@ var playState = {
     this.bgBack = new ParalaxBg(game, this, game.add.group(), [
       ['bg', 0, 0],
       ['bg-sky', .2, 0],
-      ['bg-clouds', .6, 67],
-      ['bg-mountains-back', 1, 177],
-      ['bg-mountains-front', 1.5, 154],
-      ['bg-buildings', 2, 253],
+      ['bg-clouds', .6, 47],
+      ['bg-mountains-back', 1, 118],
+      ['bg-mountains-front', 1.5, 103],
+      ['bg-buildings', 2, 169],
     ]);
-    game.add.sprite(0, 304, 'bg-water-back').animations.add('', null, 16, true).play();
+    game.add.sprite(0, 203, 'bg-water-back').animations.add('', null, 16, true).play();
 
     // start the P2JS physics system
     game.physics.startSystem(Phaser.Physics.P2JS);
@@ -36,22 +36,24 @@ var playState = {
     this.player.body.collides(this.enemiesCollisionGroup, this.enemyCollisionHandler, this);
     this.player.body.collides(this.powerupsCollisionGroup, this.powerupCollisionHandler, this);
 
+    game.debug.body(this.player);
+
     // add over backgrounds, like water and grass
     this.bgFront = new ParalaxBg(game, this, game.add.group(), [
-      ['bg-waves', 5, 354],
-      ['bg-grass', 6, 857],
-      ['bg-water', 0, 456],
+      ['bg-waves', 5, 236],
+      ['bg-grass', 6, 571],
+      ['bg-water', 0, 304],
     ]);
-    game.add.sprite(0, 304, 'bg-water-front').animations.add('', null, 16, true).play();
+    game.add.sprite(0, 203, 'bg-water-front').animations.add('', null, 16, true).play();
 
     // add swimming splash effect
     this.rastro = new PlayerRastro(game, this.player);
 
     // add life interface
-    var lifeX = 730;
-    var lifeY = 55;
-    this.lifeBg = game.add.sprite(lifeX, lifeY-15, 'lifeBg');
-    this.lifeBar = game.add.sprite(lifeX, lifeY-18, 'lifeBar');
+    var lifeX = 467;
+    var lifeY = 37;
+    this.lifeBg = game.add.sprite(lifeX, lifeY-10, 'lifeBg');
+    this.lifeBar = game.add.sprite(lifeX, lifeY-12, 'lifeBar');
     this.lifeSkull = game.add.sprite(lifeX, lifeY, 'lifeSkull');
     this.lifeSkull.anchor.setTo(0.5);
     this.lifeSkullAnimation = game.add.tween(this.lifeSkull).to({angle: -20}, 250, "Linear", false, 0, -1, true);
