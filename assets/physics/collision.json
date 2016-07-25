@@ -3,7 +3,7 @@
     {
       "density": 2, "friction": 0, "bounce": 0,
       "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 80, 17,   93, 17,   93, 60,   60, 87,   50, 87]
+      "shape": [ 80, 20,   110, 20,   110, 60,   80, 90,   50, 90]
     }
   ],
   "zika": [
