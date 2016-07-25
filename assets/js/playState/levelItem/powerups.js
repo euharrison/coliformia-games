@@ -14,9 +14,9 @@ var PowerUp = function(game, play, group, name, y, x) {
   var body = this.addBody(game, play, play.powerupsCollisionGroup, this.key);
 
   if (name == 'injection') {
-    body.power = 1000;
+    body.power = 500;
   } else {
-    body.power = 300;
+    body.power = 150;
   }
 };
 

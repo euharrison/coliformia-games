@@ -50,17 +50,23 @@ var playState = {
     this.rastro = new PlayerRastro(game, this.player);
 
     // add life interface
-    var lifeX = 467;
+    var lifeX = 415;
     var lifeY = 37;
-    this.lifeBg = game.add.sprite(lifeX, lifeY-10, 'lifeBg');
-    this.lifeBar = game.add.sprite(lifeX, lifeY-12, 'lifeBar');
-    this.lifeSkull = game.add.sprite(lifeX, lifeY, 'lifeSkull');
+    game.add.sprite(lifeX, lifeY, 'lifebar-outline');
+    this.lifeBar = game.add.sprite(lifeX, lifeY-2, 'lifebar');
+    this.lifeSkull = game.add.sprite(lifeX, lifeY+10, 'lifebar-skull');
     this.lifeSkull.anchor.setTo(0.5);
     this.lifeSkullAnimation = game.add.tween(this.lifeSkull).to({angle: -20}, 250, "Linear", false, 0, -1, true);
 
     // add score interface
     game.score = 0;
-    this.scoreText = game.add.text(16, 16, 'Distance: 0', { fontSize: '32px', fill: '#FFF' });
+    game.add.sprite(770, 25, 'score-bg');
+    this.scoreText = game.add.text(830, 53, '0', {
+      font: 'Noyh',
+      fill: '#ffffff',
+      fontSize: 23
+    });
+    this.scoreText.anchor.setTo(0.5);
 
     this.isJumping = false;
 
@@ -78,13 +84,15 @@ var playState = {
       var lifePercent = this.playerlife.current / this.playerlife.initial;
       //bar
       this.lifeBar.scale.setTo(lifePercent, 1);
-      if (lifePercent > 0.66) {
+      if (lifePercent > 2/3) {
         this.lifeBar.tint = 0xd9e021;
+      } else if (lifePercent > 1/3) {
+        this.lifeBar.tint = Phaser.Color.interpolateColor(0xf15a24, 0xd9e021, 1/3, lifePercent-1/3);
       } else {
-        this.lifeBar.tint = Phaser.Color.interpolateColor(0xf15a24, 0xd9e021, 67, 100*lifePercent);
+        this.lifeBar.tint = 0xf15a24;
       }
       //skull
-      this.lifeSkull.scale.setTo(1 + 0.5*(1-lifePercent));
+      this.lifeSkull.scale.setTo(1 + 0.25*(1-lifePercent));
       if (lifePercent < 0.9) {
         this.lifeSkullAnimation.start();
         this.lifeSkullAnimation.resume();
@@ -103,7 +111,7 @@ var playState = {
 
     //score
     game.score += this.velocity/1000;
-    this.scoreText.text = 'Distance: '+game.score.toFixed(1).replace('.', ',')+'m';
+    this.scoreText.text = game.score.toFixed(0)+'m';
 
     //sequence
     this.sequenciador.update(Math.ceil(game.score), this.playerlife.current / this.playerlife.initial);
@@ -117,7 +125,6 @@ var playState = {
     if (body2.sprite) {
       body2.sprite.destroy();
     }
-
     if (this.playerlife.current > this.playerlife.initial - body2.power) {
       this.playerlife.current = this.playerlife.initial;
     } else {
