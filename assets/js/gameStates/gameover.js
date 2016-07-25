@@ -4,7 +4,7 @@ var gameoverState = {
 
     game.stage.backgroundColor = '#ffffff';
 
-    //calculate disease    
+    //calculate disease
     var diseaseList = [
       { score: 0, name: 'Sebacitóide Bolhosa' },
       { score: 100, name: 'Eczecrose Amebática' },
@@ -14,7 +14,7 @@ var gameoverState = {
       // { score: 1500, name: 'Amebtose Shigeciforme' },
       // { score: 1500, name: 'Psorisite Giardótica' },
       { score: 1500, name: 'Anidrosema Sebacitante' },
-    ]
+    ];
 
     var index = 0;
     for (var i = 0; i < diseaseList.length; i++) {
@@ -23,11 +23,18 @@ var gameoverState = {
       }
     }
     var disease = diseaseList[index];
-    this.ddd = disease;
+
+    //calculate random place
+    var placeList = [
+      'Baía de Guanabara',
+      'Praia de Copacabana',
+      'Lagoa Rodrigo de Freitas',
+    ];
+    var place = placeList[ Math.floor( Math.random()*placeList.length ) ];
 
     //text score
     var scoreValue = Math.ceil(game.score);
-    game.add.text(760, 202, scoreValue+'m na Baía de Guanabara', {
+    game.add.text(760, 202, scoreValue+'m na '+place, {
       font: 'Noyh',
       fill: '#e83434',
       fontSize: 30
