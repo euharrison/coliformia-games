@@ -2,7 +2,10 @@
 @import 'fonts';
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   font-family: 'Lato', sans-serif;
+  font-weight: 900;
   background: $brown url($img + 'ondas.svg') center 34px;
   color: white;
   margin: 0;
@@ -58,6 +61,7 @@ header {
   color: $red;
   margin: responsive(50, 100) auto;
   max-width: 1240px;
+  line-height: 1.5;
 
   p {
     margin: 30px;
