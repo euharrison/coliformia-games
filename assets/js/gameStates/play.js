@@ -82,16 +82,20 @@ var playState = {
 
     //life
     if (this.playerlife.current >= 0) {
-      this.playerlife.current--;
+      this.playerlife.current-=5;
       var lifePercent = this.playerlife.current / this.playerlife.initial;
       //bar
       this.lifeBar.scale.setTo(lifePercent, 1);
-      if (lifePercent > 2/3) {
+      if (lifePercent > 0.5) {
         this.lifeBar.tint = 0xd9e021;
-      } else if (lifePercent > 1/3) {
-        this.lifeBar.tint = Phaser.Color.interpolateColor(0xf15a24, 0xd9e021, 1/3, lifePercent-1/3);
-      } else {
+      } else if (lifePercent > 0.45) {
+        this.lifeBar.tint = Phaser.Color.interpolateColor(0xf15a24, 0xd9e021, 0.05, lifePercent-0.45);
+      } else if (lifePercent > 0.3) {
         this.lifeBar.tint = 0xf15a24;
+      } else if (lifePercent > 0.25) {
+        this.lifeBar.tint = Phaser.Color.interpolateColor(0xe83434, 0xf15a24, 0.05, lifePercent-0.25);
+      } else {
+        this.lifeBar.tint = 0xe83434;
       }
       //skull
       this.lifeSkull.scale.setTo(1 + 0.25*(1-lifePercent));
