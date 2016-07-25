@@ -48,6 +48,7 @@ var gameoverState = {
 
     //play again
     game.add.button(548, 263, 'button-play-again', this.playAgain);
+    game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.playAgain);
 
     //share
     game.add.button(760, 520, 'button-share', this.share);
