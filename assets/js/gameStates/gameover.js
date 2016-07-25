@@ -23,6 +23,7 @@ var gameoverState = {
       }
     }
     var disease = diseaseList[index];
+    this.ddd = disease;
 
     //text score
     var scoreValue = Math.ceil(game.score);
@@ -51,7 +52,7 @@ var gameoverState = {
     game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.playAgain);
 
     //share
-    game.add.button(760, 520, 'button-share', this.share);
+    game.add.button(760, 520, 'button-share', this.share, disease);
   },
 
   playAgain: function() {
@@ -59,7 +60,7 @@ var gameoverState = {
   },
 
   share: function(a,b,c) {
-    console.log(a,b,c, this);
+    console.log(this);
     FB.ui({
       method: 'share',
       display: 'popup',
