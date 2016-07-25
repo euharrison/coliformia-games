@@ -1,40 +1,67 @@
 var gameoverState = {
 
-  create: function() { 
-    game.add.image(0, 0, 'gameover-screen');
+  create: function() {
 
-    var fontConfig = {
+    game.stage.backgroundColor = '#fff';
+
+    //calculate disease    
+    var diseaseList = [
+      { score: 0, name: 'Sebacitóide Bolhosa' },
+      { score: 100, name: 'Eczecrose Amebática' },
+      { score: 200, name: 'Lepstosciforme Cutínica' },
+      { score: 500, name: 'Tifoidema Urticariante' },
+      { score: 1000, name: 'Ceraglifia Imunoglobótica' },
+      // { score: 1500, name: 'Amebtose Shigeciforme' },
+      // { score: 1500, name: 'Psorisite Giardótica' },
+      { score: 1500, name: 'Anidrosema Sebacitante' },
+    ]
+
+    var index = 0;
+    for (var i = 0; i < diseaseList.length; i++) {
+      if (game.score > diseaseList[i].score) {
+        index = i;
+      }
+    }
+    var disease = diseaseList[index];
+
+    //text score
+    game.add.text(740, 202, Math.ceil(game.score)+'m na Baía de Guanabara', {
       font: 'Noyh',
-      fill: '#fff',
-      fontSize: 100
-    }
+      fill: '#e83434',
+      fontSize: 30
+    });
 
-    //score
-    var score = Math.ceil(game.score);
-    game.add.text(170, 210, score+'m', fontConfig);
-
-    //disease
-    var list = ['Porfiria\ncutânea', 'Piodermite\nGangrenosa'];
-    var index = Math.floor(game.score/500);
-    if (index > list.length - 1) {
-      index = list.length - 1;
-    }
-    var disease = list[index].toUpperCase();
-
-    var text = game.add.text(170, 400, disease, fontConfig);
+    //text disease
+    var text = game.add.text(740, 233, disease.name.toUpperCase().replace(' ', '\n'), {
+      font: 'Noyh',
+      fill: '#e83434',
+      fontSize: 86
+    });
     text.lineSpacing = -20;
 
+    //illustation
+    game.add.image(0, 0, 'disease'+(index+1));
 
+    //logo
+    game.add.image(531, 65, 'gameover-logo');
 
-    game.add.image(740, 522, 'share');
+    //play again
+    game.add.button(548, 263, 'button-play-again', this.playAgain);
 
-
-
-    //tap to play again
-    game.input.onTap.add(this.start, this);
+    //share
+    game.add.button(740, 520, 'button-share', this.share);
   },
 
-  start: function() {
+  playAgain: function() {
     game.state.start('play');
-  }
+  },
+
+  share: function(a,b,c) {
+    console.log(a,b,c, this);
+    FB.ui({
+      method: 'share',
+      display: 'popup',
+      href: 'http://coliformiagames.com',
+    }, function(response){});
+  },
 };
