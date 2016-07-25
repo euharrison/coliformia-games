@@ -8,7 +8,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js",
     "gulp-watch": "node ./node_modules/gulp/bin/gulp.js watch",
     "watch": "node ./node_modules/concurrently/src/main.js --kill-others 'npm run gulp-watch' 'node server.js'",
-    "start": "NODE_ENV=production && npm run build && node server.js"
+    "start": "npm run build && node server.js"
   },
   "dependencies": {
     "express": "^4.13.3",
