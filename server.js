@@ -9,7 +9,13 @@ app.engine('html', mustacheExpress());
 app.set('view engine', 'html'); 
 app.set('views', __dirname);
 
-app.use('/', express.static(__dirname));
+app.get('/', function(req, res) {
+  res.render('index',{
+    title: 'Coliformia Games',
+    description: 'Uma descrição supimpa',
+    image: 'assets/img/facebook/big/01.jpg',
+  });
+});
 
 app.get('/:id', function(req, res) {
   var index = Number(req.params.id) - 1;
@@ -32,6 +38,8 @@ app.get('/:id', function(req, res) {
   ]
   res.render('index', tags[index]);
 });
+
+app.use('/', express.static(__dirname));
 
 var server = app.listen(process.env.PORT || 8000, function () {
   var host = server.address().address;
