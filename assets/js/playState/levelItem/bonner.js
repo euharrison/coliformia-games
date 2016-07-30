@@ -3,7 +3,7 @@ var Bonner = function(game, play, group) {
   this.play = play;
   this.group = group;
 
-  Phaser.Sprite.call(this, game, game.width - 170, play.initialPosition.y+50, 'bonner');
+  Phaser.Sprite.call(this, game, game.width-170, play.initialPosition.y-30, 'bonner');
   this.animations.add('atira', [0,1,2,3,2,1,0], 24);
 
   this.anchor.setTo(0.5, 0.5);
@@ -15,7 +15,11 @@ var Bonner = function(game, play, group) {
     'desceAtirando',
     'desceAtirando',
     'desceAtirando',
+    'desceAtirando',
+    'desceAtirando',
     'desceMais',
+    'sobeAtirando',
+    'sobeAtirando',
     'sobeAtirando',
     'sobeAtirando',
     'sobeAtirando',
@@ -38,50 +42,50 @@ Bonner.prototype.nextStep = function(){
 };
 
 Bonner.prototype.enter = function(){
-  var tween = this.game.add.tween(this.scale).to({x:1 , y:1}, 500, Phaser.Easing.Elastic.In);
+  var tween = this.game.add.tween(this.scale).to({ x:1 , y:1 }, 500, Phaser.Easing.Elastic.In);
   tween.onComplete.add(this.nextStep, this);
   tween.start();
 };
 
 Bonner.prototype.desceAtirando = function(){
-  var tween = this.game.add.tween(this.position).to({y:this.y + 50}, 500, Phaser.Easing.Cubic.Out);
+  var tween = this.game.add.tween(this.position).to({ y:this.y+70 }, 100, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(this.nextStep, this);
   this.atira();
   tween.start();
 };
 
 Bonner.prototype.desceMais = function(){
-  var tween = this.game.add.tween(this.position).to({y:this.y + 150}, 500, Phaser.Easing.Cubic.Out);
+  var tween = this.game.add.tween(this.position).to({ y:this.y+140 }, 300, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(this.nextStep, this);
-  this.atira();
+  // this.atira();
   tween.start();
 };
 
 Bonner.prototype.sobeAtirando = function(){
-  var tween = this.game.add.tween(this.position).to({y:this.y - 50}, 500, Phaser.Easing.Cubic.Out);
+  var tween = this.game.add.tween(this.position).to({ y:this.y-70 }, 100, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(this.nextStep, this);
   this.atira();
   tween.start();
 };
 
 Bonner.prototype.sobeMais = function(){
-  var tween = this.game.add.tween(this.position).to({y:this.y - 150}, 500, Phaser.Easing.Cubic.Out);
+  var tween = this.game.add.tween(this.position).to({ y:this.y-140 }, 200, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(this.nextStep, this);
-  this.atira();
+  // this.atira();
   tween.start();
 };
 
 Bonner.prototype.remove = function(){
-  var tween = this.game.add.tween(this.scale).to({x:0 , y:0}, 500, Phaser.Easing.Elastic.In);
+  var tween = this.game.add.tween(this.scale).to({ x:0 , y:0 }, 500, Phaser.Easing.Elastic.In);
   tween.onComplete.add(this.nextStep, this);
   tween.start();
 };
 
 Bonner.prototype.atira = function(){
-  var tween = this.game.add.tween(this).to({angle:'+15'}, 50, Phaser.Easing.Cubic.Out);
-  tween.onComplete.add(function(){
-    new Cocolito(this.game, this.play, this.group, this.x, this.y-this.play.initialPosition.y);
-    this.game.add.tween(this).to({angle:'-15'}, 200, Phaser.Easing.Elastic.Out).start();
+  var tween = this.game.add.tween(this).to({ angle:'+15' }, 50, Phaser.Easing.Cubic.Out);
+  tween.onComplete.add(function() {
+    new Cocolito(this.game, this.play, this.group, this.x, this.y);
+    this.game.add.tween(this).to({ angle:'-15' }, 200, Phaser.Easing.Elastic.Out).start();
   }, this);
 
   this.animations.play('atira');
