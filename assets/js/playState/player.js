@@ -77,7 +77,7 @@ Player.prototype.update = function() {
       }
     }
 
-    this.angle = this.body.velocity.y/15 + (this.isJumping ? 10 : 30);
+    this.angle = this.body.velocity.y/15;
     this.body.rotation = this.angle * Math.PI / 180;
 
     //atualiza se está dentro da água ou não
