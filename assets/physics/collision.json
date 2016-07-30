@@ -6,6 +6,13 @@
       "shape": [ 80, 20,   110, 20,   110, 60,   80, 90,   50, 90]
     }
   ],
+  "cocolito": [
+    {
+      "density": 2, "friction": 0, "bounce": 0,
+      "filter": { "categoryBits": 1, "maskBits": 65535 },
+      "shape": [ 60, 47,   87, 47,   87, 87,   60, 87]
+    }
+  ],
   "zika": [
     {
       "density": 2, "friction": 0, "bounce": 0,
@@ -17,19 +24,7 @@
     {
       "density": 2, "friction": 0, "bounce": 0,
       "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 80, 47,   107, 47,   107, 160,   80, 160]
-    },
-    {
-      "density": 2, "friction": 0, "bounce": 0,
-      "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 73, 107,   113, 107,   -87, 430,   -127, 430]
-    }
-  ],
-  "cocolito": [
-    {
-      "density": 2, "friction": 0, "bounce": 0,
-      "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 60, 47,   87, 47,   87, 87,   60, 87]
+      "shape": [ 105, 60,   140, 60,   -170, 580,   -220, 580]
     }
   ],
   "sus": [
