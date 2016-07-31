@@ -51,11 +51,11 @@ var Sequenciador = function(game, play, group) {
       elements: [ enemy('cocolito') ]
     },
     {
-      id: 'coco-double',
+      id: 'garrafa-pet',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 600,
-      elements: [ enemy('cocolito', 0), enemy('cocolito', 100) ]
+      time: 500,
+      elements: [ enemy('garrafa-pet') ]
     },
     {
       id: 'zika',
@@ -65,7 +65,43 @@ var Sequenciador = function(game, play, group) {
       elements: [ enemy('zika') ]
     },
 
+    // medium enemies
+    {
+      id: 'coco-double',
+      scoreMin: 100,
+      scoreMax: Infinity,
+      time: 600,
+      elements: [ enemy('cocolito', 0), enemy('cocolito', 100) ]
+    },
+    {
+      id: 'sofa',
+      scoreMin: 100,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [
+        enemy('sofa'),
+      ]
+    },
+    {
+      id: 'defunto',
+      scoreMin: 200,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [
+        enemy('defunto'),
+      ]
+    },
+
     // hard enemies
+    {
+      id: 'monte-bosta',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [
+        enemy('monte-bosta'),
+      ]
+    },
     {
       id: 'coco-triple',
       scoreMin: 300,
@@ -83,22 +119,13 @@ var Sequenciador = function(game, play, group) {
         enemy('cocolito', 0, 500), enemy('cocolito', 200, 500), enemy('cocolito', 400, 500),
       ]
     },
-    {
-      id: 'defunto',
-      scoreMin: 300,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [
-        enemy('defunto'),
-      ]
-    },
 
     // bosses
     {
       id: 'sewer',
       scoreMin: 300,
       scoreMax: Infinity,
-      time: 7000,
+      time: 2000,
       elements: [ enemy('sewer') ]
     },
     {
@@ -193,15 +220,30 @@ var Sequenciador = function(game, play, group) {
         var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
         play.pool.get('cocolito', x, y);
         break;
+      case 'garrafa-pet':
+        var x = game.width + 110/2;
+        var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
+        play.pool.get('garrafa-pet', x, y);
+        break;
       case 'zika':
         var x = game.width + 359;
-        var y = play.initialPosition.y - 120;
+        var y = play.initialPosition.y - 50;
         play.pool.get('zika', x, y);
         break;
       case 'defunto':
         var x = game.width + 150/2;
         var y = game.rnd.integerInRange(play.initialPosition.y+120, game.height-120);
-        play.pool.get('defunto', x, y);
+        var enemy = play.pool.get('defunto', x, y);
+        break;
+      case 'sofa':
+        var x = game.width + 431/2;
+        var y = game.height - 150;
+        var enemy = play.pool.get('sofa', x, y);
+        break;
+      case 'monte-bosta':
+        var x = game.width + 735/2;
+        var y = game.height - 528/2;
+        var enemy = play.pool.get('monte-bosta', x, y);
         break;
       case 'sewer':
         new Sewer(game, play, group);

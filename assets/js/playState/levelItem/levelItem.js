@@ -20,7 +20,7 @@ LevelItem.prototype.addBody = function(game, play, colisionGroup, key){
 
 LevelItem.prototype.update = function() {
   if (this.body) {
-    if (this.body.x < 0) {
+    if (this.body.x < -200) {
       this.kill();
     }
   }

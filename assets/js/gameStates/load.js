@@ -41,8 +41,11 @@ var loadState = {
     game.load.image('disease6', SPRITES_DIR + 'diseases/6.jpg');
 
     game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 150, 120);
-    game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 359, 253);
+    game.load.image('garrafa-pet', SPRITES_DIR + 'enemies/garrafa-pet.png', 110, 88);
+    game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 298, 225);
     game.load.spritesheet('defunto', SPRITES_DIR + 'enemies/defunto.png', 150, 240);
+    game.load.image('sofa', SPRITES_DIR + 'enemies/sofa.png', 431, 304); 
+    game.load.image('monte-bosta', SPRITES_DIR + 'enemies/monte-bosta.png', 735, 528); 
 
     game.load.image('sewer', SPRITES_DIR + 'enemies/sewer.png', 237, 175);
     game.load.spritesheet('dudu', SPRITES_DIR + 'enemies/dudu.png', 236, 207);

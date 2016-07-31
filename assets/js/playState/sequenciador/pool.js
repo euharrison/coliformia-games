@@ -10,25 +10,25 @@ var Pool = function(game, play, group) {
   var play = play;
   var enemies = {
     'cocolito': game.add.group(group),
+    'garrafa-pet': game.add.group(group),
     'zika': game.add.group(group),
     'defunto': game.add.group(group),
+    'sofa': game.add.group(group),
+    'monte-bosta': game.add.group(group),
     'mini-cocolito': game.add.group(group),
   }
 
   function get(key, x, y) {
-    createEnemy(key, x, y);
-  }
-
-  function createEnemy(id, x, y) {
-    var group = enemies[id];
+    var group = enemies[key];
     var levelItem = group.getFirstDead();
 
     if (levelItem) {
       levelItem.reviveItem(x, y, -play.velocity);
       levelItem.bringToTop();
-      return;
-    } 
+    } else {
+      levelItem = new Enemy(game, play, group, x, y, key);
+    }
 
-    new Enemy(game, play, group, x, y, id);
+    return levelItem;
   }
 };
