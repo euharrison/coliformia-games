@@ -10,7 +10,7 @@ var Enemy = function(game, play, group, x, y, key) {
   }
 
   if (key == 'monte-bosta') {
-    this.attackSpeed = 4;
+    this.attackSpeed = 1;
   }
 
   this.addBody(game, play, play.enemiesCollisionGroup, key);
