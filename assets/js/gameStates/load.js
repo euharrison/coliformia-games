@@ -54,8 +54,7 @@ var loadState = {
     game.load.image('injection', SPRITES_DIR + 'powerup/injecao.png');
 
     game.load.spritesheet('player', SPRITES_DIR + 'player.png', 150, 120);
-
-    game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 293, 56);
+    game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 165, 81);
 
     // Load physics data json
     game.load.physics('physicsData', 'assets/physics/collision.json');
