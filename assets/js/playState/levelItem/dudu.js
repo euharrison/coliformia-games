@@ -29,8 +29,9 @@ Dudu.prototype.fechaOlhos = function() {
 };
 
 Dudu.prototype.ataca = function() {
-  var laser = new Phaser.Image(game, -261, -21, 'dudu-laser');
+  var laser = new Phaser.Image(game, -341, -14, 'dudu-laser');
   this.addChild(laser);
 
+  this.attackSpeed = 4;
   this.addBody(game, this.play, this.play.enemiesCollisionGroup, 'dudu');
 };

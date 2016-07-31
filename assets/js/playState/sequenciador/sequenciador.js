@@ -124,7 +124,7 @@ var Sequenciador = function(game, play, group) {
       id: 'dudu',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 6000,
+      time: 3000,
       elements: [ dudu() ]
     },
     {
