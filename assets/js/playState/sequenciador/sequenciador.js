@@ -131,7 +131,7 @@ var Sequenciador = function(game, play, group) {
       id: 'bonner',
       scoreMin: 900,
       scoreMax: Infinity,
-      time: 5000,
+      time: 4000,
       elements: [ bonner() ]
     },
 
@@ -210,12 +210,12 @@ var Sequenciador = function(game, play, group) {
       case 'cocolito':
         var x = game.width + 150/2;
         var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
-        play.pool.createCocolito(x, y);
+        play.pool.get('cocolito', x, y);
         break;
       case 'zika':
         var x = game.width + 359;
         var y = play.initialPosition.y - 120;
-        play.pool.createZika(x, y);
+        play.pool.get('zika', x, y);
         break;
       case 'sewer':
         new Sewer(game, play, group);

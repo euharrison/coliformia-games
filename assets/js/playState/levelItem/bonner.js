@@ -84,7 +84,7 @@ Bonner.prototype.remove = function() {
 };
 
 Bonner.prototype.atira = function() {
-  this.play.pool.createMiniCocolito(this.x, this.y);
+  this.play.pool.get('mini-cocolito', this.x, this.y);
 
   var tween = this.game.add.tween(this).to({ angle:10 }, 100, Phaser.Easing.Cubic.Out, true);
   tween.onComplete.add(function() {

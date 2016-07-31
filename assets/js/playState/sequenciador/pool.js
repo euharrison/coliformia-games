@@ -2,9 +2,7 @@ var Pool = function(game, play, group) {
 
   //public
 
-  this.createCocolito = createCocolito;
-  this.createMiniCocolito = createMiniCocolito;
-  this.createZika = createZika;
+  this.get = get;
 
   //private
 
@@ -16,16 +14,8 @@ var Pool = function(game, play, group) {
     'zika': game.add.group(group),
   }
 
-  function createCocolito(x, y) {
-    createEnemy('cocolito', x, y);
-  }
-
-  function createMiniCocolito(x, y) {
-    createEnemy('mini-cocolito', x, y);
-  }
-
-  function createZika(x, y) {
-    createEnemy('zika', x, y);
+  function get(key, x, y) {
+    createEnemy(key, x, y);
   }
 
   function createEnemy(id, x, y) {
@@ -38,16 +28,6 @@ var Pool = function(game, play, group) {
       return;
     } 
 
-    switch (id) {
-      case 'cocolito':
-        new Cocolito(game, play, group, x, y);
-        break;
-      case 'mini-cocolito':
-        new MiniCocolito(game, play, group, x, y);
-        break;
-      case 'zika':
-        new Zika(game, play, group, x, y);
-        break;
-    }
+    new Enemy(game, play, group, x, y, id);
   }
 };
