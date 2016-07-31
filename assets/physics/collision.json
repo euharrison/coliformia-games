@@ -13,13 +13,6 @@
       "shape": [ 60, 47,   87, 47,   87, 87,   60, 87]
     }
   ],
-  "mini-cocolito": [
-    {
-      "density": 2, "friction": 0, "bounce": 0,
-      "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 43, 23,   63, 23,   63, 63,   43, 63]
-    }
-  ],
   "zika": [
     {
       "density": 2, "friction": 0, "bounce": 0,
@@ -27,11 +20,25 @@
       "shape": [ 80, 100,   200, 100,   200, 187,   80, 187]
     }
   ],
+  "defunto": [
+    {
+      "density": 2, "friction": 0, "bounce": 0,
+      "filter": { "categoryBits": 1, "maskBits": 65535 },
+      "shape": [ 60, 20,   100, 20,   110, 200,   60, 200,   30, 100]
+    }
+  ],
   "dudu": [
     {
       "density": 2, "friction": 0, "bounce": 0,
       "filter": { "categoryBits": 1, "maskBits": 65535 },
       "shape": [ 105, 60,   140, 60,   -170, 580,   -220, 580]
+    }
+  ],
+  "mini-cocolito": [
+    {
+      "density": 2, "friction": 0, "bounce": 0,
+      "filter": { "categoryBits": 1, "maskBits": 65535 },
+      "shape": [ 43, 23,   63, 23,   63, 63,   43, 63]
     }
   ],
   "sus": [

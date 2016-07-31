@@ -10,8 +10,9 @@ var Pool = function(game, play, group) {
   var play = play;
   var enemies = {
     'cocolito': game.add.group(group),
-    'mini-cocolito': game.add.group(group),
     'zika': game.add.group(group),
+    'defunto': game.add.group(group),
+    'mini-cocolito': game.add.group(group),
   }
 
   function get(key, x, y) {

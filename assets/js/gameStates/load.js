@@ -40,13 +40,15 @@ var loadState = {
     game.load.image('disease5', SPRITES_DIR + 'diseases/5.jpg');
     game.load.image('disease6', SPRITES_DIR + 'diseases/6.jpg');
 
-    game.load.spritesheet('bonner', SPRITES_DIR + 'enemies/bonner.png', 431, 304);
+    game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 150, 120);
     game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 359, 253);
+    game.load.spritesheet('defunto', SPRITES_DIR + 'enemies/defunto.png', 150, 240);
+
+    game.load.image('sewer', SPRITES_DIR + 'enemies/sewer.png', 237, 175);
     game.load.spritesheet('dudu', SPRITES_DIR + 'enemies/dudu.png', 236, 207);
     game.load.spritesheet('dudu-laser', SPRITES_DIR + 'enemies/dudu-laser.png', 347, 465);
-    game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 150, 120);
+    game.load.spritesheet('bonner', SPRITES_DIR + 'enemies/bonner.png', 431, 304);
     game.load.spritesheet('mini-cocolito', SPRITES_DIR + 'enemies/mini-cocolito.png', 110, 88);
-    game.load.image('sewer', SPRITES_DIR + 'enemies/sewer.png', 237, 175);
 
     game.load.image('sus', SPRITES_DIR + 'powerup/sus.png');
     game.load.image('injection', SPRITES_DIR + 'powerup/injecao.png');
