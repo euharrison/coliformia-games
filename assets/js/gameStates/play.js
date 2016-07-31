@@ -28,9 +28,10 @@ var playState = {
     this.powerupsCollisionGroup = game.physics.p2.createCollisionGroup();
     game.physics.p2.updateBoundsCollisionGroup();
 
-    // add enemies/power-ups sequecences
-    this.sequenciador = new Sequenciador(game, this, game.add.group());
-    this.sequenciador.setup();
+    // items manager (pool + sqeuenciador)
+    var itemsGroup = game.add.group();
+    this.pool = new Pool(game, this, itemsGroup);
+    this.sequenciador = new Sequenciador(game, this, itemsGroup);
 
     // add player
     this.player = new Player(game, this.initialPosition.x, this.initialPosition.y);

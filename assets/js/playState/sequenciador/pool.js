@@ -3,6 +3,7 @@ var Pool = function(game, play, group) {
   //public
 
   this.createCocolito = createCocolito;
+  this.createMiniCocolito = createMiniCocolito;
   this.createZika = createZika;
 
   //private
@@ -11,11 +12,16 @@ var Pool = function(game, play, group) {
   var play = play;
   var enemies = {
     'cocolito': game.add.group(group),
-    'zika': game.add.group(group)
+    'mini-cocolito': game.add.group(group),
+    'zika': game.add.group(group),
   }
 
   function createCocolito(x, y) {
     createEnemy('cocolito', x, y);
+  }
+
+  function createMiniCocolito(x, y) {
+    createEnemy('mini-cocolito', x, y);
   }
 
   function createZika(x, y) {
@@ -28,12 +34,16 @@ var Pool = function(game, play, group) {
 
     if (levelItem) {
       levelItem.reviveItem(x, y, -play.velocity);
+      levelItem.bringToTop();
       return;
     } 
 
     switch (id) {
       case 'cocolito':
         new Cocolito(game, play, group, x, y);
+        break;
+      case 'mini-cocolito':
+        new MiniCocolito(game, play, group, x, y);
         break;
       case 'zika':
         new Zika(game, play, group, x, y);

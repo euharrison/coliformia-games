@@ -2,7 +2,6 @@ var Sequenciador = function(game, play, group) {
 
   //public
 
-  this.setup = setup;
   this.update = update;
 
   //private
@@ -10,8 +9,6 @@ var Sequenciador = function(game, play, group) {
   var game = game;
   var play = play;
   var group = group;
-
-  var pool = new Pool(game, play, group);
 
   var currentSequence = null;
   var currentElement = 0;
@@ -124,18 +121,18 @@ var Sequenciador = function(game, play, group) {
       elements: [ sewer() ]
     },
     {
-      id: 'bonner',
-      scoreMin: 600,
-      scoreMax: Infinity,
-      time: 5000,
-      elements: [ bonner() ]
-    },
-    {
       id: 'dudu',
-      scoreMin: 1000,
+      scoreMin: 600,
       scoreMax: Infinity,
       time: 6000,
       elements: [ dudu() ]
+    },
+    {
+      id: 'bonner',
+      scoreMin: 900,
+      scoreMax: Infinity,
+      time: 5000,
+      elements: [ bonner() ]
     },
 
     // life
@@ -163,10 +160,7 @@ var Sequenciador = function(game, play, group) {
   ];
 
   var sequences = [];
-
-  function setup () {
-    changeSequence(0);
-  }
+  changeSequence(0);
 
   function update(currentScore){
     elapsedTime += game.time.elapsed;
@@ -216,12 +210,12 @@ var Sequenciador = function(game, play, group) {
       case 'cocolito':
         var x = game.width + 150/2;
         var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
-        pool.createCocolito(x, y);
+        play.pool.createCocolito(x, y);
         break;
       case 'zika':
         var x = game.width + 359;
         var y = play.initialPosition.y - 120;
-        pool.createZika(x, y);
+        play.pool.createZika(x, y);
         break;
       case 'sewer':
         new Sewer(game, play, group);

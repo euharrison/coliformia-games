@@ -13,6 +13,13 @@
       "shape": [ 60, 47,   87, 47,   87, 87,   60, 87]
     }
   ],
+  "mini-cocolito": [
+    {
+      "density": 2, "friction": 0, "bounce": 0,
+      "filter": { "categoryBits": 1, "maskBits": 65535 },
+      "shape": [ 43, 23,   63, 23,   63, 63,   43, 63]
+    }
+  ],
   "zika": [
     {
       "density": 2, "friction": 0, "bounce": 0,
