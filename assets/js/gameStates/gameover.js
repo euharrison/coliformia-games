@@ -40,6 +40,16 @@ var gameoverState = {
       fontSize: 30
     }).addColor('#000000', String(scoreValue).length+1);
 
+    if (typeof ga === 'function') {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Game',
+          eventAction: 'gameover',
+          eventLabel: 'success',
+          eventValue: scoreValue
+        });
+    }
+
     //text disease
     var textDisease = game.add.text(textScore.x, textScore.y+textScore.height, disease.name.replace(' ', '\n'), {
       font: 'Noyh',
@@ -94,6 +104,17 @@ var gameoverState = {
       method: 'share',
       display: 'popup',
       href: 'http://coliformiagames.com/'+this,
-    }, function(response){});
+    }, function(response){
+        if (typeof ga === 'function') {
+            var score = Math.ceil(game.score) || 0;
+            ga('send', {
+              hitType: 'event',
+              eventCategory: 'Game',
+              eventAction: 'share',
+              eventLabel: 'success',
+              eventValue: score
+            });
+        }
+    });
   },
 };
