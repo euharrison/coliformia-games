@@ -19,6 +19,15 @@ var menuState = {
       game.scale.startFullScreen();
     }
 
+    if (typeof ga === 'function') {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Game',
+          eventAction: 'play',
+          eventLabel: 'start'
+        });
+    }
+
     game.state.start('play');
   }
 };
