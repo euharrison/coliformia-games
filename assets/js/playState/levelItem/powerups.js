@@ -1,19 +1,13 @@
-var PowerUp = function(game, play, group, name, y, x) {
-  x = (x === undefined) ? game.width : x;
-  x += 225/2;
+var PowerUp = function(game, play, group, x, y, key) {
+  Phaser.Sprite.call(this, game, x, y, key);
 
-  y = (y === undefined) ? game.rnd.integerInRange(0, game.height-play.initialPosition.y-100) : y;
-  y += play.initialPosition.y;
-
-  Phaser.Sprite.call(this, game, x, y, name);
-
-  this.animations.add(name, [0,1,2], 12, true);
-  this.animations.play(name);
+  this.animations.add(key, null, 12, true);
+  this.animations.play(key);
   group.add(this);
 
-  var body = this.addBody(game, play, play.powerupsCollisionGroup, this.key);
+  var body = this.addBody(game, play, play.powerupsCollisionGroup, key);
 
-  if (name == 'injection') {
+  if (key == 'injection') {
     body.power = 500;
   } else {
     body.power = 150;
