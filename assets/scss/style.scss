@@ -2,10 +2,8 @@
 @import 'fonts';
 
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   font-family: 'Lato', sans-serif;
-  font-weight: 900;
+  font-weight: 300;
   background: url($img + 'waves-white.svg') center top;
   color: $brown;
   margin: 0;
@@ -18,6 +16,10 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+strong {
+  font-weight: 900;
 }
 
 #game-container {
@@ -40,11 +42,10 @@ a {
   padding: 0 20px;
   font-size: responsive(16, 28);
   line-height: 1.5;
-  font-weight: 400;
+  text-align: center;
 
   h1 {
     margin: 0;
-    text-align: center;
 
     img {
       width: 300px;
@@ -62,9 +63,10 @@ a {
   max-width: 1000px;
   padding: 0 20px;
   font-size: responsive(14, 30);
+  line-height: 1.5;
   text-align: center;
   background: url($img + 'loga-rip.svg') center top no-repeat;
-  padding-top: 190px;
+  padding-top: 200px;
 
   .ref {
     font-size: responsive(10, 20);
