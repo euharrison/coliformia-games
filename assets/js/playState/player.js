@@ -90,6 +90,18 @@ Player.prototype.update = function() {
     this.angle = this.body.velocity.y/15;
     this.body.rotation = this.angle * Math.PI / 180;
 
+    if (this.isJumping && !(this.body.y < this.initialPosition.y))
+    {
+        game.coliformiaSounds.cai_na_agua.play();
+    } else if(!this.isJumping && (this.body.y < this.initialPosition.y)) {
+        if(Math.random() > 0.5)
+        {
+            game.coliformiaSounds.bolha_ou_pulo1.play();
+        } else {
+            game.coliformiaSounds.bolha_ou_pulo2.play();
+        }
+    }
+
     //atualiza se está dentro da água ou não
     this.isJumping = (this.body.y < this.initialPosition.y);
 

@@ -125,10 +125,12 @@ var playState = {
   },
 
   enemyCollisionHandler: function(body1, body2) {
+      game.coliformiaSounds.hit.play();
     this.die();
   },
 
   powerupCollisionHandler: function(body1, body2) {
+      game.coliformiaSounds.power_up.play();
     if (body2.sprite) {
       body2.sprite.destroy();
     }
