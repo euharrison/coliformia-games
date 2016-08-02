@@ -33,7 +33,7 @@ var Sequenciador = function(game, play, group) {
       elements: [ element('cocolito', 1000, 30) ]
     },
 
-    // easy enemies
+    // < 200m
     {
       id: 'coco-single',
       scoreMin: 1,
@@ -42,31 +42,38 @@ var Sequenciador = function(game, play, group) {
       elements: [ element('cocolito') ]
     },
     {
+      id: 'coco-double',
+      scoreMin: 30,
+      scoreMax: Infinity,
+      time: 800,
+      elements: [
+        element('cocolito', 0),
+        element('cocolito', 200)
+      ]
+    },
+    {
+      id: 'zika',
+      scoreMin: 60,
+      scoreMax: Infinity,
+      time: 600,
+      elements: [ element('zika') ]
+    },
+    {
+      id: 'sewer',
+      scoreMin: 100,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [ element('sewer') ]
+    },
+    {
       id: 'peixe',
       scoreMin: 150,
       scoreMax: Infinity,
       time: 600,
       elements: [ element('peixe') ]
     },
-    {
-      id: 'zika',
-      scoreMin: 50,
-      scoreMax: Infinity,
-      time: 600,
-      elements: [ element('zika') ]
-    },
 
-    // medium enemies
-    {
-      id: 'coco-double',
-      scoreMin: 50,
-      scoreMax: Infinity,
-      time: 700,
-      elements: [
-        element('cocolito', 0),
-        element('cocolito', 100)
-      ]
-    },
+    // < 400m
     {
       id: 'defunto',
       scoreMin: 200,
@@ -75,6 +82,13 @@ var Sequenciador = function(game, play, group) {
       elements: [
         element('defunto'),
       ]
+    },
+    {
+      id: 'bonner',
+      scoreMin: 250,
+      scoreMax: Infinity,
+      time: 4000,
+      elements: [ element('bonner') ]
     },
     {
       id: 'finding-nemo',
@@ -91,28 +105,6 @@ var Sequenciador = function(game, play, group) {
       ]
     },
     {
-      id: 'sofa',
-      scoreMin: 400,
-      scoreMax: Infinity,
-      time: 2000,
-      elements: [
-        element('sofa'),
-      ]
-    },
-
-    // hard enemies
-    {
-      id: 'coco-triple',
-      scoreMin: 500,
-      scoreMax: Infinity,
-      time: 800,
-      elements: [
-        element('cocolito', 0),
-        element('cocolito', 100),
-        element('cocolito', 200)
-      ]
-    },
-    {
       id: 'coco-tunnel',
       scoreMin: 300,
       scoreMax: Infinity,
@@ -126,8 +118,39 @@ var Sequenciador = function(game, play, group) {
         element('cocolito', 200, 430),
       ]
     },
+
+    // < 600m
     {
-      id: 'coco-wall',
+      id: 'dudu',
+      scoreMin: 400,
+      scoreMax: Infinity,
+      time: 3000,
+      elements: [ element('dudu') ]
+    },
+    {
+      id: 'sofa',
+      scoreMin: 500,
+      scoreMax: Infinity,
+      time: 2000,
+      elements: [
+        element('sofa'),
+      ]
+    },
+
+    // < 1000m
+    {
+      id: 'coco-triple',
+      scoreMin: 500,
+      scoreMax: Infinity,
+      time: 1000,
+      elements: [
+        element('cocolito', 0),
+        element('cocolito', 200),
+        element('cocolito', 400)
+      ]
+    },
+    {
+      id: 'coco-funnel',
       scoreMin: 600,
       scoreMax: Infinity,
       time: 1100,
@@ -148,29 +171,6 @@ var Sequenciador = function(game, play, group) {
       elements: [
         element('monte-bosta'),
       ]
-    },
-
-    // bosses
-    {
-      id: 'sewer',
-      scoreMin: 100,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ element('sewer') ]
-    },
-    {
-      id: 'dudu',
-      scoreMin: 500,
-      scoreMax: Infinity,
-      time: 3000,
-      elements: [ element('dudu') ]
-    },
-    {
-      id: 'bonner',
-      scoreMin: 250,
-      scoreMax: Infinity,
-      time: 4000,
-      elements: [ element('bonner') ]
     },
 
     // life
