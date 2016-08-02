@@ -117,7 +117,6 @@ var playState = {
     }
 
     //score
-    game.score += this.velocity/1000;
     game.score += this.velocity/2000;
     this.scoreText.text = game.score.toFixed(0)+'m';
 
