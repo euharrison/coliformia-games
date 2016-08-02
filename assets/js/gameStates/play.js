@@ -72,8 +72,6 @@ var playState = {
     this.scoreText.anchor.setTo(0.5);
 
     this.isJumping = false;
-
-    cursors = game.input.keyboard.createCursorKeys();
   },
 
   update: function() {
@@ -100,24 +98,26 @@ var playState = {
       }
       //skull
       this.lifeSkull.scale.setTo(1 + 0.25*(1-lifePercent));
-      if (lifePercent < 0.9) {
+      if (lifePercent < 0.9 && this.player.alive) {
         this.lifeSkullAnimation.start();
         this.lifeSkullAnimation.resume();
         this.lifeSkullAnimation.timeScale = 4*(1-lifePercent);
-
       } else {
         this.lifeSkullAnimation.pause();
         this.lifeSkull.angle = 0;
       }
     } else {
-      game.state.start('gameover');
+      this.die();
     }
 
     //velocidade do jogo
     this.velocity += this.velocityIncrease;
+    if (this.velocity <= 2) {
+      this.gameover();
+    }
 
     //score
-    game.score += this.velocity/1000;
+    game.score += this.velocity/2000;
     this.scoreText.text = game.score.toFixed(0)+'m';
 
     //sequence
@@ -125,7 +125,7 @@ var playState = {
   },
 
   enemyCollisionHandler: function(body1, body2) {
-    game.state.start('gameover');
+    this.die();
   },
 
   powerupCollisionHandler: function(body1, body2) {
@@ -137,5 +137,21 @@ var playState = {
     } else {
       this.playerlife.current = this.playerlife.current + body2.power;
     }
+  },
+
+  die: function() {
+    if (this.player.alive) {
+      this.playerlife.current = 0;
+      this.player.alive = false;
+      this.player.body.clearShapes();
+      this.player.animations.play('die');
+      this.rastro.destroy();
+    }
+
+    this.velocityIncrease = -1;
+  },
+
+  gameover: function() {
+    game.state.start('gameover');
   },
 };

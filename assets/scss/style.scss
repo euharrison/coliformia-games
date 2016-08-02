@@ -6,8 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   font-family: 'Lato', sans-serif;
   font-weight: 900;
-  background: $brown url($img + 'ondas.svg') center 34px;
-  color: white;
+  background: url($img + 'waves-white.svg') center top;
+  color: $brown;
   margin: 0;
 }
 
@@ -20,35 +20,55 @@ a {
   }
 }
 
-header {
-  background: url($img + 'header.svg') center top no-repeat;
-  height: 250px;
-  padding: 25px 40px;
-  text-align: center;
+#highlight {
+  background: $dark-brown url($img + 'waves-brown.svg') center top;
+  padding-bottom: 100px;
 
-  h1 {
-    margin: 0;
+  header {
+    text-align: center;
 
-    img {
-      max-width: 100%;
+    h1 {
+      margin: 0;
+      padding-top: responsive(25, 50);
+
+      img {
+        max-width: 100%;
+      }
     }
+
+    .share {
+      padding-top: responsive(25, 50);
+    }
+  }
+
+  #game {
+    padding-top: responsive(25, 50);
+    margin: auto;
+    max-width: 1280px;
+    max-height: 720px;
   }
 }
 
-#game {
-  margin: responsive(30, 100) auto;
-  max-width: 1280px;
-  max-height: 720px;
+
+#intro {
+  position: relative;
+  margin: -50px auto 0;
+  max-width: 1000px;
+  padding: 0 20px;
+  font-size: responsive(16, 28);
+  line-height: 1.5;
+  background: url($img + 'loga-coliformia.svg') center top no-repeat;
+  padding-top: responsive(130, 170);
 }
 
 #main-quote {
-  margin: 100px auto;
-  max-width: 1240px;
+  margin: 50px auto 0;
+  max-width: 1000px;
   padding: 0 20px;
-  font-size: responsive(20, 40);
+  font-size: responsive(14, 30);
   text-align: center;
-  background: url($img + 'loga-abraco.svg') center top no-repeat;
-  padding-top: 130px;
+  background: url($img + 'loga-rip.svg') center top no-repeat;
+  padding-top: 190px;
 
   .ref {
     font-size: responsive(10, 20);
@@ -60,7 +80,7 @@ header {
   font-size: responsive(14, 16);
   color: $red;
   margin: responsive(50, 100) auto;
-  max-width: 1240px;
+  max-width: 1000px;
   line-height: 1.5;
 
   p {
@@ -112,7 +132,7 @@ header {
 
   .cocolito {
     position: absolute;
-    top: -50px;
+    top: responsive(-25, -50);
     left: 50%;
     margin-left: responsive(-25, -40);
     width: responsive(50, 80);
@@ -120,7 +140,7 @@ header {
 
   .caveira {
     position: absolute;
-    bottom: -50px;
+    bottom: responsive(-25, -50);
     left: 50%;
     margin-left: responsive(-25, -40);
     width: responsive(50, 80);
@@ -157,6 +177,22 @@ footer {
 }
 
 @media (min-width: 960px) {
+  #highlight {
+    header {
+      position: relative;
+      max-width: 1280px;
+      margin: auto;
+
+      .share {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        padding-top: 0;
+      }
+    }
+  }
+
   #other-quotes {
     display: flex;
     flex-wrap: wrap;

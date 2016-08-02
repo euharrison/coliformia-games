@@ -10,7 +10,7 @@ var Enemy = function(game, play, group, x, y, key) {
   }
 
   if (key == 'monte-bosta') {
-    this.attackSpeed = 1;
+    this.attackSpeed = game.coliformiaConfig.monteBostaSpeed;
   }
 
   this.addBody(game, play, play.enemiesCollisionGroup, key);

@@ -13,11 +13,11 @@
       "shape": [ 60, 47,   87, 47,   87, 87,   60, 87]
     }
   ],
-  "garrafa-pet": [
+  "peixe": [
     {
       "density": 2, "friction": 0, "bounce": 0,
       "filter": { "categoryBits": 1, "maskBits": 65535 },
-      "shape": [ 17, 62,   80, 11,   94, 27,   32, 80]
+      "shape": [ 50, 50,   100, 50,   100, 80,   50, 80]
     }
   ],
   "zika": [
