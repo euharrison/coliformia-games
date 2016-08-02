@@ -5,6 +5,7 @@ var ColiformiaConfigurations = (function () {
     var config = {
       velocity: 200,
       velocityIncrease: 0.02,
+      monteBostaSpeed:2,
       initialPosition: {
         x: 130,
         y: 230
