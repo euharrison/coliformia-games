@@ -20,26 +20,9 @@ a {
   }
 }
 
-#highlight {
+#game-container {
   background: $dark-brown url($img + 'waves-brown.svg') center top;
   padding-bottom: 100px;
-
-  header {
-    text-align: center;
-
-    h1 {
-      margin: 0;
-      padding-top: responsive(25, 50);
-
-      img {
-        max-width: 100%;
-      }
-    }
-
-    .share {
-      padding-top: responsive(25, 50);
-    }
-  }
 
   #game {
     padding-top: responsive(25, 50);
@@ -57,8 +40,20 @@ a {
   padding: 0 20px;
   font-size: responsive(16, 28);
   line-height: 1.5;
-  background: url($img + 'loga-coliformia.svg') center top no-repeat;
-  padding-top: responsive(130, 170);
+
+  h1 {
+    margin: 0;
+    text-align: center;
+
+    img {
+      width: 300px;
+    }
+  }
+
+  .share {
+    text-align: center;
+    padding: 10px 0; 
+  }
 }
 
 #main-quote {
