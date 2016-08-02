@@ -33,6 +33,10 @@
     </h1>
   </header>
 
+  <div id="share">
+    <div class="fb-like" data-href="https://www.facebook.com/coliformiagames/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+  </div>
+
   <div id="game"></div>
 
   <div id="main-quote">
@@ -130,6 +134,7 @@
   <script type="text/javascript" src="assets/js/gameConfigurations.js"></script>
   <script type="text/javascript" src="assets/js/game.js"></script>
 
+  <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -139,13 +144,13 @@
       });
     };
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.7&appId=268817573490166";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
 
   <script>
