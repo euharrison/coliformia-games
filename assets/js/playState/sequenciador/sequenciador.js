@@ -240,7 +240,7 @@ var Sequenciador = function(game, play, group) {
     sequenciaStartTime = elapsedTime;
     currentElement = 0;
 
-    console.log('starting: ' + currentSequence.id, availableIndexes, new Date());
+    // console.log('starting: ' + currentSequence.id, availableIndexes, new Date());
   };
 
   function updateSequence() {

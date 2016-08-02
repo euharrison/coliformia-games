@@ -102,21 +102,23 @@ var playState = {
       }
       //skull
       this.lifeSkull.scale.setTo(1 + 0.25*(1-lifePercent));
-      if (lifePercent < 0.9) {
+      if (lifePercent < 0.9 && this.player.alive) {
         this.lifeSkullAnimation.start();
         this.lifeSkullAnimation.resume();
         this.lifeSkullAnimation.timeScale = 4*(1-lifePercent);
-
       } else {
         this.lifeSkullAnimation.pause();
         this.lifeSkull.angle = 0;
       }
     } else {
-      game.state.start('gameover');
+      this.die();
     }
 
     //velocidade do jogo
     this.velocity += this.velocityIncrease;
+    if (this.velocity <= 2) {
+      this.gameover();
+    }
 
     //score
     game.score += this.velocity/1000;
@@ -127,7 +129,7 @@ var playState = {
   },
 
   enemyCollisionHandler: function(body1, body2) {
-    game.state.start('gameover');
+    this.die();
   },
 
   powerupCollisionHandler: function(body1, body2) {
@@ -139,5 +141,19 @@ var playState = {
     } else {
       this.playerlife.current = this.playerlife.current + body2.power;
     }
+  },
+
+  die: function() {
+    if (this.player.alive) {
+      this.playerlife.current = 0;
+      this.player.alive = false;
+      this.player.animations.play('die');
+    }
+
+    this.velocityIncrease = -1;
+  },
+
+  gameover: function() {
+    game.state.start('gameover');
   },
 };

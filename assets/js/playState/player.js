@@ -10,6 +10,7 @@ var Player = function (game, x, y) {
   this.animations.add('swim', [0,1,2,3,4,5], 12, true);
   this.animations.add('jump', [6], 12, false);
   this.animations.add('fall', [7], 12, false);
+  this.animations.add('die', [8,9,10,11], 12, false);
   this.animations.play('swim');
   game.add.existing(this);
 
@@ -43,12 +44,18 @@ Player.prototype.update = function() {
       //ao entrar na água após o pulo, desacelerar
       if (this.body.y >= this.initialPosition.y) {
         this.body.velocity.y /= 10;
-        this.animations.play('swim');
+        if (this.alive) {
+          this.animations.play('swim');
+        }
       } else {
         if (this.body.velocity.y < 0) {
-          this.animations.play('jump');
+          if (this.alive) {
+            this.animations.play('jump');
+          }
         } else {
-          this.animations.play('fall');
+          if (this.alive) {
+            this.animations.play('fall');
+          }
         }
       }
     }
@@ -58,7 +65,7 @@ Player.prototype.update = function() {
       this.body.velocity.y -= (this.body.y - this.initialPosition.y) * this.forcas.empuxoDaAgua;
 
       //nadar para baixo
-      if (this.isTouchDown) {
+      if (this.isTouchDown && this.alive) {
         this.body.velocity.y += this.forcas.forcaPraBaixo;
 
         //impoe um limite de velocidade para baixo
