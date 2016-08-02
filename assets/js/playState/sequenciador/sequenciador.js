@@ -103,7 +103,7 @@ var Sequenciador = function(game, play, group) {
       scoreMin: 500,
       scoreMax: Infinity,
       time: 600,
-      elements: [ 
+      elements: [
         element('cocolito', 0),
         element('cocolito', 100),
         element('cocolito', 200)
@@ -115,9 +115,9 @@ var Sequenciador = function(game, play, group) {
       scoreMax: Infinity,
       time: 600,
       elements: [
-        element('cocolito', 0, 0), 
+        element('cocolito', 0, 0),
         element('cocolito', 0, 430),
-        element('cocolito', 100, 0), 
+        element('cocolito', 100, 0),
         element('cocolito', 100, 430),
         element('cocolito', 200, 0),
         element('cocolito', 200, 430),
@@ -183,7 +183,7 @@ var Sequenciador = function(game, play, group) {
       scoreMin: 200,
       scoreMax: Infinity,
       time: 1200,
-      elements: [ 
+      elements: [
         element('sus', 0, 400),
         element('sus', 100, 300),
         element('sus', 200, 200),
@@ -288,10 +288,26 @@ var Sequenciador = function(game, play, group) {
         break;
 
       case 'bonner':
+          if (typeof ga === 'function') {
+              ga('send', {
+                hitType: 'event',
+                eventCategory: 'Game',
+                eventAction: 'boss',
+                eventLabel: 'bonner'
+              });
+          }
         new Bonner(game, play, group);
         break;
 
       case 'dudu':
+          if (typeof ga === 'function') {
+              ga('send', {
+                hitType: 'event',
+                eventCategory: 'Game',
+                eventAction: 'boss',
+                eventLabel: 'dudu'
+              });
+          }
         new Dudu(game, play, group);
         break;
 
