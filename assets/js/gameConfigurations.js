@@ -17,7 +17,7 @@ var ColiformiaConfigurations = (function () {
         forcas: {
           forcaPraBaixo: 40,
           empuxoDaAgua: 0.01,
-          gravidade: 15
+          gravidade: 25
         }
       },
       debugPhysics: false,
