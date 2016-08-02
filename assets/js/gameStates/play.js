@@ -2,8 +2,6 @@ var playState = {
 
   create: function() {
 
-      window.game = game;
-
     this.initialPosition = game.coliformiaConfig.initialPosition;
     this.playerlife = game.coliformiaConfig.player.life;
     this.velocity = game.coliformiaConfig.velocity;
@@ -74,8 +72,6 @@ var playState = {
     this.scoreText.anchor.setTo(0.5);
 
     this.isJumping = false;
-
-    game.coliformiaSounds.nada.loopFull(0.5);
   },
 
   update: function() {
@@ -129,13 +125,10 @@ var playState = {
   },
 
   enemyCollisionHandler: function(body1, body2) {
-      game.coliformiaSounds.nada.stop();
-      game.coliformiaSounds.hit.play();
     this.die();
   },
 
   powerupCollisionHandler: function(body1, body2) {
-      game.coliformiaSounds.power_up.play();
     if (body2.sprite) {
       body2.sprite.destroy();
     }
@@ -148,7 +141,6 @@ var playState = {
 
   die: function() {
     if (this.player.alive) {
-        game.coliformiaSounds.morte_boiando.play();
       this.playerlife.current = 0;
       this.player.alive = false;
       this.player.body.clearShapes();
