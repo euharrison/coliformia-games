@@ -131,6 +131,7 @@ var playState = {
 
   enemyCollisionHandler: function(body1, body2) {
       game.coliformiaSounds.nada.stop();
+      game.coliformiaSounds.musica.stop();
       game.coliformiaSounds.hit.play();
     this.die();
   },
