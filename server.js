@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
   {
     url: 'http://coliformiagames.com',
     title: 'Coliformia Games',
-    description: 'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RiodeMerda',
+    description: 'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RioDeMerda',
     image: '01.jpg',
   });
 });
@@ -25,37 +25,37 @@ app.get('/:id', function(req, res) {
     {
       url: 'http://coliformiagames.com/1',
       title: 'Coliformia Games :: Sebacitóide Bolhosa',
-      description: 'Peguei Sebacitóide Bolhosa na Baía de Guanabara! #RiodeMerda',
+      description: 'Peguei Sebacitóide Bolhosa na Baía de Guanabara! #RioDeMerda',
       image: '01.jpg',
     },
     {
       url: 'http://coliformiagames.com/2',
       title: 'Coliformia Games :: Eczecrose Amebática',
-      description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 100m! #RiodeMerda',
+      description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 100m! #RioDeMerda',
       image: '02.jpg',
     },
     {
       url: 'http://coliformiagames.com/3',
       title: 'Coliformia Games :: Lepstosciforme Cutínica',
-      description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 200m! #RiodeMerda',
+      description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 200m! #RioDeMerda',
       image: '03.jpg',
     },
     {
       url: 'http://coliformiagames.com/4',
       title: 'Coliformia Games :: Tifoidema Urticariante',
-      description: 'Peguei Tifoidema Urticariante na Baía de Guanabara nadando mais de 500m! #RiodeMerda',
+      description: 'Peguei Tifoidema Urticariante na Baía de Guanabara nadando mais de 500m! #RioDeMerda',
       image: '04.jpg',
     },
     {
       url: 'http://coliformiagames.com/5',
       title: 'Coliformia Games :: Ceraglifia Imunoglobótica',
-      description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 1000m! #RiodeMerda',
+      description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 1000m! #RioDeMerda',
       image: '05.jpg',
     },
     {
       url: 'http://coliformiagames.com/6',
       title: 'Coliformia Games :: Anidrosema Sebacitante',
-      description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1500m! #RiodeMerda',
+      description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1500m! #RioDeMerda',
       image: '06.jpg',
     }
   ]

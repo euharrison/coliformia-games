@@ -29,16 +29,21 @@ a {
 
     h1 {
       margin: 0;
-      padding: responsive(25, 50);
+      padding-top: responsive(25, 50);
 
       img {
         max-width: 100%;
       }
     }
+
+    .share {
+      padding-top: responsive(25, 50);
+    }
   }
 
   #game {
-    margin: responsive(25, 50) auto;
+    padding-top: responsive(25, 50);
+    margin: auto;
     max-width: 1280px;
     max-height: 720px;
   }
@@ -183,6 +188,7 @@ footer {
         top: 50%;
         left: 0;
         transform: translateY(-50%);
+        padding-top: 0;
       }
     }
   }
