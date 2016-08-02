@@ -41,10 +41,8 @@ gulp.task('scripts', function() {
     .pipe(sourcemaps.init())
     .pipe(concat('coco.js'))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./temp'))
-    .pipe(minify({
-        noSource:true
-    }))
+    .pipe(gulp.dest('./build/js'))
+    .pipe(minify())
     .pipe(gulp.dest('./build/js'));;
 });
 
