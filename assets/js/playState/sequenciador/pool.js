@@ -10,7 +10,7 @@ var Pool = function(game, play, group) {
   var play = play;
   var groups = {
     'cocolito': game.add.group(group),
-    'garrafa-pet': game.add.group(group),
+    'peixe': game.add.group(group),
     'zika': game.add.group(group),
     'defunto': game.add.group(group),
     'sofa': game.add.group(group),

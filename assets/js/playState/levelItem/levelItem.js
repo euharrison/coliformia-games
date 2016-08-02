@@ -1,5 +1,5 @@
 var LevelItem = function() {
-  this.attackSpeed = 3.5;
+  this.attackSpeed = 4;
 }
 
 LevelItem.prototype = Object.create(Phaser.Sprite.prototype);

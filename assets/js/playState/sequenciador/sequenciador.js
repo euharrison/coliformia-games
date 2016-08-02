@@ -38,21 +38,21 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-single',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 500,
+      time: 400,
       elements: [ element('cocolito') ]
     },
     {
-      id: 'garrafa-pet',
+      id: 'peixe',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 500,
-      elements: [ element('garrafa-pet') ]
+      time: 400,
+      elements: [ element('peixe') ]
     },
     {
       id: 'zika',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 1000,
+      time: 400,
       elements: [ element('zika') ]
     },
 
@@ -61,7 +61,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-double',
       scoreMin: 100,
       scoreMax: Infinity,
-      time: 600,
+      time: 500,
       elements: [ element('cocolito', 0), element('cocolito', 100) ]
     },
     {
@@ -74,10 +74,26 @@ var Sequenciador = function(game, play, group) {
       ]
     },
     {
+      id: 'finding-nemo',
+      scoreMin: 300,
+      scoreMax: Infinity,
+      time: 1100,
+      elements: [
+        element('peixe', 0, 250),
+        element('peixe', 150, 250),
+        element('peixe', 300, 250),
+        element('peixe', 450, 250),
+        element('peixe', 600, 250),
+        element('peixe', 750, 250),
+        element('peixe', 900, 250),
+        element('peixe', 1050, 250),
+      ]
+    },
+    {
       id: 'sofa',
       scoreMin: 400,
       scoreMax: Infinity,
-      time: 3000,
+      time: 2000,
       elements: [
         element('sofa'),
       ]
@@ -88,7 +104,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-triple',
       scoreMin: 300,
       scoreMax: Infinity,
-      time: 1000,
+      time: 600,
       elements: [ 
         element('cocolito', 0),
         element('cocolito', 100),
@@ -99,21 +115,21 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-tunnel',
       scoreMin: 400,
       scoreMax: Infinity,
-      time: 1500,
+      time: 600,
       elements: [
         element('cocolito', 0, 0), 
         element('cocolito', 0, 430),
-        element('cocolito', 200, 0), 
+        element('cocolito', 100, 0), 
+        element('cocolito', 100, 430),
+        element('cocolito', 200, 0),
         element('cocolito', 200, 430),
-        element('cocolito', 400, 0),
-        element('cocolito', 400, 430),
       ]
     },
     {
       id: 'coco-wall',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 1500,
+      time: 1000,
       elements: [
         element('cocolito', 0, 0),
         element('cocolito', 0, 400),
@@ -161,21 +177,14 @@ var Sequenciador = function(game, play, group) {
       id: 'sus',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 1000,
+      time: 400,
       elements: [ element('sus') ]
     },
     {
-      id: 'injection',
-      scoreMin: 100,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ element('injection') ]
-    },
-    {
       id: 'sussa',
-      scoreMin: 300,
+      scoreMin: 200,
       scoreMax: Infinity,
-      time: 2500,
+      time: 1200,
       elements: [ 
         element('sus', 0, 400),
         element('sus', 100, 300),
@@ -185,14 +194,21 @@ var Sequenciador = function(game, play, group) {
       ]
     },
     {
-      id: 'refill-life',
-      scoreMin: 500,
+      id: 'injection',
+      scoreMin: 400,
       scoreMax: Infinity,
-      time: 2000,
+      time: 400,
+      elements: [ element('injection') ]
+    },
+    {
+      id: 'refill-life',
+      scoreMin: 700,
+      scoreMax: Infinity,
+      time: 800,
       elements: [
         element('injection', 0),
-        element('injection', 300),
-        element('injection', 600)
+        element('injection', 200),
+        element('injection', 400)
       ]
     },
   ];
@@ -224,7 +240,7 @@ var Sequenciador = function(game, play, group) {
     sequenciaStartTime = elapsedTime;
     currentElement = 0;
 
-    console.log('starting: ' + currentSequence.id, availableIndexes);
+    console.log('starting: ' + currentSequence.id, availableIndexes, new Date());
   };
 
   function updateSequence() {
@@ -239,39 +255,34 @@ var Sequenciador = function(game, play, group) {
   function createElement(element) {
     switch (element.id) {
       case 'cocolito':
+      case 'peixe':
         var x = game.width + 150/2;
-        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
-        play.pool.get('cocolito', x, y);
-        break;
-
-      case 'garrafa-pet':
-        var x = game.width + 110/2;
         var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
-        play.pool.get('garrafa-pet', x, y);
+        play.pool.get(element.id, x, y);
         break;
 
       case 'zika':
         var x = game.width + 359;
         var y = play.initialPosition.y - 50;
-        play.pool.get('zika', x, y);
+        play.pool.get(element.id, x, y);
         break;
 
       case 'defunto':
         var x = game.width + 150/2;
         var y = game.rnd.integerInRange(play.initialPosition.y+120, game.height-120);
-        play.pool.get('defunto', x, y);
+        play.pool.get(element.id, x, y);
         break;
 
       case 'sofa':
         var x = game.width + 431/2;
         var y = game.height - 150;
-        play.pool.get('sofa', x, y);
+        play.pool.get(element.id, x, y);
         break;
 
       case 'monte-bosta':
         var x = game.width + 735/2;
         var y = game.height - 528/2;
-        play.pool.get('monte-bosta', x, y);
+        play.pool.get(element.id, x, y);
         break;
 
       case 'sewer':
@@ -287,15 +298,10 @@ var Sequenciador = function(game, play, group) {
         break;
 
       case 'sus':
-        var x = game.width + 225/2;
-        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
-        play.pool.get('sus', x, y);
-        break;
-
       case 'injection':
         var x = game.width + 225/2;
         var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
-        play.pool.get('injection', x, y);
+        play.pool.get(element.id, x, y);
         break;
     }
   };
