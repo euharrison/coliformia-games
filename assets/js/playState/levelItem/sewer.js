@@ -61,6 +61,7 @@ Sewer.prototype.releaseCocolito = function() {
 
   var tween = this.game.add.tween(this.sewer).to({ x: isso.sewer.x+33 }, 500, Phaser.Easing.Elastic.In);
   tween.onComplete.add(function() {
+    this.game.coliformiaSounds.coco_canhao.play();
     this.play.pool.get('cocolito',this.sewer.x, this.sewer.y+80);
     this.tween({ x: isso.sewer.x-33 }, this.nextStep);
   }, this);

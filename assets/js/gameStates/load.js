@@ -8,6 +8,7 @@ var loadState = {
     game.load.setPreloadSprite(progressBar);
 
     var SPRITES_DIR = 'assets/sprites/';
+    var SONS_DIR = 'assets/sons/';
 
     game.load.image('bg', SPRITES_DIR + 'bg/bg.png');
     game.load.image('bg-sky', SPRITES_DIR + 'bg/bg-sky.png');
@@ -58,6 +59,16 @@ var loadState = {
 
     game.load.spritesheet('player', SPRITES_DIR + 'player.png', 150, 120);
     game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 165, 81);
+
+    game.load.audio('bolha_ou_pulo1', SONS_DIR + 'bolha_ou_pulo1.wav');
+    game.load.audio('bolha_ou_pulo2', SONS_DIR + 'bolha_ou_pulo2.wav');
+    game.load.audio('cai_na_agua', SONS_DIR + 'cai_na_agua.wav');
+    game.load.audio('coco_canhao', SONS_DIR + 'coco_canhao.wav');
+    game.load.audio('hit', SONS_DIR + 'hit.wav');
+    game.load.audio('morte_boiando', SONS_DIR + 'morte_boiando.wav');
+    game.load.audio('musica', SONS_DIR + 'musica.wav');
+    game.load.audio('nada', SONS_DIR + 'nada.wav');
+    game.load.audio('power_up', SONS_DIR + 'power_up.wav');
 
     // Load physics data json
     game.load.physics('physicsData', 'assets/physics/collision.json');
