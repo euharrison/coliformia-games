@@ -38,21 +38,21 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-single',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 400,
+      time: 600,
       elements: [ element('cocolito') ]
     },
     {
       id: 'peixe',
       scoreMin: 150,
       scoreMax: Infinity,
-      time: 400,
+      time: 600,
       elements: [ element('peixe') ]
     },
     {
       id: 'zika',
-      scoreMin: 20,
+      scoreMin: 50,
       scoreMax: Infinity,
-      time: 400,
+      time: 600,
       elements: [ element('zika') ]
     },
 
@@ -61,8 +61,11 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-double',
       scoreMin: 50,
       scoreMax: Infinity,
-      time: 500,
-      elements: [ element('cocolito', 0), element('cocolito', 100) ]
+      time: 700,
+      elements: [
+        element('cocolito', 0),
+        element('cocolito', 100)
+      ]
     },
     {
       id: 'defunto',
@@ -77,7 +80,7 @@ var Sequenciador = function(game, play, group) {
       id: 'finding-nemo',
       scoreMin: 300,
       scoreMax: Infinity,
-      time: 1100,
+      time: 1350,
       elements: [
         element('peixe', 0, 250),
         element('peixe', 150, 250),
@@ -102,7 +105,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-triple',
       scoreMin: 500,
       scoreMax: Infinity,
-      time: 600,
+      time: 800,
       elements: [
         element('cocolito', 0),
         element('cocolito', 100),
@@ -152,7 +155,7 @@ var Sequenciador = function(game, play, group) {
       id: 'sewer',
       scoreMin: 100,
       scoreMax: Infinity,
-      time: 2000,
+      time: 1000,
       elements: [ element('sewer') ]
     },
     {
@@ -180,7 +183,7 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'sussa',
-      scoreMin: 200,
+      scoreMin: 150,
       scoreMax: Infinity,
       time: 1200,
       elements: [
@@ -193,14 +196,14 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'injection',
-      scoreMin: 400,
+      scoreMin: 300,
       scoreMax: Infinity,
       time: 400,
       elements: [ element('injection') ]
     },
     {
       id: 'refill-life',
-      scoreMin: 700,
+      scoreMin: 500,
       scoreMax: Infinity,
       time: 800,
       elements: [
