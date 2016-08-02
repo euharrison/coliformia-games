@@ -147,6 +147,7 @@ var playState = {
     if (this.player.alive) {
       this.playerlife.current = 0;
       this.player.alive = false;
+      this.player.body.clearShapes();
       this.player.animations.play('die');
     }
 
