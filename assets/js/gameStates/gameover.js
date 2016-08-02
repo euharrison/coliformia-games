@@ -9,11 +9,11 @@ var gameoverState = {
       { score: 0, name: 'Sebacitóide Bolhosa' },
       { score: 100, name: 'Eczecrose Amebática' },
       { score: 200, name: 'Lepstosciforme Cutínica' },
-      { score: 500, name: 'Tifoidema Urticariante' },
-      { score: 1000, name: 'Ceraglifia Imunoglobótica' },
+      { score: 400, name: 'Tifoidema Urticariante' },
+      { score: 700, name: 'Ceraglifia Imunoglobótica' },
       // { score: 1500, name: 'Amebtose Shigeciforme' },
       // { score: 1500, name: 'Psorisite Giardótica' },
-      { score: 1500, name: 'Anidrosema Sebacitante' },
+      { score: 1000, name: 'Anidrosema Sebacitante' },
     ];
 
     var index = 0;
