@@ -27,6 +27,13 @@
       "shape": [ 120, 75,   180, 113,   120, 150,   60, 113]
     }
   ],
+  "galvao": [
+    {
+      "density": 2, "friction": 0, "bounce": 0,
+      "filter": { "categoryBits": 1, "maskBits": 65535 },
+      "shape": [ 46, 49,   99, 41,   164, 172,   144, 172,   53, 113]
+    }
+  ],
   "sofa": [
     {
       "density": 2, "friction": 0, "bounce": 0,

@@ -118,6 +118,13 @@ var Sequenciador = function(game, play, group) {
         element('cocolito', 200, 430),
       ]
     },
+    {
+      id: 'galvao',
+      scoreMin: 350,
+      scoreMax: Infinity,
+      time: 600,
+      elements: [ element('galvao') ]
+    },
 
     // < 600m
     {
@@ -263,6 +270,7 @@ var Sequenciador = function(game, play, group) {
         break;
 
       case 'zika':
+      case 'galvao':
         var x = game.width + 359;
         var y = play.initialPosition.y - 50;
         play.pool.get(element.id, x, y);
