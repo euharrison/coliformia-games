@@ -93,6 +93,9 @@ Player.prototype.update = function() {
     if (this.isJumping && !(this.body.y < this.initialPosition.y))
     {
         game.coliformiaSounds.cai_na_agua.play();
+        if (this.alive) {
+            game.coliformiaSounds.nada.loopFull(0.5);
+        }
     } else if(!this.isJumping && (this.body.y < this.initialPosition.y)) {
         if(Math.random() > 0.5)
         {
@@ -100,6 +103,7 @@ Player.prototype.update = function() {
         } else {
             game.coliformiaSounds.bolha_ou_pulo2.play();
         }
+        game.coliformiaSounds.nada.stop();
     }
 
     //atualiza se está dentro da água ou não

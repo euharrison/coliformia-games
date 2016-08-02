@@ -2,6 +2,8 @@ var playState = {
 
   create: function() {
 
+      window.game = game;
+
     this.initialPosition = game.coliformiaConfig.initialPosition;
     this.playerlife = game.coliformiaConfig.player.life;
     this.velocity = game.coliformiaConfig.velocity;
@@ -72,6 +74,8 @@ var playState = {
     this.scoreText.anchor.setTo(0.5);
 
     this.isJumping = false;
+
+    game.coliformiaSounds.nada.loopFull(0.5);
   },
 
   update: function() {
@@ -125,6 +129,7 @@ var playState = {
   },
 
   enemyCollisionHandler: function(body1, body2) {
+      game.coliformiaSounds.nada.stop();
       game.coliformiaSounds.hit.play();
     this.die();
   },
