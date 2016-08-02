@@ -96,12 +96,14 @@ var gameoverState = {
   },
 
   playAgain: function() {
-      ga('send', {
-        hitType: 'event',
-        eventCategory: 'Game',
-        eventAction: 'play',
-        eventLabel: 'restart'
-      });
+      if (typeof ga === 'function') {
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Game',
+            eventAction: 'play',
+            eventLabel: 'restart'
+          });
+      }
 
     game.state.start('play');
   },
