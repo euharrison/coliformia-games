@@ -141,6 +141,7 @@ var playState = {
 
   die: function() {
     if (this.player.alive) {
+        game.coliformiaSounds.morte_boiando.play();
       this.playerlife.current = 0;
       this.player.alive = false;
       this.player.body.clearShapes();
