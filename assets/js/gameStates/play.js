@@ -74,6 +74,8 @@ var playState = {
     this.isJumping = false;
 
     cursors = game.input.keyboard.createCursorKeys();
+
+    game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   },
 
   update: function() {

@@ -61,7 +61,7 @@ var Sequenciador = function(game, play, group) {
       id: 'zika',
       scoreMin: 1,
       scoreMax: Infinity,
-      time: 500,
+      time: 1000,
       elements: [ enemy('zika') ]
     },
 
@@ -74,49 +74,71 @@ var Sequenciador = function(game, play, group) {
       elements: [ enemy('cocolito', 0), enemy('cocolito', 100) ]
     },
     {
-      id: 'sofa',
-      scoreMin: 100,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [
-        enemy('sofa'),
-      ]
-    },
-    {
       id: 'defunto',
       scoreMin: 200,
       scoreMax: Infinity,
-      time: 1000,
+      time: 2000,
       elements: [
         enemy('defunto'),
+      ]
+    },
+    {
+      id: 'sofa',
+      scoreMin: 400,
+      scoreMax: Infinity,
+      time: 3000,
+      elements: [
+        enemy('sofa'),
       ]
     },
 
     // hard enemies
     {
-      id: 'monte-bosta',
-      scoreMin: 300,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [
-        enemy('monte-bosta'),
-      ]
-    },
-    {
       id: 'coco-triple',
       scoreMin: 300,
       scoreMax: Infinity,
       time: 1000,
-      elements: [ enemy('cocolito', 0), enemy('cocolito', 100), enemy('cocolito', 200) ]
+      elements: [ 
+        enemy('cocolito', 0),
+        enemy('cocolito', 100),
+        enemy('cocolito', 200)
+      ]
     },
     {
       id: 'coco-tunnel',
-      scoreMin: 300,
+      scoreMin: 400,
       scoreMax: Infinity,
-      time: 1000,
+      time: 1500,
       elements: [
-        enemy('cocolito', 0, 0), enemy('cocolito', 200, 0), enemy('cocolito', 400, 0),
-        enemy('cocolito', 0, 500), enemy('cocolito', 200, 500), enemy('cocolito', 400, 500),
+        enemy('cocolito', 0, 0), 
+        enemy('cocolito', 0, 430),
+        enemy('cocolito', 200, 0), 
+        enemy('cocolito', 200, 430),
+        enemy('cocolito', 400, 0),
+        enemy('cocolito', 400, 430),
+      ]
+    },
+    {
+      id: 'coco-wall',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 1500,
+      elements: [
+        enemy('cocolito', 0, 0),
+        enemy('cocolito', 0, 400),
+        enemy('cocolito', 100, 50),
+        enemy('cocolito', 100, 350),
+        enemy('cocolito', 200, 100),
+        enemy('cocolito', 200, 300),
+      ]
+    },
+    {
+      id: 'monte-bosta',
+      scoreMin: 800,
+      scoreMax: Infinity,
+      time: 4000,
+      elements: [
+        enemy('monte-bosta'),
       ]
     },
 
@@ -153,17 +175,34 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'injection',
-      scoreMin: 300,
+      scoreMin: 100,
       scoreMax: Infinity,
       time: 1000,
       elements: [ powerUp('injection') ]
     },
     {
-      id: 'refill-life',
-      scoreMin: 700,
+      id: 'sussa',
+      scoreMin: 300,
       scoreMax: Infinity,
-      time: 1000,
-      elements: [ powerUp('sus'), powerUp('injection', 300), powerUp('sus', 600) ]
+      time: 2500,
+      elements: [ 
+        powerUp('sus', 0, 400),
+        powerUp('sus', 100, 300),
+        powerUp('sus', 200, 200),
+        powerUp('sus', 300, 100),
+        powerUp('sus', 400, 0)
+      ]
+    },
+    {
+      id: 'refill-life',
+      scoreMin: 500,
+      scoreMax: Infinity,
+      time: 2000,
+      elements: [
+        powerUp('injection', 0),
+        powerUp('injection', 200),
+        powerUp('injection', 400)
+      ]
     },
   ];
 
@@ -217,12 +256,12 @@ var Sequenciador = function(game, play, group) {
     switch (enemy.id) {
       case 'cocolito':
         var x = game.width + 150/2;
-        var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
+        var y = enemy.y !== undefined ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
         play.pool.get('cocolito', x, y);
         break;
       case 'garrafa-pet':
         var x = game.width + 110/2;
-        var y = enemy.y ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
+        var y = enemy.y !== undefined ? enemy.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
         play.pool.get('garrafa-pet', x, y);
         break;
       case 'zika':
