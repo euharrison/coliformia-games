@@ -43,14 +43,14 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'peixe',
-      scoreMin: 1,
+      scoreMin: 150,
       scoreMax: Infinity,
       time: 400,
       elements: [ element('peixe') ]
     },
     {
       id: 'zika',
-      scoreMin: 1,
+      scoreMin: 20,
       scoreMax: Infinity,
       time: 400,
       elements: [ element('zika') ]
@@ -59,7 +59,7 @@ var Sequenciador = function(game, play, group) {
     // medium enemies
     {
       id: 'coco-double',
-      scoreMin: 100,
+      scoreMin: 50,
       scoreMax: Infinity,
       time: 500,
       elements: [ element('cocolito', 0), element('cocolito', 100) ]
@@ -85,8 +85,6 @@ var Sequenciador = function(game, play, group) {
         element('peixe', 450, 250),
         element('peixe', 600, 250),
         element('peixe', 750, 250),
-        element('peixe', 900, 250),
-        element('peixe', 1050, 250),
       ]
     },
     {
@@ -102,7 +100,7 @@ var Sequenciador = function(game, play, group) {
     // hard enemies
     {
       id: 'coco-triple',
-      scoreMin: 300,
+      scoreMin: 500,
       scoreMax: Infinity,
       time: 600,
       elements: [ 
@@ -113,7 +111,7 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'coco-tunnel',
-      scoreMin: 400,
+      scoreMin: 300,
       scoreMax: Infinity,
       time: 600,
       elements: [
@@ -129,7 +127,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-wall',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 1000,
+      time: 1100,
       elements: [
         element('cocolito', 0, 0),
         element('cocolito', 0, 400),
@@ -152,21 +150,21 @@ var Sequenciador = function(game, play, group) {
     // bosses
     {
       id: 'sewer',
-      scoreMin: 300,
+      scoreMin: 100,
       scoreMax: Infinity,
       time: 2000,
       elements: [ element('sewer') ]
     },
     {
       id: 'dudu',
-      scoreMin: 600,
+      scoreMin: 500,
       scoreMax: Infinity,
       time: 3000,
       elements: [ element('dudu') ]
     },
     {
       id: 'bonner',
-      scoreMin: 900,
+      scoreMin: 250,
       scoreMax: Infinity,
       time: 4000,
       elements: [ element('bonner') ]
