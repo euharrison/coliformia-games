@@ -72,10 +72,6 @@ var playState = {
     this.scoreText.anchor.setTo(0.5);
 
     this.isJumping = false;
-
-    cursors = game.input.keyboard.createCursorKeys();
-
-    game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   },
 
   update: function() {
@@ -122,6 +118,7 @@ var playState = {
 
     //score
     game.score += this.velocity/1000;
+    game.score += this.velocity/2000;
     this.scoreText.text = game.score.toFixed(0)+'m';
 
     //sequence
@@ -149,6 +146,7 @@ var playState = {
       this.player.alive = false;
       this.player.body.clearShapes();
       this.player.animations.play('die');
+      this.rastro.destroy();
     }
 
     this.velocityIncrease = -1;

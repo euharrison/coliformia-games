@@ -26,6 +26,9 @@ var Player = function (game, x, y) {
   var keySpacebar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   keySpacebar.onDown.add(this.onTouchDown, this);
   keySpacebar.onUp.add(this.onTouchUp, this);
+
+  //disable space on browser
+  game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
