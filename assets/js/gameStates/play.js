@@ -76,6 +76,7 @@ var playState = {
     this.isJumping = false;
 
     game.coliformiaSounds.nada.loopFull(0.5);
+    game.coliformiaSounds.musica.loopFull(0.2);
   },
 
   update: function() {
