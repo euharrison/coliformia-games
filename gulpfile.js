@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
+var minify = require('gulp-minify');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
@@ -38,9 +39,13 @@ gulp.task('scripts', function() {
       './assets/js/game.js'
     ])
     .pipe(sourcemaps.init())
-    .pipe(concat('script.js'))
+    .pipe(concat('coco.js'))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./build/js'));
+    .pipe(gulp.dest('./temp'))
+    .pipe(minify({
+        noSource:true
+    }))
+    .pipe(gulp.dest('./build/js'));;
 });
 
 gulp.task('default', ['sass', 'scripts']);

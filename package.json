@@ -22,6 +22,7 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "concurrently": "^0.1.1"
+    "concurrently": "^0.1.1",
+    "gulp-minify": "0.0.13"
   }
 }
