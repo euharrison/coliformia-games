@@ -55,26 +55,19 @@ var Sequenciador = function(game, play, group) {
       time: 600,
       elements: [ element('peixe') ]
     },
-    {
-      id: 'sewer',
-      scoreMin: 150,
-      scoreMax: Infinity,
-      time: 1000,
-      elements: [ element('sewer') ]
-    },
 
     // special enemies: < 600m
     {
       id: 'bonner',
       scoreMin: 200,
-      scoreMax: Infinity,
-      time: 4000,
+      scoreMax: 300,
+      time: 3000,
       elements: [ element('bonner') ]
     },
     {
       id: 'dudu',
       scoreMin: 300,
-      scoreMax: Infinity,
+      scoreMax: 400,
       time: 3000,
       elements: [ element('dudu') ]
     },
@@ -88,7 +81,7 @@ var Sequenciador = function(game, play, group) {
     {
       id: 'defunto',
       scoreMin: 400,
-      scoreMax: Infinity,
+      scoreMax: 500,
       time: 2000,
       elements: [
         element('defunto'),
@@ -106,10 +99,40 @@ var Sequenciador = function(game, play, group) {
 
     // hard mode: > 600m
     {
+      id: 'bonner',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 2500,
+      elements: [ element('bonner') ]
+    },
+    {
+      id: 'dudu',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 2500,
+      elements: [ element('dudu') ]
+    },
+    {
+      id: 'defunto',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 1500,
+      elements: [
+        element('defunto'),
+      ]
+    },
+    {
+      id: 'sewer',
+      scoreMin: 600,
+      scoreMax: Infinity,
+      time: 500,
+      elements: [ element('sewer') ]
+    },
+    {
       id: 'sofa',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 2000,
+      time: 1500,
       elements: [
         element('sofa'),
       ]
@@ -118,28 +141,30 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-double',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 800,
+      time: 700,
       elements: [
         element('cocolito', 0),
         element('cocolito', 200)
       ]
     },
     {
-      id: 'coco-triple',
+      id: 'rodizio-japones',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 1000,
+      time: 1300,
       elements: [
-        element('cocolito', 0),
-        element('cocolito', 200),
-        element('cocolito', 400)
+        element('peixe', 0),
+        element('peixe', 200),
+        element('peixe', 400),
+        element('peixe', 600),
+        element('peixe', 800)
       ]
     },
     {
       id: 'coco-tunnel',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 600,
+      time: 700,
       elements: [
         element('cocolito', 0, 0),
         element('cocolito', 0, 430),
@@ -153,7 +178,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-funnel',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 1100,
+      time: 700,
       elements: [
         element('cocolito', 0, 0),
         element('cocolito', 0, 400),
@@ -167,7 +192,7 @@ var Sequenciador = function(game, play, group) {
       id: 'finding-nemo',
       scoreMin: 600,
       scoreMax: Infinity,
-      time: 1350,
+      time: 1250,
       elements: [
         element('peixe', 0, 250),
         element('peixe', 150, 250),
@@ -187,8 +212,15 @@ var Sequenciador = function(game, play, group) {
       elements: [ element('sus') ]
     },
     {
+      id: 'injection',
+      scoreMin: 400,
+      scoreMax: Infinity,
+      time: 400,
+      elements: [ element('injection') ]
+    },
+    {
       id: 'sussa',
-      scoreMin: 200,
+      scoreMin: 600,
       scoreMax: Infinity,
       time: 1200,
       elements: [
@@ -198,13 +230,6 @@ var Sequenciador = function(game, play, group) {
         element('sus', 300, 100),
         element('sus', 400, 0),
       ]
-    },
-    {
-      id: 'injection',
-      scoreMin: 350,
-      scoreMax: Infinity,
-      time: 400,
-      elements: [ element('injection') ]
     },
     {
       id: 'refill-life',
@@ -255,7 +280,7 @@ var Sequenciador = function(game, play, group) {
     {
       id: 'bonner',
       score: 200,
-      time: 4000,
+      time: 3000,
       elements: [ element('bonner') ]
     },
     {
@@ -266,7 +291,7 @@ var Sequenciador = function(game, play, group) {
     },
     {
       id: 'super-injection',
-      score: 350,
+      score: 400,
       time: 3000,
       elements: [
         element('injection', 0, 0),
@@ -301,7 +326,7 @@ var Sequenciador = function(game, play, group) {
   function changeSequence(currentScore) {
     //if has an event, it's higher priority
     if (events.length && currentScore > events[0].score) {
-      console.log('EVENT', events[0].id)
+      // console.log('event: ', events[0].id)
       currentSequence = events.shift();
     }
     //else, use any available sequence
