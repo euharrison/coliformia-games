@@ -37,45 +37,52 @@ var Sequenciador = function(game, play, group) {
     {
       id: 'coco-single',
       scoreMin: 1,
-      scoreMax: 600,
-      time: 600,
+      scoreMax: 200,
+      time: 500,
       elements: [ element('cocolito') ]
     },
     {
       id: 'zika',
       scoreMin: 60,
       scoreMax: 600,
-      time: 600,
+      time: 500,
       elements: [ element('zika') ]
     },
     {
       id: 'peixe',
       scoreMin: 100,
-      scoreMax: 600,
-      time: 600,
+      scoreMax: 200,
+      time: 500,
       elements: [ element('peixe') ]
     },
 
     // special enemies: < 600m
+    // others appears as events, only once until hard mode
     {
-      id: 'bonner',
+      id: 'coco-double',
       scoreMin: 200,
-      scoreMax: 300,
-      time: 3000,
-      elements: [ element('bonner') ]
+      scoreMax: Infinity,
+      time: 700,
+      elements: [
+        element('cocolito', 0),
+        element('cocolito', 200)
+      ]
     },
     {
-      id: 'dudu',
-      scoreMin: 300,
-      scoreMax: 400,
-      time: 3000,
-      elements: [ element('dudu') ]
+      id: 'peixe-double',
+      scoreMin: 200,
+      scoreMax: Infinity,
+      time: 700,
+      elements: [
+        element('peixe', 0),
+        element('peixe', 200)
+      ]
     },
     {
       id: 'galvao',
       scoreMin: 400,
       scoreMax: Infinity,
-      time: 600,
+      time: 500,
       elements: [ element('galvao') ]
     },
     {
@@ -85,15 +92,6 @@ var Sequenciador = function(game, play, group) {
       time: 2000,
       elements: [
         element('defunto'),
-      ]
-    },
-    {
-      id: 'monte-bosta',
-      scoreMin: 500,
-      scoreMax: Infinity,
-      time: 4000,
-      elements: [
-        element('monte-bosta'),
       ]
     },
 
@@ -135,16 +133,6 @@ var Sequenciador = function(game, play, group) {
       time: 1500,
       elements: [
         element('sofa'),
-      ]
-    },
-    {
-      id: 'coco-double',
-      scoreMin: 600,
-      scoreMax: Infinity,
-      time: 700,
-      elements: [
-        element('cocolito', 0),
-        element('cocolito', 200)
       ]
     },
     {
