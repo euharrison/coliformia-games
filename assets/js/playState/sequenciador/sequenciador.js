@@ -24,35 +24,26 @@ var Sequenciador = function(game, play, group) {
   }
 
   var sequencesPool = [
-    // first enemy, like an intro
-    {
-      id: 'first',
-      scoreMin: -1,
-      scoreMax: 2,
-      time: 4000,
-      elements: [ element('cocolito', 1000, 30) ]
-    },
-
     // game engine: < 200m
     {
       id: 'coco-single',
       scoreMin: 1,
       scoreMax: 200,
-      time: 500,
+      time: 1500,
       elements: [ element('cocolito') ]
     },
     {
       id: 'zika',
       scoreMin: 60,
-      scoreMax: 600,
-      time: 500,
+      scoreMax: 200,
+      time: 1500,
       elements: [ element('zika') ]
     },
     {
       id: 'peixe',
       scoreMin: 100,
       scoreMax: 200,
-      time: 500,
+      time: 1500,
       elements: [ element('peixe') ]
     },
 
@@ -62,7 +53,7 @@ var Sequenciador = function(game, play, group) {
       id: 'coco-double',
       scoreMin: 200,
       scoreMax: Infinity,
-      time: 700,
+      time: 1000,
       elements: [
         element('cocolito', 0),
         element('cocolito', 200)
@@ -72,7 +63,7 @@ var Sequenciador = function(game, play, group) {
       id: 'peixe-double',
       scoreMin: 200,
       scoreMax: Infinity,
-      time: 700,
+      time: 1000,
       elements: [
         element('peixe', 0),
         element('peixe', 200)
@@ -82,14 +73,14 @@ var Sequenciador = function(game, play, group) {
       id: 'galvao',
       scoreMin: 400,
       scoreMax: Infinity,
-      time: 500,
+      time: 1000,
       elements: [ element('galvao') ]
     },
     {
       id: 'defunto',
       scoreMin: 400,
       scoreMax: 500,
-      time: 2000,
+      time: 3000,
       elements: [
         element('defunto'),
       ]
@@ -234,6 +225,18 @@ var Sequenciador = function(game, play, group) {
 
   var events = [
     {
+      id: 'first',
+      score: -1,
+      time: 4000,
+      elements: [ element('cocolito', 1000, 150) ]
+    },
+    {
+      id: 'second',
+      score: -1,
+      time: 2000,
+      elements: [ element('cocolito', 0, 30) ]
+    },
+    {
       id: 'super-sussa',
       score: 150,
       time: 3000,
@@ -268,13 +271,13 @@ var Sequenciador = function(game, play, group) {
     {
       id: 'bonner',
       score: 200,
-      time: 3000,
+      time: 6000,
       elements: [ element('bonner') ]
     },
     {
       id: 'dudu',
       score: 300,
-      time: 3000,
+      time: 6000,
       elements: [ element('dudu') ]
     },
     {

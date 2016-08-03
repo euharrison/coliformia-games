@@ -31,13 +31,13 @@ app.get('/:id', function(req, res) {
     {
       url: 'http://coliformiagames.com/2',
       title: 'Coliformia Games :: Eczecrose Amebática',
-      description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 100m! #RioDeMerda',
+      description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 200m! #RioDeMerda',
       image: '02.jpg',
     },
     {
       url: 'http://coliformiagames.com/3',
       title: 'Coliformia Games :: Lepstosciforme Cutínica',
-      description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 200m! #RioDeMerda',
+      description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 300m! #RioDeMerda',
       image: '03.jpg',
     },
     {
@@ -49,13 +49,13 @@ app.get('/:id', function(req, res) {
     {
       url: 'http://coliformiagames.com/5',
       title: 'Coliformia Games :: Ceraglifia Imunoglobótica',
-      description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 1000m! #RioDeMerda',
+      description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 900m! #RioDeMerda',
       image: '05.jpg',
     },
     {
       url: 'http://coliformiagames.com/6',
       title: 'Coliformia Games :: Anidrosema Sebacitante',
-      description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1500m! #RioDeMerda',
+      description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1200m! #RioDeMerda',
       image: '06.jpg',
     }
   ]
