@@ -4,10 +4,10 @@ var ColiformiaConfigurations = (function () {
   function create() {
     var config = {
       velocity: 200,
-      velocityIncrease: 0.02,
-      monteBostaSpeed:2,
+      velocityIncrease: 0,
+      monteBostaSpeed: 2,
       initialPosition: {
-        x: 130,
+        x: 230,
         y: 230
       },
       player: {

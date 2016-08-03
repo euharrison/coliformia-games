@@ -3,6 +3,14 @@ var mustacheExpress = require('mustache-express');
 var app = express();
 
 var pt_br = {
+  url: 'http://coliformiagames.com',
+  title: 'Coliformia Games',
+  description: 'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RioDeMerda',
+  image: '01.jpg',
+
+  contato:'Contato',
+  sobre:'Sobre',
+
   header_text:'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo!',
   paragrafo_1:'Nessa competição emocionante, os melhores atletas de todo o planeta terão o privilégio de correr atrás de sua merdalha imersa em esgoto puro, de baixo dos braços da sétima maravilha do mundo moderno, desafiando os limites do corpo humano.',
   paragrafo_2:'São duas lindíssimas praias, uma bela lagoa e uma enorme baia repletas de cocô de aproximadamente 5 milhões de pessoas que vivem em situações precárias e sem nenhuma estrutura de saneamento básico, que proporcionarão aos nossos atletas e turistas convidados uma gama de oportunidades de doenças exclusivas da cidade maravilhosa, com 99% de chance a cada 3 colheres de chá ingeridas!',
@@ -21,6 +29,14 @@ var pt_br = {
 };
 
 var en_us = {
+  url: 'http://coliformiagames.com',
+  title: 'Coliformia Games',
+  description: 'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RioDeMerda',
+  image: '01.jpg',
+
+  contato:'Email us',
+  sobre:'About',
+
   header_text:'Welcome to the shittiest survival competition in the entire globe!',
   paragrafo_1:'The best athletes from all over the planet will have the privilege of running after the medal under the arms of one of world\'s seven wonders. A challenge to the human body.',
   paragrafo_2:'Two amazing beaches, a beautiful lake, a gigantic bay and around 5 million people that live around it with no access to basic infrastructure such as a sewer system, offering visitors and participants a vast range of exclusive diseases from the wonderful city. You have a 99% chance of acquiring one on every 3 tea spoons of our liquid!',
@@ -39,69 +55,9 @@ var en_us = {
 };
 
 //register file extension mustache
-// app.engine('html', mustacheExpress());
-
-// //register file extension for partials
-// app.set('view engine', 'html');
-// app.set('views', __dirname);
-
-// app.get('/', function(req, res) {
-//   res.render('index',
-//   {
-//     url: 'http://coliformiagames.com',
-//     title: 'Coliformia Games',
-//     description: 'Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RioDeMerda',
-//     image: '01.jpg',
-//   });
-// });
-
-// app.get('/:id', function(req, res) {
-//   var index = Number(req.params.id) - 1;
-//   var tags = [
-//     {
-//       url: 'http://coliformiagames.com/1',
-//       title: 'Coliformia Games :: Sebacitóide Bolhosa',
-//       description: 'Peguei Sebacitóide Bolhosa na Baía de Guanabara! #RioDeMerda',
-//       image: '01.jpg',
-//     },
-//     {
-//       url: 'http://coliformiagames.com/2',
-//       title: 'Coliformia Games :: Eczecrose Amebática',
-//       description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 100m! #RioDeMerda',
-//       image: '02.jpg',
-//     },
-//     {
-//       url: 'http://coliformiagames.com/3',
-//       title: 'Coliformia Games :: Lepstosciforme Cutínica',
-//       description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 200m! #RioDeMerda',
-//       image: '03.jpg',
-//     },
-//     {
-//       url: 'http://coliformiagames.com/4',
-//       title: 'Coliformia Games :: Tifoidema Urticariante',
-//       description: 'Peguei Tifoidema Urticariante na Baía de Guanabara nadando mais de 500m! #RioDeMerda',
-//       image: '04.jpg',
-//     },
-//     {
-//       url: 'http://coliformiagames.com/5',
-//       title: 'Coliformia Games :: Ceraglifia Imunoglobótica',
-//       description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 1000m! #RioDeMerda',
-//       image: '05.jpg',
-//     },
-//     {
-//       url: 'http://coliformiagames.com/6',
-//       title: 'Coliformia Games :: Anidrosema Sebacitante',
-//       description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1500m! #RioDeMerda',
-//       image: '06.jpg',
-//     }
-//   ]
-//   res.render('index', tags[index]);
-// });
-
-//register file extension mustache
 app.engine('html', mustacheExpress());
 
-// //register file extension for partials
+//register file extension for partials
 app.set('view engine', 'html');
 app.set('views', __dirname);
 
@@ -113,6 +69,55 @@ app.get('/en', function(req, res) {
   res.render('index', en_us);
 });
 
+app.get('/:id', function(req, res) {
+  var index = Number(req.params.id) - 1;
+  var tags = [
+    {
+      url: 'http://coliformiagames.com/1',
+      title: 'Coliformia Games :: Sebacitóide Bolhosa',
+      description: 'Peguei Sebacitóide Bolhosa na Baía de Guanabara! #RioDeMerda',
+      image: '01.jpg',
+    },
+    {
+      url: 'http://coliformiagames.com/2',
+      title: 'Coliformia Games :: Eczecrose Amebática',
+      description: 'Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 200m! #RioDeMerda',
+      image: '02.jpg',
+    },
+    {
+      url: 'http://coliformiagames.com/3',
+      title: 'Coliformia Games :: Lepstosciforme Cutínica',
+      description: 'Peguei Lepstosciforme Cutínica na Praia de Copacabana nadando mais de 300m! #RioDeMerda',
+      image: '03.jpg',
+    },
+    {
+      url: 'http://coliformiagames.com/4',
+      title: 'Coliformia Games :: Tifoidema Urticariante',
+      description: 'Peguei Tifoidema Urticariante na Baía de Guanabara nadando mais de 500m! #RioDeMerda',
+      image: '04.jpg',
+    },
+    {
+      url: 'http://coliformiagames.com/5',
+      title: 'Coliformia Games :: Ceraglifia Imunoglobótica',
+      description: 'Peguei Ceraglifia Imunoglobótica na Lagoa Rodrigo de Freitas nadando mais de 900m! #RioDeMerda',
+      image: '05.jpg',
+    },
+    {
+      url: 'http://coliformiagames.com/6',
+      title: 'Coliformia Games :: Anidrosema Sebacitante',
+      description: 'Peguei Anidrosema Sebacitante na Praia de Copacabana nadando mais de 1200m! #RioDeMerda',
+      image: '06.jpg',
+    }
+  ]
+  res.render('index', tags[index]);
+});
+
+//register file extension mustache
+app.engine('html', mustacheExpress());
+
+// //register file extension for partials
+app.set('view engine', 'html');
+app.set('views', __dirname);
 
 app.use('/', express.static(__dirname));
 

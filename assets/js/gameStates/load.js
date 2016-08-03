@@ -8,6 +8,7 @@ var loadState = {
     game.load.setPreloadSprite(progressBar);
 
     var SPRITES_DIR = 'assets/sprites/';
+    var SONS_DIR = 'assets/sons/';
 
     game.load.image('bg', SPRITES_DIR + 'bg/bg.png');
     game.load.image('bg-sky', SPRITES_DIR + 'bg/bg-sky.png');
@@ -43,6 +44,7 @@ var loadState = {
     game.load.spritesheet('cocolito', SPRITES_DIR + 'enemies/cocolito.png', 150, 120);
     game.load.spritesheet('peixe', SPRITES_DIR + 'enemies/peixe.png', 150, 120);
     game.load.spritesheet('zika', SPRITES_DIR + 'enemies/zika.png', 298, 225);
+    game.load.spritesheet('galvao', SPRITES_DIR + 'enemies/galvao.png', 236, 207);
     game.load.spritesheet('defunto', SPRITES_DIR + 'enemies/defunto.png', 150, 240);
     game.load.image('sofa', SPRITES_DIR + 'enemies/sofa.png', 431, 304); 
     game.load.image('monte-bosta', SPRITES_DIR + 'enemies/monte-bosta.png', 735, 528); 
@@ -58,6 +60,16 @@ var loadState = {
 
     game.load.spritesheet('player', SPRITES_DIR + 'player.png', 150, 120);
     game.load.spritesheet('rastro', SPRITES_DIR + 'rastro.png', 165, 81);
+
+    game.load.audio('bolha_ou_pulo1', SONS_DIR + 'bolha_ou_pulo1.wav');
+    game.load.audio('bolha_ou_pulo2', SONS_DIR + 'bolha_ou_pulo2.wav');
+    game.load.audio('cai_na_agua', SONS_DIR + 'cai_na_agua.wav');
+    game.load.audio('coco_canhao', SONS_DIR + 'coco_canhao.wav');
+    game.load.audio('hit', SONS_DIR + 'hit.wav');
+    game.load.audio('morte_boiando', SONS_DIR + 'morte_boiando.wav');
+    game.load.audio('musica', SONS_DIR + 'musica.wav');
+    game.load.audio('nada', SONS_DIR + 'nada.wav');
+    game.load.audio('power_up', SONS_DIR + 'power_up.wav');
 
     // Load physics data json
     game.load.physics('physicsData', 'assets/physics/collision.json');

@@ -90,12 +90,34 @@ Player.prototype.update = function() {
     this.angle = this.body.velocity.y/15;
     this.body.rotation = this.angle * Math.PI / 180;
 
+    if (this.isJumping && !(this.body.y < this.initialPosition.y))
+    {
+        game.coliformiaSounds.cai_na_agua.play();
+        if (this.alive) {
+            game.coliformiaSounds.nada.loopFull(0.5);
+        }
+    } else if(!this.isJumping && (this.body.y < this.initialPosition.y)) {
+        if(Math.random() > 0.5)
+        {
+            game.coliformiaSounds.bolha_ou_pulo1.play();
+        } else {
+            game.coliformiaSounds.bolha_ou_pulo2.play();
+        }
+        game.coliformiaSounds.nada.stop();
+    }
+
     //atualiza se está dentro da água ou não
     this.isJumping = (this.body.y < this.initialPosition.y);
 
     //limita a tela somente no chão
-    if (this.body.y > 660) {
+    if (this.body.y >= 660) {
       this.body.y = 660;
+
+      //se permanecer em baixo, dividir a velocidade positiva pela metade assim vai freiando/
+      //isso ajuda a poder subir rapidamente quando estiver nadando somente lá embaixo
+      if (this.body.velocity.y > 0) {
+        this.body.velocity.y /= 2;
+      };
     }
 };
 
