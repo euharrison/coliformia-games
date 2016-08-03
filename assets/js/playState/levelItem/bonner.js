@@ -10,6 +10,8 @@ var Bonner = function(game, play, group) {
   this.scale.setTo(0, 0);
   group.add(this);
 
+  this.sendToBack();
+
   this.steps = [
     'enter',
     'desceAtirando',
