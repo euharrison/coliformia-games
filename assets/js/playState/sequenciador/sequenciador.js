@@ -362,7 +362,7 @@ var Sequenciador = function(game, play, group) {
       case 'cocolito':
       case 'peixe':
         var x = game.width + 150/2;
-        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
+        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-50);
         play.pool.get(element.id, x, y);
         break;
 
@@ -375,7 +375,7 @@ var Sequenciador = function(game, play, group) {
 
       case 'defunto':
         var x = game.width + 150/2;
-        var y = game.rnd.integerInRange(play.initialPosition.y+120, game.height-120);
+        var y = game.rnd.integerInRange(play.initialPosition.y+120, game.height-100);
         play.pool.get(element.id, x, y);
         break;
 
@@ -422,7 +422,7 @@ var Sequenciador = function(game, play, group) {
       case 'sus':
       case 'injection':
         var x = game.width + 225/2;
-        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-88);
+        var y = element.y !== undefined ? element.y + play.initialPosition.y : game.rnd.integerInRange(play.initialPosition.y, game.height-100);
         play.pool.get(element.id, x, y);
         break;
     }

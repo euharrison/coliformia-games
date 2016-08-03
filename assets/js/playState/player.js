@@ -110,8 +110,14 @@ Player.prototype.update = function() {
     this.isJumping = (this.body.y < this.initialPosition.y);
 
     //limita a tela somente no chão
-    if (this.body.y > 660) {
+    if (this.body.y >= 660) {
       this.body.y = 660;
+
+      //se permanecer em baixo, dividir a velocidade positiva pela metade assim vai freiando/
+      //isso ajuda a poder subir rapidamente quando estiver nadando somente lá embaixo
+      if (this.body.velocity.y > 0) {
+        this.body.velocity.y /= 2;
+      };
     }
 };
 
