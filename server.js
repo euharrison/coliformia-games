@@ -1,6 +1,7 @@
 var express = require('express');
 var mustacheExpress = require('mustache-express');
 var app = express();
+var extend = require('util')._extend;
 
 var pt_br = {
   url: 'http://coliformiagames.com',
@@ -109,7 +110,8 @@ app.get('/:id', function(req, res) {
       image: '06.jpg',
     }
   ]
-  res.render('index', tags[index]);
+  var data = extend(pt_br, tags[index]);
+  res.render('index', data);
 });
 
 //register file extension mustache
