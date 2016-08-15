@@ -305,7 +305,7 @@ var Sequenciador = function(game, play, group) {
   changeSequence(0);
 
   function update(currentScore){
-    elapsedTime += (game.time.physicsElapsed*1000);
+    elapsedTime += game.time.physicsElapsedMS;
 
     if (elapsedTime > sequenciaStartTime + currentSequence.time) {
       changeSequence(currentScore);
