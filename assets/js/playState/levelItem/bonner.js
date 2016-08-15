@@ -61,7 +61,7 @@ Bonner.prototype.desceAtirando = function() {
 };
 
 Bonner.prototype.desceMais = function() {
-  var tween = this.game.add.tween(this.position).to({ y:this.y+30 }, 500, Phaser.Easing.Cubic.Out);
+  var tween = this.game.add.tween(this.position).to({ y:this.y+30 }, 700, Phaser.Easing.Cubic.Out);
   tween.onComplete.add(this.nextStep, this);
   tween.start();
 };

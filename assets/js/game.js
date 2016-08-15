@@ -1,5 +1,5 @@
 // Init Phaser
-var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game');
+var game = new Phaser.Game(1280, 720, Phaser.CANVAS, 'game');
 game.score = 0;
 
 // Define states
