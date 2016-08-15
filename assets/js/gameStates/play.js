@@ -2,6 +2,8 @@ var playState = {
 
   create: function() {
 
+    game.time.advancedTiming = true;
+
     this.initialPosition = game.coliformiaConfig.initialPosition;
     this.playerlife = game.coliformiaConfig.player.life;
     this.velocity = game.coliformiaConfig.velocity;
@@ -125,6 +127,10 @@ var playState = {
 
     //sequence
     this.sequenciador.update(Math.ceil(game.score), this.playerlife.current / this.playerlife.initial);
+  },
+
+  render: function() {
+    game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");
   },
 
   enemyCollisionHandler: function(body1, body2) {
