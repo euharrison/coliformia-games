@@ -63,11 +63,11 @@ app.set('view engine', 'html');
 app.set('views', __dirname);
 
 app.get('/', function(req, res) {
-  res.render('index', pt_br);
+  res.render('view', pt_br);
 });
 
 app.get('/en', function(req, res) {
-  res.render('index', en_us);
+  res.render('view', en_us);
 });
 
 app.get('/:id', function(req, res) {
@@ -111,7 +111,7 @@ app.get('/:id', function(req, res) {
     }
   ]
   var data = extend(pt_br, tags[index]);
-  res.render('index', data);
+  res.render('view', data);
 });
 
 //register file extension mustache

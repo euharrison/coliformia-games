@@ -14,11 +14,11 @@
 
   <meta property="fb:app_id" content="268817573490166">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:url" content="{{{url}}}">
+  <meta property="og:url" content="http://coliformiagames.com/2">
   <meta property="og:site_name" content="Coliformia Games">
-  <meta property="og:title" content="{{{title}}}">
-  <meta property="og:description" content="{{{description}}}">
-  <meta property="og:image" content="http://coliformiagames.com/assets/img/facebook/{{{image}}}">
+  <meta property="og:title" content="Coliformia Games :: Eczecrose Amebática">
+  <meta property="og:description" content="Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 200m! #RioDeMerda">
+  <meta property="og:image" content="http://coliformiagames.com/assets/img/facebook/02.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1920">
   <meta property="og:image:height" content="1080">
@@ -28,10 +28,14 @@
 <body>
 
   <div id="game-container">
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="mailto:coliformiagames@gmail.com">Contato</a>
+    </nav>
     <div id="game"></div>
   </div>
 
-  <div id="intro">
+  <div id="sobre">
     <h1>
       <img src="assets/img/loga-coliformia.svg" alt="Coliformia Games">
     </h1>
@@ -39,16 +43,16 @@
       <div class="fb-like" data-href="https://www.facebook.com/coliformiagames/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
     </div>
     <p>
-      <strong>Welcome to the shittiest survival competition in the entire globe!</strong>
+      <strong>Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo!</strong>
     </p>
     <p>
-      The best athletes from all over the planet will have the privilege of running after the medal under the arms of one of world's seven wonders. A challenge to the human body.
+      Nessa competição emocionante, os melhores atletas de todo o planeta terão o privilégio de correr atrás de sua merdalha imersa em esgoto puro, de baixo dos braços da sétima maravilha do mundo moderno, desafiando os limites do corpo humano.
     </p>
     <p>
-      Two amazing beaches, a beautiful lake, a gigantic bay and around 5 million people that live around it with no access to basic infrastructure such as a sewer system, offering visitors and participants a vast range of exclusive diseases from the wonderful city. You have a 99% chance of acquiring one on every 3 tea spoons of our liquid!
+      São duas lindíssimas praias, uma bela lagoa e uma enorme baia repletas de cocô de aproximadamente 5 milhões de pessoas que vivem em situações precárias e sem nenhuma estrutura de saneamento básico, que proporcionarão aos nossos atletas e turistas convidados uma gama de oportunidades de doenças exclusivas da cidade maravilhosa, com 99% de chance a cada 3 colheres de chá ingeridas!
     </p>
     <p>
-      So come and join us for swim in Coliformia Games!
+      Venha nadar com a gente no Coliformia Games!
     </p>
     <p>
       <strong>#RioDeMerda</strong>
@@ -56,25 +60,25 @@
   </div>
 
   <div id="main-quote">
-    "According to investigations from the Associated Press, the competing athletes from the Olympic games 2016 will have to swim and sail in water so much polluted by human feces that they risk getting infected and not being able to conclude the games."
+    “Os atletas que vão competir nos Jogos Olímpicos de 2016 terão que nadar e velejar em águas tão contaminadas por fezes humanas que se arriscam a contrair alguma doença e não poder concluir as provas, de acordo com uma investigação da Associated Press.”
     <a class="ref" href="http://esportes.estadao.com.br/noticias/jogos-olimpicos,poluicao-da-baia-de-guanabara-preocupa-para-a-rio-2016-,1734821" target="_blank">(ref)</a>
   </div>
 
   <div id="other-quotes">
     <p>
-      "As a consequence, Olympic athletes will most certainly get in contact with viruses that cause diseases, according to tests these viruses can be found up to 1,7 million times above the Californian alarming concentration amount for beaches."
+      “Em consequência, os atletas olímpicos quase certamente entrarão em contato com vírus causadores de doenças, que, segundo alguns testes, estão presentes em níveis até 1,7 milhão de vezes acima do que seria considerado alarmante em praias no sul da California”
       <a class="ref" href="http://esportes.estadao.com.br/noticias/jogos-olimpicos,poluicao-da-baia-de-guanabara-preocupa-para-a-rio-2016-,1734821" target="_blank">(ref)</a>
     </p>
     <p>
-      "According to marine biologist John Griffith, what one finds in Guanabara Bay is a sewer! Water from people's toilets, showers and everything else that is thrown in the drains, all in a mix that ends up at the shore. That would not be allowed if ever found here (in the US)"
+      “Segundo o biólogo marinho John Griffith, o que tem na Baía de Guanabara é basicamente esgoto puro! &quot;É agua dos banheiros, dos chuveiros e do que as pessoas jogam na pia, tudo misturado, que vai para a água das praias. Isso seria interditado imediatamente se fosse encontrado aqui [nos EUA]”
       <a class="ref" href="http://esportes.estadao.com.br/noticias/jogos-olimpicos,poluicao-da-baia-de-guanabara-preocupa-para-a-rio-2016-,1734821" target="_blank">(ref)</a>
     </p>
     <p>
-      "The virus concentration is the same one found in sewer systems, even in the least polluted areas, Copacabana beach, where we will have the swimming for the triathlon and the aquatic marathon and many of the 350.000 expected tourists may go for a swim"
+      “As concentrações dos vírus foram aproximadamente as mesmas que são encontradas no esgoto puro, mesmo em uma das áreas menos poluídas testadas, a praia de Copacabana, onde serão realizadas as provas de natação do triatlo e maratona aquática e onde muitos dos 350.000 turistas estrangeiros esperados podem dar seus mergulhos”
       <a class="ref" href="http://esportes.estadao.com.br/noticias/jogos-olimpicos,poluicao-da-baia-de-guanabara-preocupa-para-a-rio-2016-,1734821" target="_blank">(ref)</a>
     </p>
     <p>
-      "An American specialist in water transmitted virus risk evaluations examined the data from AP and estimated that all international athletes that have contact with water have also a 99% infection chance if they ingest 3 or more tea spoons from the water, even though for actually developing the diseases other factors are involved as well such as the person's immune system."
+      “Um especialista americano em avaliação de risco para vírus transmitidos pela água examinou os dados da AP e estimou que os atletas internacionais em todos os locais de competições aquáticas teriam uma chance de 99% de infecção ao ingerir apenas 3 colheres de chá da água, embora a probabilidade de uma pessoa ficar doente dependa da imunidade e outros fatores.”
       <a class="ref" href="http://esportes.estadao.com.br/noticias/jogos-olimpicos,poluicao-da-baia-de-guanabara-preocupa-para-a-rio-2016-,1734821" target="_blank">(ref)</a>
     </p>
   </div>
@@ -93,11 +97,11 @@
       </div>
       <div>
         <p class="testimonial">
-          "I believe I have my immune system strong enough for the next 5 Rio Olympics."
+          “Acho que já tenho anticorpos suficientes para as cincos próximas olimpíadas no Rio.”
         </p>
         <p class="person">
-          Brazilian athlete during a competition<br>
-          swimming in Rio de Janeiro
+          Atleta brasileiro durante a competição<br>
+          de natação no Rio de Janeiro
         </p>
       </div>
     </li>
@@ -108,11 +112,11 @@
       </div>
       <div>
         <p class="testimonial">
-          "Thanks to the Olympic games in Rio de Janeiro I've got an extra arm today, here, next to my belly."
+          “Graças aos jogos do Rio de Janeiro, hoje ganhei um bracinho a mais, bem próximo ao meu umbigo.”
         </p>
         <p class="person">
-            Brazilian athlete during a competition<br>
-            swimming in Rio de Janeiro
+          Atleta brasileiro durante a competição<br>
+          de natação no Rio de Janeiro
         </p>
       </div>
     </li>
