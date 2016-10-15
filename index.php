@@ -14,11 +14,11 @@
 
   <meta property="fb:app_id" content="268817573490166">
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:url" content="http://coliformiagames.com/2">
+  <meta property="og:url" content="http://coliformiagames.com">
   <meta property="og:site_name" content="Coliformia Games">
-  <meta property="og:title" content="Coliformia Games :: Eczecrose Amebática">
-  <meta property="og:description" content="Peguei Eczecrose Amebática na Lagoa Rodrigo de Freitas nadando mais de 200m! #RioDeMerda">
-  <meta property="og:image" content="http://coliformiagames.com/assets/img/facebook/02.jpg">
+  <meta property="og:title" content="Coliformia Games">
+  <meta property="og:description" content="Sejam bem-vindos a maior competição de sobrevivência a coliformes fecais do mundo! Coliformia Games - Rip 2016! #RioDeMerda">
+  <meta property="og:image" content="http://coliformiagames.com/assets/img/facebook/01.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1920">
   <meta property="og:image:height" content="1080">
